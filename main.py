@@ -2,23 +2,23 @@ import cv2
 from tracker import *
 import os
 
+
 def rescale_frame(frame, percent=75):
-    width = int(frame.shape[1] * percent/ 100)
-    height = int(frame.shape[0] * percent/ 100)
+    width = int(frame.shape[1] * percent / 100)
+    height = int(frame.shape[0] * percent / 100)
     dim = (width, height)
-    return cv2.resize(frame, dim, interpolation =cv2.INTER_AREA)
+    return cv2.resize(frame, dim, interpolation=cv2.INTER_AREA)
+
 
 def main():
     # clear tracked objects from previous run
-    if(os.path.exists("objects.csv")):
+    if (os.path.exists("objects.csv")):
         os.remove("objects.csv")
-
 
     # Create tracker object
     tracker = EuclideanDistTracker()
     # https://cwwp2.dot.ca.gov/vm/streamlist.htm
-    cap = cv2.VideoCapture("rtsp://192.168.1.213:554/11")
-
+    cap = cv2.VideoCapture(0)
 
     # Object detection from Stable camera
     object_detector = cv2.createBackgroundSubtractorKNN(history=1000, dist2Threshold=800, detectShadows=False)
@@ -28,8 +28,7 @@ def main():
         height, width, _ = frame.shape
 
         # Extract Region of interest
-        roi = frame[300: 420,0: 1152]
-    
+        roi = frame[100: 200, 100: 200]
 
         # 1. Object Detection
         mask = object_detector.apply(roi)
@@ -52,8 +51,8 @@ def main():
             cv2.putText(roi, "obj: " + str(id), (x, y - 15), cv2.FONT_HERSHEY_PLAIN, 2, (255, 0, 0), 2)
             cv2.rectangle(roi, (x, y), (x + w, y + h), (0, 255, 0), 3)
 
-        cv2.putText(frame, 'Detection Region', (50, 290), cv2.FONT_HERSHEY_PLAIN, 1, (0, 255, 0), 1)    
-        cv2.rectangle(frame, (0,300), (1152,420), (0, 255, 0), 1)
+        cv2.putText(frame, 'Detection Region', (50, 290), cv2.FONT_HERSHEY_PLAIN, 1, (0, 255, 0), 1)
+        cv2.rectangle(frame, (0, 300), (1152, 420), (0, 255, 0), 1)
         cv2.imshow("Masked Region", mask)
         cv2.imshow("Detection Region", roi)
         cv2.imshow("Frame", frame)
