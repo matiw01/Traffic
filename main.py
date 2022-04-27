@@ -21,7 +21,7 @@ def main():
             exit(1)
         frame = rescale_frame(frame, percent=50)
         height, width, _ = frame.shape
-        x0, x1, y0, y1 = 70, 999, 120, 1000 # z jakiegoś powodu x1 i y1 nie działa
+        x0, x1, y0, y1 = 700, 850, 150, 250 # z jakiegoś powodu x1 i y1 nie działa
         region_of_interest = frame[y0:y1, x0:x1, :].copy() #cały frame [0:height, 0:width]
 
         mask = object_detector.apply(region_of_interest)
@@ -31,7 +31,7 @@ def main():
         for cnt in contours:
             # Calculate area and remove small elements
             area = cv2.contourArea(cnt)
-            if area > 100: #musimy miec male area, bo auta są oddalone
+            if area > 10: #musimy miec male area, bo auta są oddalone
                 # Draw contours if needed
                 cv2.drawContours(region_of_interest, [cnt], -1, (0, 0, 255), )
                 x, y, w, h = cv2.boundingRect(cnt)
