@@ -12,7 +12,7 @@ def main():
     if os.path.exists("objects.csv"):
         os.remove("objects.csv")
     tracker = EuclideanDistTracker()
-    cap = cv2.VideoCapture("media\sample_vid.mkv")
+    cap = cv2.VideoCapture("media\\rondo_inwalidow.mkv")
     object_detector = cv2.createBackgroundSubtractorKNN(history=1000, dist2Threshold=100, detectShadows=True) #cv2.createBackgroundSubtractorKNN(history=1000, dist2Threshold=800, detectShadows=False) #
     while True:
         ret, frame = cap.read()
