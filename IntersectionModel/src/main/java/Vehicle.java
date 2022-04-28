@@ -46,9 +46,8 @@ public class Vehicle {
     }
     protected void randomBreak(){if (Math.random() < breakParameter) velocity -= 1;}
     protected Road overTake(Road current){
-        if (current.getLeft().isAvailable(velocity)){
-           return current.getLeft();
-        }
+        if (current.getLeft() == null) return null;
+        if (current.getLeft().isAvailable(velocity)){return current.getLeft();}
         return null;
     }
     protected void accelerate(){velocity = Math.max(velocity+1, maxVelocity);}
