@@ -1,4 +1,6 @@
-public abstract class Vehicle {
+public class Vehicle { //Change name
+    //TODO Constuctor
+    protected int numberOfPeople;
     protected float breakParameter = 0.1f;
     protected int maxVelocity;
     protected int velocity;
@@ -6,17 +8,18 @@ public abstract class Vehicle {
     protected int travelTime = 0;
     protected int waitingTime = 0;
     protected Road currentPosition;
+    protected int length;
     public void move(){
         int i = 0;
         Road current = currentPosition;
-        //TO-DO
+        //TODO
         while (i < velocity){
             current = currentPosition.getNext(target);
-            if (currentPosition.isAvailable())
+            if (currentPosition.isAvailable(velocity))
             i += 1;
         }
-    };//TO-DO
-    protected void randomBreak(){if (Math.random() < breakParameter) velocity -= 1;};
-    protected void overTake(){};
-    protected void accelerate(){velocity = Math.max(velocity+1, maxVelocity);};
+    }//TODO
+    protected void randomBreak(){if (Math.random() < breakParameter) velocity -= 1;}
+    protected void overTake(){}
+    protected void accelerate(){velocity = Math.max(velocity+1, maxVelocity);}
 }

@@ -3,7 +3,8 @@ public enum VehicleTarget {
     PuszkinaIn,
     PuszkinaOut,
     Prawo,
-    PrawoGora,
-    Lewo,
-    Gora;
+    Netto,
+    Rokicinska,
+    Aldi,
+    Edym
 }
