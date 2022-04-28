@@ -24,6 +24,10 @@ public class Vehicle {
         int i = 0;
         while (i < velocity){
             //TODO helper functions to take care of this mess
+            if (current.getNext() == null && current.getNext(target) == null) {
+                currentPosition = null;
+                return;
+            }
             if (!current.isChangingPoint()){
                 if (!current.getNext().isOccupied()) {
                     current = current.getNext();
@@ -44,6 +48,7 @@ public class Vehicle {
         }
         randomBreak();
     }
+    protected Road getPosition(){return currentPosition;}
     protected void randomBreak(){if (Math.random() < breakParameter) velocity -= 1;}
     protected Road overTake(Road current){
         if (current.getLeft() == null) return null;
