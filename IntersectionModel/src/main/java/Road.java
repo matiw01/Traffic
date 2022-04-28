@@ -1,5 +1,6 @@
 interface Road{
     boolean occupied = false;
-    VehicleTarget target = null;
     public Road getNext(VehicleTarget target);
+    public Road getNext();
+    public boolean isAvailable(int velocity);
 }

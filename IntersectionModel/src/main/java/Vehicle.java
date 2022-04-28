@@ -12,6 +12,7 @@ public abstract class Vehicle {
         //TO-DO
         while (i < velocity){
             current = currentPosition.getNext(target);
+            if (currentPosition.isAvailable())
             i += 1;
         }
     };//TO-DO
