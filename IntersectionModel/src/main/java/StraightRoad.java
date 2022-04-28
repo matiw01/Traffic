@@ -1,20 +1,17 @@
 public class StraightRoad extends AbstractRoad implements Road{
+    protected final Road straight;
+    protected final Road previous;
+    protected final Road right;
+    protected final Road left;
 
-    private Road previous;
-    private boolean occupied = false;
-
+    StraightRoad(Road straight, Road previous, Road left, Road right){
+        this.straight = straight;
+        this.previous = previous;
+        this.left = left;
+        this.right = right;
+        this.isChangingPoint = false;
+    }
 
     @Override
     public Road getNext(VehicleTarget target) {return straight;}
-
-    @Override
-    public Road getPrevious() {
-        return null;
-    }
-
-    @Override
-    public boolean isAvailable(int velocity) {
-
-        return false;
-    }
 }

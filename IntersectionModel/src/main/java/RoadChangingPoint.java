@@ -2,21 +2,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RoadChangingPoint extends AbstractRoad implements Road{
-    boolean occupied = false;
-    private Road straight = null;
-    private Road previous = null;
-    private Map<VehicleTarget, Road> turn = new HashMap<VehicleTarget, Road>(); //maybe might be final
+    private final Road straight;
+    private final Road previous;
+    private final Map<VehicleTarget, Road> turn;
+    RoadChangingPoint(Road straight, Road previous,HashMap<VehicleTarget, Road> turn){
+        this.straight = straight;
+        this.previous = previous;
+        this.turn = turn;
+        this.isChangingPoint = true;
+    }
     @Override
     public Road getNext(VehicleTarget target) {return turn.get(target);}
-    public Road getNext(){return straight;}
-
-    @Override
-    public Road getPrevious() {
-        return null;
-    }
-
-    @Override
-    public boolean isAvailable(int velocity) {
-        return false;
-    }
 }
