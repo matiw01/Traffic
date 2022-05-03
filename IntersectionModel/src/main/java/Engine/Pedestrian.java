@@ -1,3 +1,5 @@
+package Engine;
+
 public class Pedestrian {
     private final int type;
     private int velocity;

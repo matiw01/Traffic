@@ -1,3 +1,5 @@
+package Engine;
+
 public class Environment{
     private final int type; // type: grass, etc for coloring
 
