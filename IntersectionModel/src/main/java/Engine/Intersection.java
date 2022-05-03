@@ -14,6 +14,7 @@ public class Intersection{
     private final HashMap<VehicleTarget, Pair<Double, Road>> probVehDir;
     private final ArrayList<Environment> environmentElements = new ArrayList<Environment>();
     private final ArrayList<PedestrianPath> pedestrianPathArrayList = new ArrayList<PedestrianPath>();
+    private final ArrayList<Pedestrian> pedestrianArrayList = new ArrayList<Pedestrian>();
 
     public Intersection(int width, int height){
         this.height = height;
@@ -152,7 +153,11 @@ public class Intersection{
 
         for(int i = width-3; i<width; i++){
             for(int j = 0; j<height; j++){
-                pedestrianPathArrayList.add(new PedestrianPath(0, i, j));
+                PedestrianPath point = new PedestrianPath(0, i, j);
+                pedestrianPathArrayList.add(point);
+                if(j%4 == 0){
+                    pedestrianArrayList.add(new Pedestrian(point));
+                }
             }
         }
 
@@ -166,4 +171,5 @@ public class Intersection{
     public ArrayList<Road> getRoadArrayList(){return this.roadArrayList;}
     public HashMap<VehicleTarget, Pair<Double, Road>> getProbVehDir(){return this.probVehDir;}
     public ArrayList<Environment> getEnvironmentElements(){return this.environmentElements;}
+    public ArrayList<Pedestrian> getPedestrianArrayList(){return this.pedestrianArrayList;}
 }
