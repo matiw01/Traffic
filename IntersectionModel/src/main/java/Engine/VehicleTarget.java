@@ -1,3 +1,5 @@
+package Engine;
+
 public enum VehicleTarget {
     McDonalds,
     PuszkinaIn,

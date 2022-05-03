@@ -1,10 +1,13 @@
-public class StraightRoad extends AbstractRoad implements Road{
-    protected final Road straight;
-    protected final Road previous;
-    protected final Road right;
-    protected final Road left;
+package Engine;
 
-    StraightRoad(Road straight, Road previous, Road left, Road right){
+public class StraightRoad extends AbstractRoad implements Road{
+    protected Road straight;
+    protected Road previous;
+    protected Road right;
+    protected Road left;
+
+    StraightRoad(Road straight, Road previous, Road left, Road right, Vector position){
+        this.position = position;
         this.straight = straight;
         this.previous = previous;
         this.left = left;
@@ -14,4 +17,7 @@ public class StraightRoad extends AbstractRoad implements Road{
 
     @Override
     public Road getNext(VehicleTarget target) {return straight;}
+
+    @Override
+    public void setNext(VehicleTarget target, Road road) {this.straight = road;}
 }

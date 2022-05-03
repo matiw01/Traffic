@@ -1,3 +1,5 @@
+package Engine;
+
 public class Vehicle {
     protected int numberOfPeople;
     protected float breakParameter = 0.1f;
@@ -12,43 +14,33 @@ public class Vehicle {
     Vehicle(int numberOfPeople, int maxVelocity, VehicleTarget target, Road currentPosition, int length){
         this.numberOfPeople = numberOfPeople;
         this.maxVelocity = maxVelocity;
-        this.velocity = (int)(Math.random()*maxVelocity + 1);
+        this.velocity = 0;
         this.target = target;
         this.currentPosition = currentPosition;
+        currentPosition.setOccupied(true);
         this.length = length;
     }
 
     public void move(){
         accelerate();
         Road current = currentPosition;
+//        System.out.println("current:");
+//        System.out.println(current);
         int i = 0;
-        while (i < velocity){
-            //TODO helper functions to take care of this mess
-            if (current.getNext() == null && current.getNext(target) == null) {
-                currentPosition = null;
+        while (i < velocity && current != null) {
+            System.out.println(current);
+            if (current.getNext() == null){
+                System.out.println("out of map");
                 return;
             }
-            if (!current.isChangingPoint()){
-                if (!current.getNext().isOccupied()) {
-                    current = current.getNext();
-                }else {
-                    if (!current.getLeft().isChangingPoint() && overTake(current) != null){
-                        current = overTake(current);
-                    }
-                }
-            }else if(current.getNext(target).isAvailable(velocity)){
-                current = current.getNext(target);
-            }else if(!current.getNext(target).isAvailable(velocity) && current.getNext().getNext(target) == current.getNext(target).getNext()){//this condition is fucked
+            if (current.getNext().isAvailable(velocity))
                 current = current.getNext();
-            }else {
-                velocity = 0;
-                break;
-            }
             i++;
         }
+        currentPosition = current;
         randomBreak();
     }
-    protected Road getPosition(){return currentPosition;}
+    public Vector getPosition(){return currentPosition.getPosition();}
     protected void randomBreak(){if (Math.random() < breakParameter) velocity -= 1;}
     protected Road overTake(Road current){
         if (current.getLeft() == null) return null;

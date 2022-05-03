@@ -1,3 +1,5 @@
+package Engine;
+
 public class Pedastrian{
     private int type; //0 - human; 1 - cyclist
     private int length; //1 - human; 1 - cyclist
@@ -27,6 +29,6 @@ public class Pedastrian{
     }
 }
 
-//Pedastrian
+//Engine.Pedastrian
 //Sidewalk
 //Crossroad
