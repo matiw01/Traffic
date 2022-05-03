@@ -12,12 +12,12 @@ public class Intersection{
     int height;
     private final ArrayList<Road> roadArrayList = new ArrayList<Road>();
     private final HashMap<VehicleTarget, Pair<Double, Road>> probVehDir;
+    private final ArrayList<Environment> environmentElements = new ArrayList<Environment>();
+    private final ArrayList<PedestrianPath> pedestrianPathArrayList = new ArrayList<PedestrianPath>();
 
     public Intersection(int width, int height){
         this.height = height;
         this.width = width;
-//        System.out.println(width);
-//        System.out.println(height);
         map = new Road[height][width];
 
         this.probVehDir = new HashMap<VehicleTarget, Pair<Double, Road>>();
@@ -55,6 +55,8 @@ public class Intersection{
         }
         System.out.println(probVehDir.get(VehicleTarget.values()[5]).getValue().getNext());
         System.out.println(map[2][width-1].getNext());
+
+
 
         /*for(int i = 0; i < width; i++){
             StraightRoad straightRoad = new StraightRoad(null, null, null,null, new Vector(6,i));
@@ -147,8 +149,21 @@ public class Intersection{
 
 
     */
+
+        for(int i = width-3; i<width; i++){
+            for(int j = 0; j<height; j++){
+                pedestrianPathArrayList.add(new PedestrianPath(0, i, j));
+            }
+        }
+
+        for(int i = 3; i<width-3; i++){
+            for(int j = 0; j<height; j++){
+                environmentElements.add(new Environment(0, i, j));
+            }
+        }
     }
 
     public ArrayList<Road> getRoadArrayList(){return this.roadArrayList;}
     public HashMap<VehicleTarget, Pair<Double, Road>> getProbVehDir(){return this.probVehDir;}
+    public ArrayList<Environment> getEnvironmentElements(){return this.environmentElements;}
 }
