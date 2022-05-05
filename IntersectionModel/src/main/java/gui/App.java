@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public class App extends javafx.application.Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Intersection intersection = new Intersection(12, 9);
+        Intersection intersection = new Intersection(68, 67);
         GridPane grid = new GridPane();
         GridCreator gridCreator = new GridCreator(100, 100, grid, intersection);
         Engine engine = new Engine(gridCreator,intersection.getProbVehDir(), intersection.getRoadArrayList());
@@ -23,7 +23,7 @@ public class App extends javafx.application.Application {
             engine.setShouldRun(simulationButton.isSelected());
         });
         VBox vBox = new VBox(grid, simulationButton);
-        Scene scene = new Scene(vBox, 1500, 1000);
+        Scene scene = new Scene(vBox, 1000, 1000);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

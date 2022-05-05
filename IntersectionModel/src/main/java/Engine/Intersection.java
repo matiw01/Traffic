@@ -21,8 +21,49 @@ public class Intersection{
         this.width = width;
         map = new Road[height][width];
 
-        this.probVehDir = new HashMap<VehicleTarget, Pair<Double, Road>>();
+        //pedestrains
+        //points
+        pedestrianPathArrayList.add(new PedestrianPath(0, 16, 15));
+        pedestrianPathArrayList.add(new PedestrianPath(0, 51, 15));
+        pedestrianPathArrayList.add(new PedestrianPath(0, 18, 50));
+        pedestrianPathArrayList.add(new PedestrianPath(0, 49, 50));
+        //horizontal
+        for(int x = 17; x<20; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 14));}
+        for(int x = 22; x<46; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 14));}
+        for(int x = 48; x<51; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 14));}
+        for(int x = 20; x<22; x++){pedestrianPathArrayList.add(new PedestrianPath(1, x, 14));}
+        for(int x = 46; x<48; x++){pedestrianPathArrayList.add(new PedestrianPath(1, x, 14));}
 
+        for(int x = 19; x<21; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 51));}
+        for(int x = 24; x<44; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 51));}
+        for(int x = 47; x<49; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 51));}
+        for(int x = 21; x<24; x++){pedestrianPathArrayList.add(new PedestrianPath(1, x, 14));}
+        for(int x = 44; x<47; x++){pedestrianPathArrayList.add(new PedestrianPath(1, x, 14));}
+        //vertical
+        for(int y = 16; y<19; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 15, y));}
+        for(int y = 23; y<31; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 15, y));}
+        for(int y = 33; y<39; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 16, y));}
+        for(int y = 39; y<44; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 17, y));}
+        for(int y = 48; y<50; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 17, y));}
+        for(int y = 19; y<23; y++){pedestrianPathArrayList.add(new PedestrianPath(1, 15, y));}
+        for(int y = 31; y<33; y++){pedestrianPathArrayList.add(new PedestrianPath(1, 16, y));}
+        for(int y = 44; y<48; y++){pedestrianPathArrayList.add(new PedestrianPath(1, 17, y));}
+
+        for(int y = 16; y<19; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 52, y));}
+        for(int y = 23; y<31; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 52, y));}
+        for(int y = 33; y<39; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 51, y));}
+        for(int y = 39; y<44; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 50, y));}
+        for(int y = 48; y<50; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 50, y));}
+        for(int y = 19; y<23; y++){pedestrianPathArrayList.add(new PedestrianPath(1, 52, y));}
+        for(int y = 31; y<33; y++){pedestrianPathArrayList.add(new PedestrianPath(1, 51, y));}
+        for(int y = 44; y<48; y++){pedestrianPathArrayList.add(new PedestrianPath(1, 50, y));}
+
+        //TODO: add destination points
+        //TODO: trams
+        //TODO: roads
+
+        this.probVehDir = new HashMap<VehicleTarget, Pair<Double, Road>>();
+        /*
 //      vertical
         for(int i = 0; i < width; i++){
             StraightRoad straightRoad = new StraightRoad(null, null, null,null, new Vector(1,i));
@@ -149,9 +190,9 @@ public class Intersection{
 
 
 
-    */
+        */
 
-        for(int i = width-3; i<width; i++){
+        /*for(int i = width-3; i<width; i++){
             for(int j = 0; j<height; j++){
                 PedestrianPath point = new PedestrianPath(0, i, j);
                 pedestrianPathArrayList.add(point);
@@ -165,11 +206,12 @@ public class Intersection{
             for(int j = 0; j<height; j++){
                 environmentElements.add(new Environment(0, i, j));
             }
-        }
+        }*/
     }
 
     public ArrayList<Road> getRoadArrayList(){return this.roadArrayList;}
     public HashMap<VehicleTarget, Pair<Double, Road>> getProbVehDir(){return this.probVehDir;}
     public ArrayList<Environment> getEnvironmentElements(){return this.environmentElements;}
     public ArrayList<Pedestrian> getPedestrianArrayList(){return this.pedestrianArrayList;}
+    public ArrayList<PedestrianPath> getPedestrianPathArrayList(){return this.pedestrianPathArrayList;}
 }
