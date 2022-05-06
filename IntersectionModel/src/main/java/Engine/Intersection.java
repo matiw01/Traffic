@@ -59,35 +59,110 @@ public class Intersection{
         for(int y = 44; y<48; y++){pedestrianPathArrayList.add(new PedestrianPath(1, 50, y));}
 
         //Roads
-        for (int x = 67; x > 51; x--){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(x, 19)));}
-        for (int x = 15; x > 0; x--){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(x, 19)));}
-        for(int x = 67; x > 0; x--){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(x, 20)));}
-        for(int x = 67; x > 41; x--){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(x, 21)));}
-        for (int x = 41; x > 25; x--){roadArrayList.add(new RoadChangingPoint(null, null, null,new Vector(x, 21)));}
-        for (int x = 41; x > 25; x--){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(x, 22)));}
-        for (int x = 25; x > 0; x--){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(x, 21)));}
+        for (int x = 67; x > 51; x--){
+            StraightRoad road = new StraightRoad(null, null, null, null, new Vector(x, 19));
+            roadArrayList.add(road);
+            map[x][19] = road;}
+        for (int x = 15; x > 0; x--){
+            StraightRoad road = new StraightRoad(null, null, null, null, new Vector(x, 19));
+            roadArrayList.add(road);
+            map[x][19] = road;}
+        for(int x = 67; x > 0; x--){
+            Road road = new StraightRoad(null, null, null, null, new Vector(x, 20));
+            roadArrayList.add(road);
+            map[x][20] = road;}
+        for(int x = 67; x > 41; x--){
+            Road road = new StraightRoad(null, null, null, null, new Vector(x, 21));
+            roadArrayList.add(road);
+            map[x][21] = road;}
+        for (int x = 41; x > 25; x--){
+            Road road = new RoadChangingPoint(null, null, null,new Vector(x, 21));
+            roadArrayList.add(road);
+            map[x][21] = road;}
+        for (int x = 41; x > 25; x--){
+            Road road = new StraightRoad(null, null, null, null, new Vector(x, 22));
+            roadArrayList.add(road);
+            map[x][22] = road;}
+        for (int x = 25; x > 0; x--){
+            Road road = new StraightRoad(null, null, null, null, new Vector(x, 21));
+            roadArrayList.add(road);
+            map[x][21] = road;}
 
-        for (int y = 0; y < 14; y++){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(20, y)));}
+        for (int y = 0; y < 14; y++){
+            Road road = new StraightRoad(null, null, null, null, new Vector(20, y));
+            roadArrayList.add(road);
+            map[20][y] = road;}
         roadArrayList.add(new RoadChangingPoint(null, null, null, new Vector(20, 14)));
-        for (int y = 15; y < 31; y++){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(20, y)));}
-        for (int y = 0; y < 31; y++){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(21, y)));}
-        for (int y = 27; y < 31; y++){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(22, y)));}
-        for (int y = 31; y < 39; y++){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(21, y)));}
-        for (int y = 31; y < 39; y++){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(21, y)));}
-        for (int y = 51; y < 67; y++){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(21, y)));}
-        for (int y = 31; y < 67; y++){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(22, y)));}
-        for (int y = 31; y < 39; y++){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(23, y)));}
+        for (int y = 15; y < 31; y++){
+            Road road = new StraightRoad(null, null, null, null, new Vector(20, y));
+            roadArrayList.add(road);
+            map[20][y] = road;}
+        for (int y = 0; y < 31; y++){
+            Road road = new StraightRoad(null, null, null, null, new Vector(21, y));
+            roadArrayList.add(road);
+            map[21][y] = road;}
+        for (int y = 27; y < 31; y++){
+            Road road = new StraightRoad(null, null, null, null, new Vector(22, y));
+            roadArrayList.add(road);
+            map[22][y] = road;}
+        for (int y = 31; y < 39; y++){
+            Road road = new StraightRoad(null, null, null, null, new Vector(21, y));
+            roadArrayList.add(road);
+            map[21][y] = road;}
+        for (int y = 31; y < 39; y++){
+            Road road = new StraightRoad(null, null, null, null, new Vector(21, y));
+            roadArrayList.add(road);
+            map[21][y] = road;}
+        for (int y = 51; y < 67; y++){
+            Road road = new StraightRoad(null, null, null, null, new Vector(21, y));
+            roadArrayList.add(road);
+            map[21][y] = road;}
+        for (int y = 31; y < 67; y++){
+            Road road = new StraightRoad(null, null, null, null, new Vector(22, y));
+            roadArrayList.add(road);
+            map[22][y] = road;}
+        for (int y = 31; y < 39; y++){
+            Road road = new StraightRoad(null, null, null, null, new Vector(23, y));
+            roadArrayList.add(road);
+            map[23][y] = road;}
         roadArrayList.add(new RoadChangingPoint(null, null, null, new Vector(23, 39)));
-        for (int y = 40; y < 67; y++){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(23, y)));}
+        for (int y = 40; y < 67; y++){
+            Road road = new StraightRoad(null, null, null, null, new Vector(23, y));
+            roadArrayList.add(road);
+            map[23][y] = road;}
 
-        for (int x = 0; x < 28; x++){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(x, 44)));}
-        for (int x = 28; x < 40; x++){roadArrayList.add(new RoadChangingPoint(null, null, null, new Vector(x, 44)));}
-        for (int x = 40; x < 68; x++){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(x, 44)));}
-        for (int x = 0; x < 68; x++){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(x, 45)));}
-        for (int x = 0; x < 68; x++){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(x, 46)));}
-        for (int x = 0; x < 18; x++){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(x, 47)));}
-        for (int x = 51; x < 68; x++){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(x, 47)));}
-        for (int x = 28; x < 40; x++){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(x, 43)));}
+        for (int x = 0; x < 28; x++){
+            Road road = new StraightRoad(null, null, null, null, new Vector(x, 44));
+            roadArrayList.add(road);
+            map[x][44] = road;}
+        for (int x = 28; x < 40; x++){
+            Road road = new RoadChangingPoint(null, null, null, new Vector(x, 44));
+            roadArrayList.add(road);
+            map[x][44] = road;}
+        for (int x = 40; x < 68; x++){
+            Road road = new StraightRoad(null, null, null, null, new Vector(x, 44));
+            roadArrayList.add(road);
+            map[x][44] = road;}
+        for (int x = 0; x < 68; x++){
+            Road road = new StraightRoad(null, null, null, null, new Vector(x, 45));
+            roadArrayList.add(road);
+            map[x][45] = road;}
+        for (int x = 0; x < 68; x++){
+            Road road = new StraightRoad(null, null, null, null, new Vector(x, 46));
+            roadArrayList.add(road);
+            map[x][46] = road;}
+        for (int x = 0; x < 18; x++){
+            Road road = new StraightRoad(null, null, null, null, new Vector(x, 47));
+            roadArrayList.add(road);
+            map[x][47] = road;}
+        for (int x = 51; x < 68; x++){
+            Road road = new StraightRoad(null, null, null, null, new Vector(x, 47));
+            roadArrayList.add(road);
+            map[x][47] = road;}
+        for (int x = 28; x < 40; x++){
+            Road road = new StraightRoad(null, null, null, null, new Vector(x, 43));
+            roadArrayList.add(road);
+            map[x][43] = road;}
 
         for (int y = 66; y > 50; y--){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(46, y)));}
         for (int y = 66; y > 38; y--){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(45, y)));}
