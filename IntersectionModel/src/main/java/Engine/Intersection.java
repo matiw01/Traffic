@@ -58,6 +58,7 @@ public class Intersection{
         for(int y = 31; y<33; y++){pedestrianPathArrayList.add(new PedestrianPath(1, 51, y));}
         for(int y = 44; y<48; y++){pedestrianPathArrayList.add(new PedestrianPath(1, 50, y));}
 
+        //Roads
         for (int x = 67; x > 51; x--){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(x, 19)));}
         for (int x = 15; x > 0; x--){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(x, 19)));}
         for(int x = 67; x > 0; x--){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(x, 20)));}
@@ -97,6 +98,19 @@ public class Intersection{
         for (int y = 30; y > 26; y--){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(45, y)));}
         for (int y = 30; y > -1; y--){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(46, y)));}
         for (int y = 30; y > -1; y--){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(47, y)));}
+
+        for (int x = 51; x > 47; x--){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(x, x - 33)));}
+        for (int x = 19; x > 15; x--){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(x, 34 - x)));}
+        for (int x = 18; x < 21; x++){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(x, x + 30)));}
+        for (int x = 47; x < 50; x++){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(x, 97 - x)));}
+
+        for (int x = 40; x < 44; x++){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(x, 82 - x)));}
+        for (int x = 23; x < 26; x++){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(x, 49 - x)));}
+        roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(25, 23)));
+        for (int x = 24; x < 28; x++){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(x, x + 15)));}
+        for (int x = 42; x < 45; x++){roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(x, x - 18)));}
+        roadArrayList.add(new StraightRoad(null, null, null, null, new Vector(42, 23)));
+
         //TODO: add destination points
         //TODO: trams
         //TODO: roads
