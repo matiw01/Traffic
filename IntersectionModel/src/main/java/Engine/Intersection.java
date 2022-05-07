@@ -103,10 +103,14 @@ public class Intersection{
             Road road = new StraightRoad(null, null, null, null, new Vector(21, y));
             roadArrayList.add(road);
             map[21][y] = road;}
+
+
         for (int y = 27; y < 31; y++){
             Road road = new StraightRoad(null, null, null, null, new Vector(22, y));
             roadArrayList.add(road);
             map[22][y] = road;}
+
+
         for (int y = 31; y < 39; y++){
             Road road = new StraightRoad(null, null, null, null, new Vector(21, y));
             roadArrayList.add(road);
@@ -115,10 +119,14 @@ public class Intersection{
             Road road = new StraightRoad(null, null, null, null, new Vector(21, y));
             roadArrayList.add(road);
             map[21][y] = road;}
+
         for (int y = 51; y < 67; y++){
             Road road = new StraightRoad(null, null, null, null, new Vector(21, y));
             roadArrayList.add(road);
-            map[21][y] = road;}
+            map[21][y] = road;
+            if (y != 51)road.setPrevious(map[21][y - 1]);}
+        for (int y = 51; y < 66; y++){map[21][y].setNext(map[21][y+1]);}
+
         for (int y = 31; y < 67; y++){
             Road road = new StraightRoad(null, null, null, null, new Vector(22, y));
             roadArrayList.add(road);
@@ -165,11 +173,18 @@ public class Intersection{
         for (int x = 0; x < 18; x++){
             Road road = new StraightRoad(null, null, null, null, new Vector(x, 47));
             roadArrayList.add(road);
-            map[x][47] = road;}
-        for (int x = 51; x < 68; x++){
+            map[x][47] = road;
+            if (x > 0) {road.setPrevious(map[x - 1][47]);}
+        }
+        for (int x = 0; x < 17; x++){map[x][47].setNext(map[x+1][47]);}
+
+        for (int x = 50; x < 68; x++){
             Road road = new StraightRoad(null, null, null, null, new Vector(x, 47));
             roadArrayList.add(road);
-            map[x][47] = road;}
+            map[x][47] = road;
+            if (x != 50) road.setPrevious(map[x-1][47]);}
+        for (int x = 50; x < 67; x++){map[x][47].setNext(map[x+1][47]);}
+
         for (int x = 28; x < 40; x++){
             Road road = new StraightRoad(null, null, null, null, new Vector(x, 43));
             roadArrayList.add(road);
@@ -178,11 +193,20 @@ public class Intersection{
         for (int y = 66; y > 50; y--){
             Road road = new StraightRoad(null, null, null, null, new Vector(46, y));
             roadArrayList.add(road);
-            map[46][y] = road;}
+            map[46][y] = road;
+            if ( y != 66 ) road.setPrevious(map[46][y+1]);}
+        for(int y = 66; y > 51; y--){map[46][y].setNext(map[46][y-1]);}
+
+        //TODO
         for (int y = 66; y > 38; y--){
             Road road = new StraightRoad(null, null, null, null, new Vector(45, y));
             roadArrayList.add(road);
-            map[45][y] = road;}
+            map[45][y] = road;
+            if ( y != 66 ){road.setPrevious(map[45][y+1]);}
+        }
+        for (int y = 66; y > 39; y--){map[45][y].setNext(map[45][y-1]);}
+
+
         for (int y = 66; y > 38; y--){
             Road road = new StraightRoad(null, null, null, null, new Vector(44, y));
             roadArrayList.add(road);
@@ -191,14 +215,21 @@ public class Intersection{
             Road road = new StraightRoad(null, null, null, null, new Vector(44, y));
             roadArrayList.add(road);
             map[44][y] = road;}
-        for (int y = 44; y > 30; y--){
+        for (int y = 38; y > 30; y--){
             Road road = new StraightRoad(null, null, null, null, new Vector(45, y));
             roadArrayList.add(road);
             map[45][y] = road;}
-        for (int y = 39; y > 30; y--){
+
+        //TODO
+        for (int y = 38; y > 30; y--){
             Road road = new StraightRoad(null, null, null, null, new Vector(46, y));
             roadArrayList.add(road);
-            map[46][y] = road;}
+            map[46][y] = road;
+            if (y != 38) road.setPrevious(map[46][y+1]);}
+        for (int y = 38; y > 31; y--){map[46][y].setNext(map[46][y - 1]);}
+        map[46][31].setNext(map[47][30]);
+        map[45][39].setNext(map[46][38]);
+
         for (int y = 30; y > 26; y--){
             Road road = new StraightRoad(null, null, null, null, new Vector(45, y));
             roadArrayList.add(road);
@@ -207,10 +238,16 @@ public class Intersection{
             Road road = new StraightRoad(null, null, null, null, new Vector(46, y));
             roadArrayList.add(road);
             map[46][y] = road;}
+
+        //TODO
         for (int y = 30; y > -1; y--){
             Road road = new StraightRoad(null, null, null, null, new Vector(47, y));
             roadArrayList.add(road);
-            map[47][y] = road;}
+            map[47][y] = road;
+            if(y != 30) map[47][y].setPrevious(map[47][y+1]);}
+        for (int y = 30; y > 0; y--){map[47][y].setNext(map[47][y-1]);}
+        map[46][31].setNext(map[47][30]);
+        System.out.println(map[47][30]);
 
         for (int x = 51; x > 47; x--){
             Road road = new StraightRoad(null, null, null, null, new Vector(x, x - 33));
@@ -220,14 +257,20 @@ public class Intersection{
             Road road = new StraightRoad(null, null, null, null, new Vector(x, 34 - x));
             roadArrayList.add(road);
             map[x][34 - x] = road;}
+
         for (int x = 18; x < 21; x++){
             Road road = new StraightRoad(null, null, null, null, new Vector(x, x + 30));
             roadArrayList.add(road);
-            map[x][x + 30] = road;}
+            map[x][x + 30] = road;
+            road.setPrevious(map[x - 1][x + 29]);
+        }
+        for (int x = 17; x < 21; x++){map[x][x + 30].setNext(map[x+1][x+31]);}
+
         for (int x = 47; x < 50; x++){
             Road road = new StraightRoad(null, null, null, null, new Vector(x, 97 - x));
             roadArrayList.add(road);
             map[x][97-x] = road;}
+        for (int x = 46; x < 50; x++){map[x][97 - x].setNext(map[x + 1][96 - x]);}
 
         for (int x = 40; x < 44; x++){
             Road road = new StraightRoad(null, null, null, null, new Vector(x, 82 - x));

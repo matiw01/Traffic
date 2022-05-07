@@ -30,6 +30,8 @@ public class Vehicle {
         while (i < velocity && current != null) {
             System.out.println("current");
             System.out.println(current);
+            System.out.println(current.getPosition().pos_x);
+            System.out.println(current.getPosition().pos_y);
             if (current.getNext() == null){
                 System.out.println("out of map");
                 return;
