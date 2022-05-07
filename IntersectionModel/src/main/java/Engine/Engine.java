@@ -13,26 +13,30 @@ public class Engine implements Runnable{
     boolean shouldRun = false;
     Map<VehicleTarget, Pair<Double, Road>> probVehDir;
     IEngineObserver engineObserver;
-    ArrayList<Road> roadArrayList;
+    Road[][] roadsMap;
     ArrayList<Vehicle> vehiclesArrayList = new ArrayList<Vehicle>();
 
-    public Engine(IEngineObserver gridCreator , HashMap<VehicleTarget, Pair<Double, Road>> probVehDir, ArrayList<Road> roadArrayList){
+    public Engine(IEngineObserver gridCreator , HashMap<VehicleTarget, Pair<Double, Road>> probVehDir, Road[][] roadsMap){
         engineObserver = gridCreator;
         this.probVehDir = probVehDir;
         System.out.println(probVehDir);
-        this.roadArrayList = roadArrayList;
+        this.roadsMap = roadsMap;
+        Vehicle car1 = new Vehicle(2, 3, null, roadsMap[0][45], 2);
+        Vehicle car2 = new Vehicle(2, 3, null, roadsMap[0][46], 2);
+        vehiclesArrayList.add(car1);
+        vehiclesArrayList.add(car2);
     }
 
     public void run(){
         while (true) {
             if (shouldRun){
                 System.out.println("engine running");
-                generateNewVehicles();
+//                generateNewVehicles();
                 moveCars();
                 Platform.runLater(()->notifyObserver());
             }
             try {
-                Thread.sleep(100);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

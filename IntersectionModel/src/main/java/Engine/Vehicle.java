@@ -28,16 +28,19 @@ public class Vehicle {
 //        System.out.println(current);
         int i = 0;
         while (i < velocity && current != null) {
+            System.out.println("current");
             System.out.println(current);
             if (current.getNext() == null){
                 System.out.println("out of map");
                 return;
             }
             if (current.getNext().isAvailable(velocity))
+                current.setOccupied(false);
                 current = current.getNext();
             i++;
         }
         currentPosition = current;
+        currentPosition.setOccupied(true);
         randomBreak();
     }
     public Vector getPosition(){return currentPosition.getPosition();}
