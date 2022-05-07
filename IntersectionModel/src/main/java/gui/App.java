@@ -7,6 +7,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class App extends javafx.application.Application {
     @Override
@@ -26,5 +27,8 @@ public class App extends javafx.application.Application {
         Scene scene = new Scene(vBox, 1000, 1000);
         primaryStage.setScene(scene);
         primaryStage.show();
+        primaryStage.setOnCloseRequest((WindowEvent we) -> {
+            System.exit(0);
+        });
     }
 }
