@@ -26,12 +26,17 @@ public class Engine implements Runnable{
         Vehicle car3 = new Vehicle(2, 3, null, roadsMap[0][47], 2);
         Vehicle car4 = new Vehicle(2, 3, null, roadsMap[46][66], 2);
         Vehicle car5 = new Vehicle(2, 3, null, roadsMap[45][66], 2);
+        Vehicle car6 = new Vehicle(2, 3, null, roadsMap[67][19], 2);
+        Vehicle car7 = new Vehicle(2, 5, null, roadsMap[67][20], 2);
+        Vehicle car8 = new Vehicle(2, 5, null, roadsMap[67][21], 2);
 //        vehiclesArrayList.add(car1);
 //        vehiclesArrayList.add(car2);
 //        vehiclesArrayList.add(car3);
 //        vehiclesArrayList.add(car4);
         vehiclesArrayList.add(car5);
-        System.out.println(roadsMap[46][31].getNext());
+        vehiclesArrayList.add(car6);
+        vehiclesArrayList.add(car7);
+        vehiclesArrayList.add(car8);
     }
 
     public void run(){

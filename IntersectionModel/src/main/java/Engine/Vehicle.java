@@ -28,12 +28,9 @@ public class Vehicle {
 //        System.out.println(current);
         int i = 0;
         while (i < velocity && current != null) {
-            System.out.println("current");
-            System.out.println(current);
-            System.out.println(current.getPosition().pos_x);
-            System.out.println(current.getPosition().pos_y);
             if (current.getNext() == null){
                 System.out.println("out of map");
+                //TODO wyjebywac samochód z listy jak wyjedzie za mape (i liczyć sttystyki docelowo)
                 return;
             }
             if (current.getNext().isAvailable(velocity))
@@ -52,5 +49,5 @@ public class Vehicle {
         if (current.getLeft().isAvailable(velocity)){return current.getLeft();}
         return null;
     }
-    protected void accelerate(){velocity = Math.max(velocity+1, maxVelocity);}
+    protected void accelerate(){velocity = Math.min(velocity+1, maxVelocity);}
 }

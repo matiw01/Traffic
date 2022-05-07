@@ -62,7 +62,10 @@ public class Intersection{
         for (int x = 67; x > 51; x--){
             StraightRoad road = new StraightRoad(null, null, null, null, new Vector(x, 19));
             roadArrayList.add(road);
-            map[x][19] = road;}
+            map[x][19] = road;
+            if (x != 67) road.setPrevious(map[x + 1][19]);}
+        for (int x = 67; x > 52; x--){map[x][19].setNext(map[x - 1][19]);}
+
         for (int x = 15; x > 0; x--){
             StraightRoad road = new StraightRoad(null, null, null, null, new Vector(x, 19));
             roadArrayList.add(road);
@@ -70,24 +73,39 @@ public class Intersection{
         for(int x = 67; x > 0; x--){
             Road road = new StraightRoad(null, null, null, null, new Vector(x, 20));
             roadArrayList.add(road);
-            map[x][20] = road;}
-        for(int x = 67; x > 41; x--){
+            map[x][20] = road;
+            if (x != 67) road.setPrevious(map[x + 1][20]);}
+        for (int x = 67; x > 0; x--){map[x][20].setNext(map[x - 1][20]);}
+
+        for(int x = 67; x > 0; x--){
             Road road = new StraightRoad(null, null, null, null, new Vector(x, 21));
             roadArrayList.add(road);
-            map[x][21] = road;}
+            map[x][21] = road;
+            if (x != 67) road.setPrevious(map[x + 1][21]);}
+        for (int x = 67; x > 0; x--){map[x][21].setNext(map[x - 1][21]);}
+
+        for (int x = 67; x > 41; x--){
+            Road road = new StraightRoad(null, null, null,null, new Vector(x, 22));
+            roadArrayList.add(road);
+            map[x][22] = road;
+            if (x != 67) road.setPrevious(map[x + 1][22]);
+        }
         //TODO changing points
         for (int x = 41; x > 25; x--){
-            Road road = new RoadChangingPoint(null, null, null,new Vector(x, 21));
-            roadArrayList.add(road);
-            map[x][21] = road;}
-        for (int x = 41; x > 25; x--){
-            Road road = new StraightRoad(null, null, null, null, new Vector(x, 22));
+            Road road = new RoadChangingPoint(null, null, null, new Vector(x, 22));
             roadArrayList.add(road);
             map[x][22] = road;}
         for (int x = 25; x > 0; x--){
-            Road road = new StraightRoad(null, null, null, null, new Vector(x, 21));
+            Road road = new StraightRoad(null, null,null,null, new Vector(x, 22));
             roadArrayList.add(road);
-            map[x][21] = road;}
+            map[x][22] = road;
+        }
+        for (int x = 41; x > 25; x--){
+            Road road = new StraightRoad(null, null,null, null, new Vector(x, 23));
+            roadArrayList.add(road);
+            map[x][23] = road;
+        }
+
 
         for (int y = 0; y < 14; y++){
             Road road = new StraightRoad(null, null, null, null, new Vector(20, y));
@@ -95,6 +113,7 @@ public class Intersection{
             map[20][y] = road;}
         //TODO changing points
         roadArrayList.add(new RoadChangingPoint(null, null, null, new Vector(20, 14)));
+
         for (int y = 15; y < 31; y++){
             Road road = new StraightRoad(null, null, null, null, new Vector(20, y));
             roadArrayList.add(road);
@@ -137,6 +156,7 @@ public class Intersection{
             map[23][y] = road;}
         //TODO changing points
         roadArrayList.add(new RoadChangingPoint(null, null, null, new Vector(23, 39)));
+
         for (int y = 40; y < 67; y++){
             Road road = new StraightRoad(null, null, null, null, new Vector(23, y));
             roadArrayList.add(road);
@@ -247,12 +267,14 @@ public class Intersection{
             if(y != 30) map[47][y].setPrevious(map[47][y+1]);}
         for (int y = 30; y > 0; y--){map[47][y].setNext(map[47][y-1]);}
         map[46][31].setNext(map[47][30]);
-        System.out.println(map[47][30]);
 
         for (int x = 51; x > 47; x--){
             Road road = new StraightRoad(null, null, null, null, new Vector(x, x - 33));
             roadArrayList.add(road);
-            map[x][x - 33] = road;}
+            map[x][x - 33] = road;
+            road.setPrevious(map[x + 1][x - 32]);}
+        for (int x = 52; x > 47; x--){map[x][x - 33].setNext(map[x - 1][x - 34]);}
+
         for (int x = 19; x > 15; x--){
             Road road = new StraightRoad(null, null, null, null, new Vector(x, 34 - x));
             roadArrayList.add(road);
@@ -280,9 +302,7 @@ public class Intersection{
             Road road = new StraightRoad(null, null, null, null, new Vector(x, 49 - x));
             roadArrayList.add(road);
             map[x][49 - x] = road;}
-        Road road1 = new StraightRoad(null, null, null, null, new Vector(25, 23));
-        roadArrayList.add(road1);
-        map[25][23] = road1;
+
         for (int x = 24; x < 28; x++){
             Road road = new StraightRoad(null, null, null, null, new Vector(x, x + 15));
             roadArrayList.add(road);
@@ -291,10 +311,6 @@ public class Intersection{
             Road road = new StraightRoad(null, null, null, null, new Vector(x, x - 18));
             roadArrayList.add(road);
             map[x][x - 18] = road;}
-        Road road2 = new StraightRoad(null, null, null, null, new Vector(42, 23));
-        roadArrayList.add(road2);
-        map[42][23] = road2;
-
 
         //TODO: add destination points
         //TODO: trams
