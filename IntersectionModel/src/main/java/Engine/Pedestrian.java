@@ -6,9 +6,9 @@ public class Pedestrian {
     private final int maxVelocity;
     private PedestrianPath location;
     private final PedestrianTarget target;
-    public Pedestrian(PedestrianPath location){
+    public Pedestrian(PedestrianPath location, PedestrianTarget target){
         this.location = location;
-        this.target = PedestrianTarget.getRandom();
+        this.target = target;
         if(Math.random()<0.5){ //person
             this.type = 0;
             this.velocity = 1;

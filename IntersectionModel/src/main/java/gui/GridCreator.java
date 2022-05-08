@@ -34,7 +34,6 @@ public class GridCreator implements IEngineObserver{
         grid.getRowConstraints().clear();
         grid.getChildren().clear();
         grid.setGridLinesVisible(true);
-        System.out.println("creataing grid");
         /*
         for (Road road : arrayRoadList){
             if (!road.isOccupied()) {
@@ -54,17 +53,17 @@ public class GridCreator implements IEngineObserver{
 
         ArrayList<PedestrianPath> pedestrianPathArrayList = intersection.getPedestrianPathArrayList();
         for(PedestrianPath point : pedestrianPathArrayList){
-            Rectangle rect = new Rectangle(0,0,20,20);
+            Rectangle rect = new Rectangle(0,0,10,10);
             rect.setStroke(point.getColor());
             grid.add(rect, point.getLocation().getPos_x(), point.getLocation().getPos_y());
         }
-        /*
+
         ArrayList<Pedestrian> pedestrianArrayList = intersection.getPedestrianArrayList();
         for(Pedestrian pedestrian : pedestrianArrayList){
-            Rectangle rect = new Rectangle(0,0,20,20);
+            Rectangle rect = new Rectangle(0,0,10,10);
             rect.setStroke(Color.PINK);
             grid.add(rect, pedestrian.getLocation().getLocation().getPos_x(), pedestrian.getLocation().getLocation().getPos_y());
-        }*/
+        }
 
         /*
         ArrayList<Environment> environmentElements = intersection.getEnvironmentElements();
