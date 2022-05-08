@@ -28,16 +28,18 @@ public class Vehicle {
 //        System.out.println(current);
         int i = 0;
         while (i < velocity && current != null) {
-            System.out.println(current);
-            if (current.getNext() == null){
+            if (current.getNext(target) == null){
                 System.out.println("out of map");
+                //TODO wyjebywac samochód z listy jak wyjedzie za mape (i liczyć sttystyki docelowo)
                 return;
             }
-            if (current.getNext().isAvailable(velocity))
-                current = current.getNext();
+            if (current.getNext(target).isAvailable(velocity))
+                current.setOccupied(false);
+                current = current.getNext(target);
             i++;
         }
         currentPosition = current;
+        currentPosition.setOccupied(true);
         randomBreak();
     }
     public Vector getPosition(){return currentPosition.getPosition();}
@@ -47,5 +49,5 @@ public class Vehicle {
         if (current.getLeft().isAvailable(velocity)){return current.getLeft();}
         return null;
     }
-    protected void accelerate(){velocity = Math.max(velocity+1, maxVelocity);}
+    protected void accelerate(){velocity = Math.min(velocity+1, maxVelocity);}
 }
