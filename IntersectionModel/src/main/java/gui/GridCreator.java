@@ -12,14 +12,19 @@ public class GridCreator implements IEngineObserver{
     GridPane grid;
     int columnWidth = 50;
     int rowWidth = 50;
+    int sqrSize = 10;
     int width;
     int height;
     Intersection intersection;
+    ArrayList<Road> arrayRoadList;
+    ArrayList<PedestrianPath> pedestrianPathArrayList;
     public GridCreator(int width, int height, GridPane grid, Intersection intersection){
         this.width = width;
         this.height = height;
         this.grid = grid;
         this.intersection = intersection;
+        this.arrayRoadList = intersection.getRoadArrayList();
+        this.pedestrianPathArrayList = intersection.getPedestrianPathArrayList();
     }
 
     @Override
@@ -34,22 +39,15 @@ public class GridCreator implements IEngineObserver{
         grid.getRowConstraints().clear();
         grid.getChildren().clear();
         grid.setGridLinesVisible(true);
-        /*
+
         for (Road road : arrayRoadList){
             if (!road.isOccupied()) {
                 //Label label = new Label("Road");
-                Rectangle rect = new Rectangle(0,0,20,20);
+                Rectangle rect = new Rectangle(0,0,sqrSize,sqrSize);
                 rect.setStroke(Color.BLACK);
                 grid.add(rect, road.getPosition().getPos_x(), road.getPosition().getPos_y());
             }
-        }*/
-        /*
-        for (Vehicle vehicle : vehiclesArrayList){
-            //Label label = new Label("Car");
-            Rectangle rect = new Rectangle(0,0,20,20);
-            rect.setStroke(Color.BLUE);
-            grid.add(rect, vehicle.getPosition().getPos_x(), vehicle.getPosition().getPos_y());
-        }*/
+        }
 
         ArrayList<PedestrianPath> pedestrianPathArrayList = intersection.getPedestrianPathArrayList();
         for(PedestrianPath point : pedestrianPathArrayList){
