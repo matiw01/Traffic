@@ -28,14 +28,14 @@ public class Vehicle {
 //        System.out.println(current);
         int i = 0;
         while (i < velocity && current != null) {
-            if (current.getNext() == null){
+            if (current.getNext(target) == null){
                 System.out.println("out of map");
                 //TODO wyjebywac samochód z listy jak wyjedzie za mape (i liczyć sttystyki docelowo)
                 return;
             }
-            if (current.getNext().isAvailable(velocity))
+            if (current.getNext(target).isAvailable(velocity))
                 current.setOccupied(false);
-                current = current.getNext();
+                current = current.getNext(target);
             i++;
         }
         currentPosition = current;

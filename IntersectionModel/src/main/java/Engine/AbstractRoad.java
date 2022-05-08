@@ -1,6 +1,6 @@
 package Engine;
 
-public class AbstractRoad {
+public abstract class AbstractRoad {
     protected Road straight;
     protected Road previous;
     protected Road left;

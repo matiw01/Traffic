@@ -1,8 +1,8 @@
 package Engine;
 
 public class StraightRoad extends AbstractRoad implements Road{
-    protected Road straight;
-    protected Road previous;
+//    protected Road straight;
+//    protected Road previous;
     protected Road right;
     protected Road left;
 
