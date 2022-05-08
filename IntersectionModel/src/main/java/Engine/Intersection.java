@@ -256,8 +256,8 @@ public class Intersection{
             roadArrayList.add(road);
             map[45][y] = road;
             if (y != 38)road.setPrevious(map[45][y + 1]);}
-        for (int y = 38; y > 31; y--){map[45][y].setNext(map[45][y - 1]);}
-        map[44][39].setNext(map[45][38]);
+        for (int y = 39; y > 31; y--){map[45][y].setNext(map[45][y - 1]);}
+
 
         for (int y = 38; y > 30; y--){
             Road road = new StraightRoad(null, null, null, null, new Vector(46, y));
@@ -268,11 +268,15 @@ public class Intersection{
         map[46][31].setNext(map[47][30]);
         map[45][39].setNext(map[46][38]);
 
-        for (int y = 30; y > 26; y--){
+        for (int y = 30; y > 27; y--){
             Road road = new StraightRoad(null, null, null, null, new Vector(45, y));
             roadArrayList.add(road);
             map[45][y] = road;
             road.setPrevious(map[45][y + 1]);}
+        Road road3 = new RoadChangingPoint(null, null, new HashMap<VehicleTarget, Road>(), new Vector(45, 27));
+        map[45][27] = road3;
+
+        roadArrayList.add(road3);
         for (int y = 30; y > 27; y--){map[45][y].setNext(map[45][y - 1]);}
         map[44][31].setNext(map[45][30]);
 
@@ -286,15 +290,22 @@ public class Intersection{
 
 
 
+
+
         for (int y = 30; y > -1; y--){
             Road road = new StraightRoad(null, null, null, null, new Vector(47, y));
             roadArrayList.add(road);
             map[47][y] = road;
             if(y != 30) map[47][y].setPrevious(map[47][y+1]);}
         for (int y = 30; y > 0; y--){map[47][y].setNext(map[47][y-1]);}
+        map[46][31].setNext(map[47][30]);
+        System.out.println(map[47][30]);
 
         //TODO map[45][27] should be changing point
         map[45][27].setNext(map[46][26]);
+        map[45][27].setNext(VehicleTarget.PuszkinaOut, map[46][26]);
+
+
 
         for (int x = 51; x > 47; x--){
             Road road = new StraightRoad(null, null, null, null, new Vector(x, x - 33));
@@ -349,6 +360,8 @@ public class Intersection{
 
         this.probVehDir = new HashMap<VehicleTarget, Pair<Double, Road>>();
 
+        map[45][27].setNext(VehicleTarget.Rokicinska, map[44][26]);
+        System.out.println( map[44][26]);
     }
 
     public ArrayList<Road> getRoadArrayList(){return this.roadArrayList;}

@@ -25,7 +25,7 @@ public class Vehicle {
         accelerate();
         Road current = currentPosition;
 //        System.out.println("current:");
-//        System.out.println(current);
+
         int i = 0;
         while (i < velocity && current != null) {
             if (current.getNext(target) == null){
@@ -33,10 +33,12 @@ public class Vehicle {
                 //TODO wyjebywac samochód z listy jak wyjedzie za mape (i liczyć sttystyki docelowo)
                 return;
             }
-            if (current.getNext(target).isAvailable(velocity))
+            if (current.getNext(target).isAvailable(velocity)){
                 current.setOccupied(false);
                 current = current.getNext(target);
-            i++;
+                System.out.println(current.getPosition().getPos_x());
+                System.out.println(current.getPosition().getPos_y());
+                i++;}
         }
         currentPosition = current;
         currentPosition.setOccupied(true);
