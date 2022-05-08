@@ -42,24 +42,23 @@ public class GridCreator implements IEngineObserver{
 
         for (Road road : arrayRoadList){
             if (!road.isOccupied()) {
-                //Label label = new Label("Road");
                 Rectangle rect = new Rectangle(0,0,sqrSize,sqrSize);
-                rect.setStroke(Color.BLACK);
+                rect.setFill(Color.BLACK);
                 grid.add(rect, road.getPosition().getPos_x(), road.getPosition().getPos_y());
             }
         }
 
         ArrayList<PedestrianPath> pedestrianPathArrayList = intersection.getPedestrianPathArrayList();
         for(PedestrianPath point : pedestrianPathArrayList){
-            Rectangle rect = new Rectangle(0,0,10,10);
-            rect.setStroke(point.getColor());
+            Rectangle rect = new Rectangle(0,0,sqrSize,sqrSize);
+            rect.setFill(point.getColor());
             grid.add(rect, point.getLocation().getPos_x(), point.getLocation().getPos_y());
         }
 
         ArrayList<Pedestrian> pedestrianArrayList = intersection.getPedestrianArrayList();
         for(Pedestrian pedestrian : pedestrianArrayList){
-            Rectangle rect = new Rectangle(0,0,10,10);
-            rect.setStroke(Color.PINK);
+            Rectangle rect = new Rectangle(0,0,sqrSize,sqrSize);
+            rect.setFill(Color.PINK);
             grid.add(rect, pedestrian.getLocation().getLocation().getPos_x(), pedestrian.getLocation().getLocation().getPos_y());
         }
 
