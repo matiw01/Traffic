@@ -41,8 +41,12 @@ public class GridCreator implements IEngineObserver{
         grid.getRowConstraints().clear();
         grid.getChildren().clear();
         grid.setGridLinesVisible(true);
+<<<<<<< HEAD
         System.out.println("creataing grid");
 
+=======
+        /*
+>>>>>>> 37a3ee1def1745084170e98aa5683bab1be39afc
         for (Road road : arrayRoadList){
             if (!road.isOccupied()) {
                 //Label label = new Label("Road");
@@ -61,17 +65,21 @@ public class GridCreator implements IEngineObserver{
 
 
         for(PedestrianPath point : pedestrianPathArrayList){
+<<<<<<< HEAD
             Rectangle rect = new Rectangle(0,0,sqrSize,sqrSize);
+=======
+            Rectangle rect = new Rectangle(0,0,10,10);
+>>>>>>> 37a3ee1def1745084170e98aa5683bab1be39afc
             rect.setStroke(point.getColor());
             grid.add(rect, point.getLocation().getPos_x(), point.getLocation().getPos_y());
         }
-        /*
+
         ArrayList<Pedestrian> pedestrianArrayList = intersection.getPedestrianArrayList();
         for(Pedestrian pedestrian : pedestrianArrayList){
-            Rectangle rect = new Rectangle(0,0,20,20);
+            Rectangle rect = new Rectangle(0,0,10,10);
             rect.setStroke(Color.PINK);
             grid.add(rect, pedestrian.getLocation().getLocation().getPos_x(), pedestrian.getLocation().getLocation().getPos_y());
-        }*/
+        }
 
         /*
         ArrayList<Environment> environmentElements = intersection.getEnvironmentElements();

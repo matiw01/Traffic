@@ -4,15 +4,15 @@ import gui.IEngineObserver;
 import javafx.application.Platform;
 import javafx.util.Pair;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+
+import static Engine.PedestrianTarget.getLocation;
 
 public class Engine implements Runnable{
     boolean shouldRun = false;
     Map<VehicleTarget, Pair<Double, Road>> probVehDir;
     IEngineObserver engineObserver;
+<<<<<<< HEAD
     Road[][] roadsMap;
     ArrayList<Vehicle> vehiclesArrayList = new ArrayList<Vehicle>();
 
@@ -42,14 +42,39 @@ public class Engine implements Runnable{
         vehiclesArrayList.add(car9);
         vehiclesArrayList.add(car10);
 
+=======
+    ArrayList<Road> roadArrayList;
+    ArrayList<Vehicle> vehiclesArrayList = new ArrayList<>();
+    ArrayList<Pedestrian> pedestrians = new ArrayList<>();
+    ArrayList<PedestrianPath> pedestrianTargets = new ArrayList<>();
+    Intersection intersection;
+
+    public Engine(IEngineObserver gridCreator , HashMap<VehicleTarget, Pair<Double, Road>> probVehDir, ArrayList<Road> roadArrayList, ArrayList<PedestrianPath> pedestrianPaths, Intersection intersection){
+        engineObserver = gridCreator;
+        this.probVehDir = probVehDir;
+        System.out.println(probVehDir);
+        this.roadArrayList = roadArrayList;
+        for(PedestrianPath a : pedestrianPaths){
+            if(a.getType() == 2){
+                this.pedestrianTargets.add(a);
+            }
+        }
+        this.intersection = intersection;
+>>>>>>> 37a3ee1def1745084170e98aa5683bab1be39afc
     }
 
     public void run(){
         while (true) {
             if (shouldRun){
+<<<<<<< HEAD
                 System.out.println("engine running");
 //                generateNewVehicles();
+=======
+                generateNewVehicles();
+>>>>>>> 37a3ee1def1745084170e98aa5683bab1be39afc
                 moveCars();
+                generatePedestrians();
+                movePedestrians();
                 Platform.runLater(()->notifyObserver());
             }
             try {
@@ -77,7 +102,31 @@ public class Engine implements Runnable{
     }
 
     private void generatePedestrians(){
-        //TODO
+        if(Math.random() < 0.05){
+            PedestrianTarget start = PedestrianTarget.getRandom();
+            PedestrianTarget end = PedestrianTarget.getRandom();
+            while(start == end){end = PedestrianTarget.getRandom();}
+            for(PedestrianPath a : this.pedestrianTargets){
+                if(a.getLocation().getPos_x() == getLocation(start).getPos_x() && a.getLocation().getPos_y() == getLocation(start).getPos_y()){
+                    pedestrians.add(new Pedestrian(a, end));
+                    break;
+                }
+            }
+        this.intersection.setPedestrianArrayList(pedestrians);
+        }
+    }
+
+    private void movePedestrians(){
+        LinkedList<Pedestrian> toRemove = new LinkedList<>();
+        for(Pedestrian pedestrian : pedestrians){
+            pedestrian.move();
+            if(pedestrian.getLocation().info == pedestrian.getTarget()){
+                toRemove.add(pedestrian);
+            }
+        }
+        for(Pedestrian pedestrian : toRemove){
+            pedestrians.remove(pedestrian);
+        }
     }
 
     public void setShouldRun(boolean shouldRun){

@@ -15,7 +15,11 @@ public class App extends javafx.application.Application {
         Intersection intersection = new Intersection(69, 68);
         GridPane grid = new GridPane();
         GridCreator gridCreator = new GridCreator(100, 100, grid, intersection);
+<<<<<<< HEAD
         Engine engine = new Engine(gridCreator,intersection.getProbVehDir(), intersection.getMap());
+=======
+        Engine engine = new Engine(gridCreator,intersection.getProbVehDir(), intersection.getRoadArrayList(), intersection.getPedestrianPathArrayList(), intersection);
+>>>>>>> 37a3ee1def1745084170e98aa5683bab1be39afc
         Thread simulationThread = new Thread(engine);
         simulationThread.start();
         ToggleButton simulationButton = new ToggleButton("start");
