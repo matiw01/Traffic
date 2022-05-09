@@ -28,7 +28,7 @@ public class Engine implements Runnable{
         Vehicle car6 = new Vehicle(2, 3, null, roadsMap[67][19], 2);
         Vehicle car7 = new Vehicle(2, 3, null, roadsMap[67][20], 2);
         Vehicle car8 = new Vehicle(2, 3, null, roadsMap[67][21], 2);
-        Vehicle car9 = new Vehicle(2, 5, VehicleTarget.Prawo, roadsMap[0][44], 2);
+//        Vehicle car9 = new Vehicle(2, 5, VehicleTarget.McDonalds, roadsMap[0][44], 2);
         Vehicle car10 = new Vehicle(2, 5, VehicleTarget.McDonalds, roadsMap[44][66], 2);
 
 //        vehiclesArrayList.add(car1);
@@ -39,7 +39,7 @@ public class Engine implements Runnable{
 //        vehiclesArrayList.add(car6);
 //        vehiclesArrayList.add(car7);
 //        vehiclesArrayList.add(car8);
-        vehiclesArrayList.add(car9);
+//        vehiclesArrayList.add(car9);
         vehiclesArrayList.add(car10);
 
     }

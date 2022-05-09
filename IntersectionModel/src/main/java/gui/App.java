@@ -24,7 +24,7 @@ public class App extends javafx.application.Application {
             engine.setShouldRun(simulationButton.isSelected());
         });
         VBox vBox = new VBox(grid, simulationButton);
-        Scene scene = new Scene(vBox, 1000, 1000);
+        Scene scene = new Scene(vBox, 800, 800);
         primaryStage.setScene(scene);
         primaryStage.show();
         primaryStage.setOnCloseRequest((WindowEvent we) -> {
