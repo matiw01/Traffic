@@ -13,7 +13,8 @@ public class Intersection{
     private final HashMap<VehicleTarget, Pair<Double, Road>> probVehDir;
     private final ArrayList<Environment> environmentElements = new ArrayList<>();
     private final ArrayList<PedestrianPath> pedestrianPathArrayList = new ArrayList<>();
-    private ArrayList<Pedestrian> pedestrianArrayList = new ArrayList<Pedestrian>(); //final??
+    private final ArrayList<TramPath> tramPathArrayList = new ArrayList<>();
+    private ArrayList<Pedestrian> pedestrianArrayList = new ArrayList<>(); //final??
 
     public Intersection(int width, int height){
         this.height = height;
@@ -378,7 +379,7 @@ public class Intersection{
         for(PedestrianPath a : pedestrianPathArrayList){
             for(PedestrianPath b : pedestrianPathArrayList){
                 if((Math.abs(a.getLocation().getPos_x() - b.getLocation().getPos_x()) <= 1 && Math.abs(a.getLocation().getPos_y() - b.getLocation().getPos_y()) <= 1) && (a!=b)){
-                    if(!edge_case(a, b)){
+                    if(!edge_case(a, b) && !edge_case(b, a)){
                         a.setNext(b);
                     }
                 }
@@ -394,7 +395,8 @@ public class Intersection{
             a.redirect();
         }
 
-        //TODO: trams
+        //trams
+        //TODO
     }
 
     public ArrayList<Road> getRoadArrayList(){return this.roadArrayList;}
