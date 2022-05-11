@@ -121,25 +121,14 @@ public class Intersection{
         for (int y = 0; y < 14; y++){
             Road road = new StraightRoad(null, null, null, null, new Vector(20, y));
             roadArrayList.add(road);
-            map[20][y] = road;
-            if (y != 0) map[20][y].setPrevious(map[y-1][20]);}
+            map[20][y] = road;}
         //TODO changing points
-        map[20][14] = new RoadChangingPoint(null, null, new HashMap<VehicleTarget, Road>(), new Vector(20, 14));
-        for (int y = 0; y < 14; y++){map[20][y].setNext(map[20][y + 1]);}
-        roadArrayList.add(map[20][14]);
-        for (int y = 0; y < 14; y++){map[20][y].setNext(map[20][y + 1]);}
-        map[20][14].setNext(VehicleTarget.McDonalds, map[20][15]);
-        map[20][14].setNext(VehicleTarget.PuszkinaIn, map[20][15]);
-        map[20][14].setNext(VehicleTarget.Prawo, map[20][15]);
-
-        System.out.println(map[19][15]);
+        roadArrayList.add(new RoadChangingPoint(null, null, null, new Vector(20, 14)));
 
         for (int y = 15; y < 31; y++){
             Road road = new StraightRoad(null, null, null, null, new Vector(20, y));
             roadArrayList.add(road);
             map[20][y] = road;}
-        for (int y = 15; y < 31; y++){map[20][y].setNext(map[20][y + 1]);}
-
         for (int y = 0; y < 31; y++){
             Road road = new StraightRoad(null, null, null, null, new Vector(21, y));
             roadArrayList.add(road);
@@ -390,7 +379,6 @@ public class Intersection{
         map[45][27].setNext(VehicleTarget.Rokicinska, map[44][26]);
         map[45][27].setNext(VehicleTarget.McDonalds, map[44][26]);
         map[45][27].setNext(VehicleTarget.Prawo, map[44][26]);
-        map[20][14].setNext(VehicleTarget.Rokicinska, map[19][15]);
 
         //TODO: add destination points
         //TODO: trams
