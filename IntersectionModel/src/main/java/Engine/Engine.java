@@ -29,7 +29,7 @@ public class Engine implements Runnable{
         Vehicle car6 = new Vehicle(2, 3, null, roadsMap[67][19], 2);
         Vehicle car7 = new Vehicle(2, 3, null, roadsMap[67][20], 2);
         Vehicle car8 = new Vehicle(2, 3, null, roadsMap[67][21], 2);
-        Vehicle car15 = new Vehicle(2, 3, VehicleTarget.Rokicinska, roadsMap[67][22], 2);
+        Vehicle car15 = new Vehicle(2, 3, VehicleTarget.Prawo, roadsMap[67][22], 2);
         Vehicle car9 = new Vehicle(2, 5, VehicleTarget.McDonalds, roadsMap[0][44], 2);
         Vehicle car11 = new Vehicle(2, 5, VehicleTarget.Rokicinska, roadsMap[20][0], 2);
         Vehicle car12 = new Vehicle(2, 5, VehicleTarget.McDonalds, roadsMap[21][0], 2);
