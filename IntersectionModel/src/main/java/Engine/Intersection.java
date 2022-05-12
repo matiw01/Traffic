@@ -361,6 +361,13 @@ public class Intersection{
         map[39][43].setNext(VehicleTarget.PuszkinaOut, map[40][42]);
         map[39][43].setNext(VehicleTarget.Rokicinska, map[40][42]);
 
+        for (int y = 66; y > 39; y--){
+            Road road = new StraightRoad(null, null, null, null, new Vector(43, y));
+            roadArrayList.add(road);
+            map[43][y] = road;
+            if ( y != 66 ) road.setPrevious(map[43][y + 1]);}
+        for (int y = 66; y > 39; y--){map[43][y].setNext(map[43][y - 1]);}
+
 
 
         for(int x = 39; x < 44; x++){map[x][82 - x].setNext(map[x + 1][81 - x]);}

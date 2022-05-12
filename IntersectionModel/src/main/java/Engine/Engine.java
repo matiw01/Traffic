@@ -45,6 +45,7 @@ public class Engine implements Runnable{
         Vehicle car12 = new Vehicle(2, 5, VehicleTarget.McDonalds, roadsMap[21][0], 2);
         Vehicle car13 = new Vehicle(2, 5, VehicleTarget.Prawo, roadsMap[21][5], 2);
         Vehicle car14 = new Vehicle(2, 5, VehicleTarget.PuszkinaOut, roadsMap[21][10], 2);
+        Vehicle car16 = new Vehicle(2, 5, VehicleTarget.McDonalds, roadsMap[43][66], 2);
 
 //        vehiclesArrayList.add(car1);
 //        vehiclesArrayList.add(car2);
@@ -55,12 +56,14 @@ public class Engine implements Runnable{
 //        vehiclesArrayList.add(car6);
 //        vehiclesArrayList.add(car7);
 //        vehiclesArrayList.add(car8);
-        vehiclesArrayList.add(car15);
+//        vehiclesArrayList.add(car15);
 //        vehiclesArrayList.add(car9);
 //        vehiclesArrayList.add(car11);
 //        vehiclesArrayList.add(car12);
 //        vehiclesArrayList.add(car13);
-//        vehiclesArrayList.add(car14
+//        vehiclesArrayList.add(car14);
+        vehiclesArrayList.add(car16);
+
     }
 
     public void run(){
@@ -70,7 +73,7 @@ public class Engine implements Runnable{
                 moveCars();
                 generatePedestrians();
                 movePedestrians();
-                Platform.runLater(()->notifyObserver());
+                Platform.runLater(this::notifyObserver);
             }
             try {
                 Thread.sleep(500);
