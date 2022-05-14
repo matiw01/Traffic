@@ -62,6 +62,13 @@ public class GridCreator implements IEngineObserver{
             grid.add(rect, pedestrian.getLocation().getLocation().getPos_x(), pedestrian.getLocation().getLocation().getPos_y());
         }
 
+        ArrayList<TramPath> tramPathArrayList = intersection.getTramPathArrayList();
+        for(TramPath tramPath : tramPathArrayList){
+            Rectangle rect = new Rectangle(0,0,sqrSize,sqrSize);
+            rect.setFill(tramPath.getColor());
+            grid.add(rect, tramPath.getLocation().getPos_x(), tramPath.getLocation().getPos_y());
+        }
+
         /*
         ArrayList<Environment> environmentElements = intersection.getEnvironmentElements();
         for(Environment element : environmentElements){

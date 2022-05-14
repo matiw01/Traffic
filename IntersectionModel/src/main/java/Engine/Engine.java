@@ -87,7 +87,7 @@ public class Engine implements Runnable{
         Arrays.asList(VehicleTarget.values())
                 .forEach(target -> {
                     if (probVehDir.get(target) != null && Math.random() < probVehDir.get(target).getKey()){
-                        System.out.println(probVehDir.get(target).getValue().getNext());
+                        //System.out.println(probVehDir.get(target).getValue().getNext());
                         vehiclesArrayList.add(new Vehicle(2, 3, target, probVehDir.get(target).getValue(), 1));
                     }
                 });
@@ -111,6 +111,15 @@ public class Engine implements Runnable{
                 }
             }
         this.intersection.setPedestrianArrayList(pedestrians);
+        }
+    }
+
+    public void moveTrams(){
+        if(Math.random() < 0.1){
+            TramTarget start = TramTarget.getRandom();
+            TramTarget end = TramTarget.getRandom();
+            while(start == end){end = TramTarget.getRandom();}
+            //TODO
         }
     }
 

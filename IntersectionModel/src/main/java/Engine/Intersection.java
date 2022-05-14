@@ -402,10 +402,6 @@ public class Intersection{
         map[20][14].setNext(VehicleTarget.Rokicinska, map[19][15]);
         map[20][14].setNext(VehicleTarget.McDonalds, map[20][15]);
 
-        //TODO: add destination points
-        //TODO: trams
-        //TODO: roads
-
         this.probVehDir = new HashMap<VehicleTarget, Pair<Double, Road>>();
 
         //pedestrains
@@ -495,16 +491,113 @@ public class Intersection{
             a.redirect();
         }
 
-        //TODO: trams
-    }
+        //TRAMS
+        for(int x = 0; x<41; x++){tramPathArrayList.add(new Rails(x, 31));}
+        tramPathArrayList.add(new TramChangingPoint(41, 31));
+        for(int x = 42; x<68; x++){tramPathArrayList.add(new Rails(x, 31));}
+        tramPathArrayList.add(new Rails(34, 38));
+        tramPathArrayList.add(new Rails(35, 38));
+        tramPathArrayList.add(new Rails(35, 37));
+        tramPathArrayList.add(new Rails(36, 37));
+        tramPathArrayList.add(new Rails(36, 36));
+        tramPathArrayList.add(new Rails(37, 36));
+        tramPathArrayList.add(new Rails(37, 35));
+        tramPathArrayList.add(new Rails(38, 35));
+        tramPathArrayList.add(new Rails(38, 34));
+        tramPathArrayList.add(new Rails(39, 34));
+        tramPathArrayList.add(new Rails(39, 33));
+        tramPathArrayList.add(new Rails(40, 33));
 
+        for(int x = 0; x<26; x++){tramPathArrayList.add(new Rails(x, 32));}
+        tramPathArrayList.add(new TramChangingPoint(26, 32));
+        tramPathArrayList.add(new TramChangingPoint(27, 32));
+        tramPathArrayList.add(new TramChangingPoint(40, 32));
+        for(int x = 27; x<40; x++){tramPathArrayList.add(new Rails(x, 32));}
+        for(int x = 41; x<68; x++){tramPathArrayList.add(new Rails(x, 32));}
+
+        for(int y = 39; y<67; y++){tramPathArrayList.add(new Rails(33, y));}
+        for(int y = 40; y<67; y++){tramPathArrayList.add(new Rails(34, y));}
+        tramPathArrayList.add(new TramChangingPoint(34, 39));
+        tramPathArrayList.add(new Rails(33, 38));
+        tramPathArrayList.add(new Rails(32, 38));
+        tramPathArrayList.add(new Rails(32, 37));
+        tramPathArrayList.add(new Rails(31, 37));
+        tramPathArrayList.add(new Rails(31, 36));
+        tramPathArrayList.add(new Rails(30, 36));
+        tramPathArrayList.add(new Rails(30, 35));
+        tramPathArrayList.add(new Rails(29, 35));
+        tramPathArrayList.add(new Rails(29, 34));
+        tramPathArrayList.add(new Rails(28, 34));
+        tramPathArrayList.add(new Rails(28, 33));
+        tramPathArrayList.add(new Rails(27, 33));
+
+        for(int x = 0; x<67; x++){
+            getAtLocation(x,32).setNext(getAtLocation(x+1,31));
+        }
+        for(int x = 67; x>0; x--){
+            getAtLocation(x,31).setNext(getAtLocation(x-1,31));
+        }
+        for(int y = 39; y<67; y++){
+            getAtLocation(33,y).setNext(getAtLocation(33,y+1)); //33,39
+        }
+        for(int y = 66; y>=40; y--){
+            getAtLocation(34,y).setNext(getAtLocation(34,y-1));
+        }
+        for(int x = 26; x<33; x++){
+            getAtLocation(x,x+6).setNext(getAtLocation(x+1,x+7));
+        }
+        for(int x = 34; x>26; x--){
+            getAtLocation(x,x+5).setNext(getAtLocation(x-1,x+4));
+        }
+        int k = 0;
+        for(int x = 34; x<41; x++){
+            getAtLocation(x,x+5-2*k).setNext(getAtLocation(x+1,x+4-2*k));
+            k++;
+        }
+        k = 0;
+        for(int x = 41; x>33; x--){
+            getAtLocation(x,x-10+2*k).setNext(getAtLocation(x-1,x-9+2*k));
+            k++;
+        }
+
+        /*
+        //printy do debugu
+        int tab[][] = new int[68][67];
+        for(int y = 0; y<67; y++){
+            for(int x = 0; x<68; x++){
+                tab[x][y] = 0;
+            }
+        }
+        for(TramPath tp : tramPathArrayList){
+            if(!tp.isChangingPoint()){
+                if(tp.getNext(0) != null){tab[tp.getLocation().getPos_x()][tp.getLocation().getPos_y()]++;}
+            }
+            else{
+                for(int i = 0; i<5; i++){
+                    if(tp.getNext(i) != null){
+                        tab[tp.getLocation().getPos_x()][tp.getLocation().getPos_y()]++;
+                    }
+                    else{break;}
+                }
+            }
+        }
+        for(int y = 30; y<67; y++){
+            for(int x = 0; x<68; x++){
+                System.out.print(tab[x][y]);
+                System.out.print(" ");
+            }
+            System.out.println("");
+        }*/
+    }
     public ArrayList<Road> getRoadArrayList(){return this.roadArrayList;}
     public HashMap<VehicleTarget, Pair<Double, Road>> getProbVehDir(){return this.probVehDir;}
     public ArrayList<Environment> getEnvironmentElements(){return this.environmentElements;}
     public ArrayList<Pedestrian> getPedestrianArrayList(){return this.pedestrianArrayList;} //czy potrzeben
     public ArrayList<PedestrianPath> getPedestrianPathArrayList(){return this.pedestrianPathArrayList;}
+    public ArrayList<TramPath> getTramPathArrayList(){return this.tramPathArrayList;}
     public void setPedestrianArrayList(ArrayList<Pedestrian> pedestrians){this.pedestrianArrayList = pedestrians;}
     public Road[][] getMap(){return this.map;}
+    private TramPath getAtLocation(int x, int y){for(TramPath tramPath : this.tramPathArrayList){if(tramPath.getLocation().getPos_x() == x && tramPath.getLocation().getPos_y() == y){return tramPath;}}return null;} //nie jednoznaczne gdy 2 TramPaths w jednej lokalizacji
 
     private boolean edge_case(PedestrianPath a, PedestrianPath b){
         int ax = a.getLocation().getPos_x();

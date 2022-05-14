@@ -1,5 +1,7 @@
 package Engine;
 
+import javafx.scene.paint.Color;
+
 public class Rails implements TramPath{
     private final Vector location;
     private boolean occupied = false;
@@ -7,8 +9,12 @@ public class Rails implements TramPath{
 
     public Rails(int x, int y){this.location = new Vector(x, y);}
 
-    public TramPath getNext(Tram tram){return this.next;}
+    @Override
+    public TramPath getNext(int i){return this.next;}
+    public TramPath getNext(){return this.next;}
+    public TramPath getNext(TramTarget target){return this.next;}
 
+    @Override
     public void setNext(TramPath next){this.next = next;}
 
     @Override
@@ -22,4 +28,9 @@ public class Rails implements TramPath{
 
     @Override
     public boolean isChangingPoint(){return false;}
+
+    @Override
+    public Color getColor() {
+        return Color.CYAN;
+    }
 }

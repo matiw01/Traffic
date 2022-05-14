@@ -20,7 +20,6 @@ public class App extends javafx.application.Application {
         simulationThread.start();
         ToggleButton simulationButton = new ToggleButton("start");
         simulationButton.setOnAction(event -> {
-            System.out.println(simulationButton.isSelected());
             engine.setShouldRun(simulationButton.isSelected());
         });
         VBox vBox = new VBox(grid, simulationButton);

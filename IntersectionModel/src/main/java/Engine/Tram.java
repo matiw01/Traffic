@@ -9,7 +9,7 @@ public class Tram{
     private final TramTarget target;
 
     public Tram(Rails location, TramTarget target){
-        this.maxVelocity = 4;
+        this.maxVelocity = 1; //!!!!!!!!!!!
         this.velocity = this.maxVelocity;
         this.location = location;
         this.target = target;
