@@ -17,7 +17,7 @@ public class Engine implements Runnable{
     ArrayList<PedestrianPath> pedestrianTargets = new ArrayList<>();
     Intersection intersection;
     Road[][] roadsMap;
-    ArrayList<Vehicle> vehiclesArrayList = new ArrayList<Vehicle>();
+    ArrayList<Vehicle> vehiclesArrayList = new ArrayList<>();
 
     public Engine(IEngineObserver gridCreator , HashMap<VehicleTarget, Pair<Double, Road>> probVehDir, Road[][] roadsMap, ArrayList<PedestrianPath> pedestrianPaths, Intersection intersection){
         engineObserver = gridCreator;
