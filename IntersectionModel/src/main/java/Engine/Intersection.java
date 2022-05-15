@@ -689,10 +689,6 @@ public class Intersection{
                         if(x == lights.getLocation().getPos_x() && y == lights.getLocation().getPos_y()){
                             flag = 1;
                             this.lightsHashMap.put(lights.getLocation(), lightsGroup);
-                            System.out.println(lightsGroup == null);
-                            System.out.println(this.lightsHashMap.containsKey(lights.getLocation()));
-                            System.out.println(lights.getLocation().equals(new Vector(lights.getLocation().getPos_x(), lights.getLocation().getPos_y())));
-                            System.out.println(this.lightsHashMap.get(new Vector(lights.getLocation().getPos_x(), lights.getLocation().getPos_y())));
                         }
                     }
                 }

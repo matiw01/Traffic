@@ -1,12 +1,16 @@
 package Engine;
 
+import java.util.Objects;
+
 //TODO
 public class Vector {
     final int pos_x;
     final int pos_y;
+    private int hashCode;
     public Vector(int x, int y){
-        pos_x = x;
-        pos_y = y;
+        this.pos_x = x;
+        this.pos_y = y;
+        this.hashCode = Objects.hash(x, y);
     }
 
     public int getPos_x(){return pos_x;}
@@ -21,4 +25,7 @@ public class Vector {
         final Vector other = (Vector)object;
         return this.pos_x == other.pos_x && this.pos_y == other.pos_y;
     }
+
+    @Override
+    public int hashCode() {return this.hashCode;}
 }
