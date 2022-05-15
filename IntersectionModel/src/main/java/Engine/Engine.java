@@ -18,6 +18,7 @@ public class Engine implements Runnable{
     Intersection intersection;
     Road[][] roadsMap;
     ArrayList<Vehicle> vehiclesArrayList = new ArrayList<>();
+    ArrayList<Tram> tramsArrayList = new ArrayList<>();
 
     public Engine(IEngineObserver gridCreator , HashMap<VehicleTarget, Pair<Double, Road>> probVehDir, Road[][] roadsMap, ArrayList<PedestrianPath> pedestrianPaths, Intersection intersection){
         engineObserver = gridCreator;
@@ -73,6 +74,8 @@ public class Engine implements Runnable{
                 moveCars();
                 generatePedestrians();
                 movePedestrians();
+                generateTrams();
+                moveTrams();
                 Platform.runLater(this::notifyObserver);
             }
             try {
@@ -114,15 +117,6 @@ public class Engine implements Runnable{
         }
     }
 
-    public void moveTrams(){
-        if(Math.random() < 0.1){
-            TramTarget start = TramTarget.getRandom();
-            TramTarget end = TramTarget.getRandom();
-            while(start == end){end = TramTarget.getRandom();}
-            //TODO
-        }
-    }
-
     private void movePedestrians(){
         LinkedList<Pedestrian> toRemove = new LinkedList<>();
         for(Pedestrian pedestrian : pedestrians){
@@ -134,6 +128,34 @@ public class Engine implements Runnable{
         for(Pedestrian pedestrian : toRemove){
             pedestrians.remove(pedestrian);
         }
+    }
+
+    public void generateTrams(){
+        if(Math.random() < 0.1){
+            TramTarget start = TramTarget.getRandom();
+            TramTarget end = TramTarget.getRandom();
+            while(start == end){end = TramTarget.getRandom();}
+            switch(start){
+                case LEFT: tramsArrayList.add(new Tram(intersection.getAtLocation(0,32), end)); break;
+                case RIGHT: tramsArrayList.add(new Tram(intersection.getAtLocation(67,31), end)); break;
+                default: tramsArrayList.add(new Tram(intersection.getAtLocation(34,66), end)); break;
+            }
+            this.intersection.setTramsArrayList(tramsArrayList);
+        }
+    }
+
+    public void moveTrams(){
+        LinkedList<Tram> toRemove = new LinkedList<>();
+        for(Tram tram : tramsArrayList){
+            tram.move();
+            if(tram.getLocation() == null){
+                toRemove.add(tram);
+            }
+        }
+        for(Tram tram : toRemove){
+            tramsArrayList.remove(tram);
+        }
+        intersection.setTramsArrayList(tramsArrayList);
     }
 
     public void setShouldRun(boolean shouldRun){

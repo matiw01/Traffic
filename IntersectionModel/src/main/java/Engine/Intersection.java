@@ -15,6 +15,7 @@ public class Intersection{
     private final ArrayList<PedestrianPath> pedestrianPathArrayList = new ArrayList<>();
     private ArrayList<Pedestrian> pedestrianArrayList = new ArrayList<>(); //final??
     private final ArrayList<TramPath> tramPathArrayList = new ArrayList<>();
+    private ArrayList<Tram> tramsArrayList = new ArrayList<>();
 
     public Intersection(int width, int height){
         this.height = height;
@@ -512,7 +513,7 @@ public class Intersection{
         tramPathArrayList.add(new TramChangingPoint(26, 32));
         tramPathArrayList.add(new TramChangingPoint(27, 32));
         tramPathArrayList.add(new TramChangingPoint(40, 32));
-        for(int x = 27; x<40; x++){tramPathArrayList.add(new Rails(x, 32));}
+        for(int x = 28; x<40; x++){tramPathArrayList.add(new Rails(x, 32));}
         for(int x = 41; x<68; x++){tramPathArrayList.add(new Rails(x, 32));}
 
         for(int y = 39; y<67; y++){tramPathArrayList.add(new Rails(33, y));}
@@ -532,7 +533,7 @@ public class Intersection{
         tramPathArrayList.add(new Rails(27, 33));
 
         for(int x = 0; x<67; x++){
-            getAtLocation(x,32).setNext(getAtLocation(x+1,31));
+            getAtLocation(x,32).setNext(getAtLocation(x+1,32));
         }
         for(int x = 67; x>0; x--){
             getAtLocation(x,31).setNext(getAtLocation(x-1,31));
@@ -559,6 +560,18 @@ public class Intersection{
             getAtLocation(x,x-10+2*k).setNext(getAtLocation(x-1,x-9+2*k));
             k++;
         }
+
+        /*for(TramPath tp : tramPathArrayList){
+            if(tp.getLocation().getPos_x() == 40 && tp.getLocation().getPos_y() == 32){
+                System.out.println("fnd");
+                if(tp.getNext(0) != null){
+                    System.out.println(tp.getNext(0).getLocation());
+                }
+                if(tp.getNext(1) != null){
+                    System.out.println(tp.getNext(1).getLocation());
+                }
+            }
+        }*/
 
         /*
         //printy do debugu
@@ -597,8 +610,9 @@ public class Intersection{
     public ArrayList<TramPath> getTramPathArrayList(){return this.tramPathArrayList;}
     public void setPedestrianArrayList(ArrayList<Pedestrian> pedestrians){this.pedestrianArrayList = pedestrians;}
     public Road[][] getMap(){return this.map;}
-    private TramPath getAtLocation(int x, int y){for(TramPath tramPath : this.tramPathArrayList){if(tramPath.getLocation().getPos_x() == x && tramPath.getLocation().getPos_y() == y){return tramPath;}}return null;} //nie jednoznaczne gdy 2 TramPaths w jednej lokalizacji
-
+    public TramPath getAtLocation(int x, int y){for(TramPath tramPath : this.tramPathArrayList){if(tramPath.getLocation().getPos_x() == x && tramPath.getLocation().getPos_y() == y){return tramPath;}}return null;} //nie jednoznaczne gdy 2 TramPaths w jednej lokalizacji
+    public ArrayList<Tram> getTramsArrayList(){return this.tramsArrayList;}
+    public void setTramsArrayList(ArrayList<Tram> trams){this.tramsArrayList = trams;}
     private boolean edge_case(PedestrianPath a, PedestrianPath b){
         int ax = a.getLocation().getPos_x();
         int ay = a.getLocation().getPos_y();

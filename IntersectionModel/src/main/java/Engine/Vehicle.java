@@ -29,7 +29,7 @@ public class Vehicle {
         int i = 0;
         while (i < velocity && current != null) {
             if (current.getNext(target) == null){
-                System.out.println("out of map");
+                //System.out.println("out of map");
                 //TODO wyjebywac samochód z listy jak wyjedzie za mape (i liczyć sttystyki docelowo)
                 return;
             }

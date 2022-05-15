@@ -2,6 +2,7 @@ package gui;
 
 import Engine.*;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -67,6 +68,13 @@ public class GridCreator implements IEngineObserver{
             Rectangle rect = new Rectangle(0,0,sqrSize,sqrSize);
             rect.setFill(tramPath.getColor());
             grid.add(rect, tramPath.getLocation().getPos_x(), tramPath.getLocation().getPos_y());
+        }
+
+        ArrayList<Tram> tramsArrayList = intersection.getTramsArrayList();
+        for(Tram tram : tramsArrayList){
+            Rectangle rect = new Rectangle(0,0,sqrSize,sqrSize);
+            rect.setFill(tram.getColor());
+            grid.add(rect, tram.getLocation().getLocation().getPos_x(), tram.getLocation().getLocation().getPos_y());
         }
 
         /*

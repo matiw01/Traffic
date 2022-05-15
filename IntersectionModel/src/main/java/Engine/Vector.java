@@ -12,4 +12,5 @@ public class Vector {
     public int getPos_x(){return pos_x;}
     public int getPos_y(){return pos_y;}
 
+    public String toString(){return "("+pos_x+","+pos_y+")";}
 }

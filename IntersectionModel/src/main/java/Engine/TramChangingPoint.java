@@ -38,8 +38,16 @@ public class TramChangingPoint implements TramPath{
                 if(this.next.get(0).getLocation().getPos_x() > this.next.get(1).getLocation().getPos_x()){
                     return this.next.get(0);
                 }
-                else{
+                else if(this.next.get(0).getLocation().getPos_x() < this.next.get(1).getLocation().getPos_x()){
                     return this.next.get(1);
+                }
+                else{
+                    if(this.next.get(0).getLocation().getPos_y() < this.next.get(1).getLocation().getPos_y()){
+                        return this.next.get(0);
+                    }
+                    else{
+                        return this.next.get(1);
+                    }
                 }
             }
             default:{
