@@ -34,9 +34,7 @@ public class PedestrianPath{
     }
 
     public int getType(){return this.type;}
-    public PedestrianPath getNext(Pedestrian person){
-        return this.forward.get(person.getTarget());
-    }
+    public PedestrianPath getNext(Pedestrian person){return this.forward.get(person.getTarget());}
     public Vector getLocation(){return this.location;}
     public Color getColor(){return this.color;}
 

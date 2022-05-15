@@ -19,6 +19,8 @@ public class Engine implements Runnable{
     Road[][] roadsMap;
     ArrayList<Vehicle> vehiclesArrayList = new ArrayList<>();
     ArrayList<Tram> tramsArrayList = new ArrayList<>();
+    final ArrayList<LightsGroup> lightsGroupArrayList;
+    final HashMap<Vector, LightsGroup> lightsGroupHashMap;
 
     public Engine(IEngineObserver gridCreator , HashMap<VehicleTarget, Pair<Double, Road>> probVehDir, Road[][] roadsMap, ArrayList<PedestrianPath> pedestrianPaths, Intersection intersection){
         engineObserver = gridCreator;
@@ -30,6 +32,8 @@ public class Engine implements Runnable{
             }
         }
         this.intersection = intersection;
+        this.lightsGroupArrayList = this.intersection.getLightsGroupsArrayList();
+        this.lightsGroupHashMap = this.intersection.getLightsHashMap();
 
         Vehicle car1 = new Vehicle(2, 3, null, roadsMap[0][45], 2);
         Vehicle car2 = new Vehicle(2, 3, null, roadsMap[0][46], 2);
@@ -68,8 +72,9 @@ public class Engine implements Runnable{
     }
 
     public void run(){
-        while (true) {
-            if (shouldRun){
+        while(true){
+            if(shouldRun){
+                handleLights();
                 //generateNewVehicles();
                 moveCars();
                 generatePedestrians();
@@ -78,9 +83,10 @@ public class Engine implements Runnable{
                 moveTrams();
                 Platform.runLater(this::notifyObserver);
             }
-            try {
+            try{
                 Thread.sleep(500);
-            } catch (InterruptedException e) {
+            }
+            catch(InterruptedException e){
                 e.printStackTrace();
             }
         }
@@ -103,7 +109,7 @@ public class Engine implements Runnable{
     }
 
     private void generatePedestrians(){
-        if(Math.random() < 0.05){
+        if(Math.random() < 0.5){
             PedestrianTarget start = PedestrianTarget.getRandom();
             PedestrianTarget end = PedestrianTarget.getRandom();
             while(start == end){end = PedestrianTarget.getRandom();}
@@ -120,7 +126,7 @@ public class Engine implements Runnable{
     private void movePedestrians(){
         LinkedList<Pedestrian> toRemove = new LinkedList<>();
         for(Pedestrian pedestrian : pedestrians){
-            pedestrian.move();
+            pedestrian.move(this.lightsGroupHashMap);
             if(pedestrian.getLocation().info == pedestrian.getTarget()){
                 toRemove.add(pedestrian);
             }
@@ -156,6 +162,10 @@ public class Engine implements Runnable{
             tramsArrayList.remove(tram);
         }
         intersection.setTramsArrayList(tramsArrayList);
+    }
+
+    public void handleLights(){
+        //TODO
     }
 
     public void setShouldRun(boolean shouldRun){
