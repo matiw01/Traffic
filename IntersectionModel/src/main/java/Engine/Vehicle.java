@@ -1,5 +1,7 @@
 package Engine;
 
+import java.util.HashMap;
+
 public class Vehicle {
     protected int numberOfPeople;
     protected float breakParameter = 0.1f;
@@ -21,26 +23,34 @@ public class Vehicle {
         this.length = length;
     }
 
-    public void move(){
+    public boolean move(HashMap<Vector, LightsGroup> lightsGroupHashMap){
         accelerate();
         Road current = currentPosition;
-//        System.out.println("current:");
-//        System.out.println(current);
         int i = 0;
         while (i < velocity && current != null) {
-            if (current.getNext(target) == null){
-                //System.out.println("out of map");
-                //TODO wyjebywac samochód z listy jak wyjedzie za mape (i liczyć sttystyki docelowo)
-                return;
+            if (lightsGroupHashMap.get(current.getNext().getPosition()) != null){
+                if (lightsGroupHashMap.get(current.getNext().getPosition()).getState() == 0){
+                    currentPosition = current;
+                    currentPosition.setOccupied(true);
+                    return true;
+                }
             }
-            if (current.getNext(target).isAvailable(velocity))
+            if (current.getNext(target) == null){
+                return false;
+            }
+            if (current.getNext(target).isAvailable(velocity)){
                 current.setOccupied(false);
-            current = current.getNext(target);
+                current = current.getNext(target);}
+            else {
+                current.setOccupied(true);
+                return true;
+            }
             i++;
         }
         currentPosition = current;
         currentPosition.setOccupied(true);
         randomBreak();
+        return true;
     }
     public Vector getPosition(){return currentPosition.getPosition();}
     protected void randomBreak(){if (Math.random() < breakParameter) velocity -= 1;}

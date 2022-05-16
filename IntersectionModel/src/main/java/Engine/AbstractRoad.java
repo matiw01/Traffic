@@ -26,16 +26,6 @@ public abstract class AbstractRoad {
 
     public boolean isAvailable(int velocity) {
         int i = 0;
-        Road current = (Road)this;
-        while (i < maxSpeed - velocity){
-            current = current.getPrevious();
-            if (current.getPrevious() == null)
-                return true;
-            if (current.isOccupied()){
-                return false;
-            }
-            i++;
-        }
-        return true;
+        return !occupied;
     }
 }
