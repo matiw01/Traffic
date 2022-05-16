@@ -1,13 +1,12 @@
 package gui;
 
 import Engine.*;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class GridCreator implements IEngineObserver{
     GridPane grid;
@@ -75,6 +74,17 @@ public class GridCreator implements IEngineObserver{
             Rectangle rect = new Rectangle(0,0,sqrSize,sqrSize);
             rect.setFill(tram.getColor());
             grid.add(rect, tram.getLocation().getLocation().getPos_x(), tram.getLocation().getLocation().getPos_y());
+        }
+
+        ArrayList<LightsGroup> lightsGroups = intersection.getLightsGroupsArrayList();
+        for (LightsGroup lightsGroup : lightsGroups){
+            LinkedList<TrafficLights> lights = lightsGroup.getLights();
+            for (TrafficLights trafficLight : lights){
+                Rectangle rect = new Rectangle(0,0,sqrSize,sqrSize);
+                if (lightsGroup.state == 1) rect.setFill(Color.GREEN);
+                else rect.setFill(Color.RED);
+                grid.add(rect, trafficLight.getLocation().getPos_x(), trafficLight.getLocation().getPos_y());
+            }
         }
 
         /*

@@ -22,6 +22,7 @@ public class App extends javafx.application.Application {
         Road[][] roadsMap = intersection.getMap();
         GridPane grid = new GridPane();
         GridCreator gridCreator = new GridCreator(100, 100, grid, intersection);
+
         //Crating carGenerators
         LinkedList<CarGenerator> carGenerators = new LinkedList<>();
 
