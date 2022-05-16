@@ -26,8 +26,6 @@ public class Vehicle {
     public boolean move(HashMap<Vector, LightsGroup> lightsGroupHashMap){
         accelerate();
         Road current = currentPosition;
-//        System.out.println("current:");
-//        System.out.println(current);
         int i = 0;
         while (i < velocity && current != null) {
             if (lightsGroupHashMap.get(current.getNext().getPosition()) != null){

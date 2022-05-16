@@ -735,6 +735,58 @@ public class Intersection{
         this.vehicleLightsGroupsArrayList.add(lg25);
         //this.lightsHashMap.put(new Vector(51,31), lg16);
 
+        LinkedList<TrafficLights> l26 = new LinkedList<>();
+        l26.add(new TrafficLights(44,33));
+        l26.add(new TrafficLights(45,33));
+        l26.add(new TrafficLights(46,33));
+        LightsGroup lg26 = new LightsGroup(l26);
+        this.vehicleLightsGroupsArrayList.add(lg26);
+
+        LinkedList<TrafficLights> l27 = new LinkedList<>();
+        l27.add(new TrafficLights(42,24));
+        l27.add(new TrafficLights(46,23));
+        l27.add(new TrafficLights(47,23));
+        LightsGroup lg27 = new LightsGroup(l27);
+        this.vehicleLightsGroupsArrayList.add(lg27);
+
+        LinkedList<TrafficLights> l28 = new LinkedList<>();
+        l28.add(new TrafficLights(22,20));
+        l28.add(new TrafficLights(22,21));
+        l28.add(new TrafficLights(22,22));
+        l28.add(new TrafficLights(23,26));
+        LightsGroup lg28 = new LightsGroup(l28);
+        this.vehicleLightsGroupsArrayList.add(lg28);
+
+        LinkedList<TrafficLights> l29 = new LinkedList<>();
+        l29.add(new TrafficLights(20,30));
+        l29.add(new TrafficLights(21,30));
+        l29.add(new TrafficLights(22,30));
+        LightsGroup lg29 = new LightsGroup(l29);
+        this.vehicleLightsGroupsArrayList.add(lg29);
+
+        LinkedList<TrafficLights> l30 = new LinkedList<>();
+        l30.add(new TrafficLights(22,43));
+        l30.add(new TrafficLights(23,43));
+        l30.add(new TrafficLights(27,42));
+        LightsGroup lg30 = new LightsGroup(l30);
+        this.vehicleLightsGroupsArrayList.add(lg30);
+
+        LinkedList<TrafficLights> l31 = new LinkedList<>();
+        l31.add(new TrafficLights(32,43));
+        l31.add(new TrafficLights(32,44));
+        l31.add(new TrafficLights(32,45));
+        l31.add(new TrafficLights(32,46));
+        LightsGroup lg31 = new LightsGroup(l31);
+        this.vehicleLightsGroupsArrayList.add(lg31);
+
+        LinkedList<TrafficLights> l32 = new LinkedList<>();
+        l32.add(new TrafficLights(42,44));
+        l32.add(new TrafficLights(42,45));
+        l32.add(new TrafficLights(42,46));
+        l32.add(new TrafficLights(42,40));
+        LightsGroup lg32 = new LightsGroup(l32);
+        this.vehicleLightsGroupsArrayList.add(lg32);
+
         //pedastrians
         int flag = 0;
         for(int x = 0; x<68; x++){

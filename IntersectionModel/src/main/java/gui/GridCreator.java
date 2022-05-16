@@ -18,6 +18,7 @@ public class GridCreator implements IEngineObserver{
     Intersection intersection;
     ArrayList<Road> arrayRoadList;
     ArrayList<PedestrianPath> pedestrianPathArrayList;
+    ArrayList<Vehicle> vehicleArrayList;
     public GridCreator(int width, int height, GridPane grid, Intersection intersection){
         this.width = width;
         this.height = height;
@@ -95,6 +96,12 @@ public class GridCreator implements IEngineObserver{
                 else rect.setFill(Color.RED);
                 grid.add(rect, trafficLight.getLocation().getPos_x(), trafficLight.getLocation().getPos_y());
             }
+        }
+
+        for (Vehicle vehicle : vehiclesArrayList){
+            Rectangle rect = new Rectangle(0,0,sqrSize,sqrSize);
+            rect.setFill(Color.YELLOW);
+            grid.add(rect, vehicle.getPosition().getPos_x(), vehicle.getPosition().getPos_y());
         }
 
         /*
