@@ -25,7 +25,7 @@ public class Pedestrian {
 
     public void move(HashMap<Vector, LightsGroup> lightsGroupHashMap){
         PedestrianPath tile = location.getNext(this);
-        if(lightsGroupHashMap.get(tile.getLocation()) == null || lightsGroupHashMap.get(tile.getLocation()).getState() == 2){
+        if(lightsGroupHashMap.get(this.getLocation().getLocation()) != null || lightsGroupHashMap.get(tile.getLocation()) == null || lightsGroupHashMap.get(tile.getLocation()).getState() == 2){
             this.location = tile;
             this.velocity = Math.min(this.velocity + 1, this.maxVelocity);
         }
