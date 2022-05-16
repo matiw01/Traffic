@@ -21,8 +21,10 @@ public class Engine implements Runnable{
     ArrayList<Tram> tramsArrayList = new ArrayList<>();
     final ArrayList<LightsGroup> lightsGroupArrayList;
     final HashMap<Vector, LightsGroup> lightsGroupHashMap;
+    final LinkedList<CarGenerator> carGenerators;
 
-    public Engine(IEngineObserver gridCreator , HashMap<VehicleTarget, Pair<Double, Road>> probVehDir, Road[][] roadsMap, ArrayList<PedestrianPath> pedestrianPaths, Intersection intersection){
+    public Engine(IEngineObserver gridCreator , HashMap<VehicleTarget, Pair<Double, Road>> probVehDir, Road[][] roadsMap,
+                  ArrayList<PedestrianPath> pedestrianPaths, Intersection intersection, LinkedList<CarGenerator> carGenerators){
         engineObserver = gridCreator;
         this.probVehDir = probVehDir;
         this.roadsMap = roadsMap;
@@ -34,6 +36,8 @@ public class Engine implements Runnable{
         this.intersection = intersection;
         this.lightsGroupArrayList = this.intersection.getLightsGroupsArrayList();
         this.lightsGroupHashMap = this.intersection.getLightsHashMap();
+        this.carGenerators = carGenerators;
+
 
         Vehicle car1 = new Vehicle(2, 3, null, roadsMap[0][45], 2);
         Vehicle car2 = new Vehicle(2, 3, null, roadsMap[0][46], 2);
@@ -67,7 +71,7 @@ public class Engine implements Runnable{
 //        vehiclesArrayList.add(car12);
 //        vehiclesArrayList.add(car13);
 //        vehiclesArrayList.add(car14);
-        vehiclesArrayList.add(car16);
+//        vehiclesArrayList.add(car16);
 
     }
 
@@ -75,7 +79,7 @@ public class Engine implements Runnable{
         while(true){
             if(shouldRun){
                 handleLights();
-                //generateNewVehicles();
+                generateNewVehicles();
                 moveCars();
                 generatePedestrians();
                 movePedestrians();
@@ -93,19 +97,14 @@ public class Engine implements Runnable{
     }
 
     private void generateNewVehicles(){
-        Arrays.asList(VehicleTarget.values())
-                .forEach(target -> {
-                    if (probVehDir.get(target) != null && Math.random() < probVehDir.get(target).getKey()){
-                        //System.out.println(probVehDir.get(target).getValue().getNext());
-                        vehiclesArrayList.add(new Vehicle(2, 3, target, probVehDir.get(target).getValue(), 1));
-                    }
-                });
+        for (CarGenerator carGenerator : carGenerators) {
+            Pair<Vector, VehicleTarget> posTar = carGenerator.generateCar();
+            if (posTar != null) vehiclesArrayList.add(new Vehicle(2, 3, posTar.getValue(), roadsMap[posTar.getKey().pos_x][posTar.getKey().pos_y], 2));
+        }
     }
 
     private void moveCars(){
-        for (Vehicle vehicle : vehiclesArrayList){
-            vehicle.move();
-        }
+        vehiclesArrayList.removeIf(vehicle -> !vehicle.move());
     }
 
     private void generatePedestrians(){

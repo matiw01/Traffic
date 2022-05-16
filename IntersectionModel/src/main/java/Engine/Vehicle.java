@@ -21,7 +21,7 @@ public class Vehicle {
         this.length = length;
     }
 
-    public void move(){
+    public boolean move(){
         accelerate();
         Road current = currentPosition;
 //        System.out.println("current:");
@@ -29,9 +29,8 @@ public class Vehicle {
         int i = 0;
         while (i < velocity && current != null) {
             if (current.getNext(target) == null){
-                //System.out.println("out of map");
                 //TODO wyjebywac samochód z listy jak wyjedzie za mape (i liczyć sttystyki docelowo)
-                return;
+                return false;
             }
             if (current.getNext(target).isAvailable(velocity))
                 current.setOccupied(false);
@@ -41,6 +40,7 @@ public class Vehicle {
         currentPosition = current;
         currentPosition.setOccupied(true);
         randomBreak();
+        return true;
     }
     public Vector getPosition(){return currentPosition.getPosition();}
     protected void randomBreak(){if (Math.random() < breakParameter) velocity -= 1;}
