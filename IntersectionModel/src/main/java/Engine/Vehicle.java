@@ -1,5 +1,7 @@
 package Engine;
 
+import java.util.HashMap;
+
 public class Vehicle {
     protected int numberOfPeople;
     protected float breakParameter = 0.1f;
@@ -21,20 +23,30 @@ public class Vehicle {
         this.length = length;
     }
 
-    public boolean move(){
+    public boolean move(HashMap<Vector, LightsGroup> lightsGroupHashMap){
         accelerate();
         Road current = currentPosition;
 //        System.out.println("current:");
 //        System.out.println(current);
         int i = 0;
         while (i < velocity && current != null) {
+            if (lightsGroupHashMap.get(current.getNext().getPosition()) != null){
+                if (lightsGroupHashMap.get(current.getNext().getPosition()).getState() == 0){
+                    currentPosition = current;
+                    currentPosition.setOccupied(true);
+                    return true;
+                }
+            }
             if (current.getNext(target) == null){
-                //TODO wyjebywac samochód z listy jak wyjedzie za mape (i liczyć sttystyki docelowo)
                 return false;
             }
-            if (current.getNext(target).isAvailable(velocity))
+            if (current.getNext(target).isAvailable(velocity)){
                 current.setOccupied(false);
-            current = current.getNext(target);
+                current = current.getNext(target);}
+            else {
+                current.setOccupied(true);
+                return true;
+            }
             i++;
         }
         currentPosition = current;
