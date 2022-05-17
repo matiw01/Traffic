@@ -29,8 +29,8 @@ public class Vehicle {
         int i = 0;
         this.travelTime++;
         while (i < velocity && current != null) {
-
             if (current.getNext(target) == null){
+                current.setOccupied(false);
                 return false;
             }
             if (lightsGroupHashMap.get(current.getNext(target).getPosition()) != null){

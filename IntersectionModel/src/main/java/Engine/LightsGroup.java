@@ -6,8 +6,13 @@ public class LightsGroup{
     public int state = 0; // 0,1,2 - r y g
     public int lastChange = 0; //s od ost zm
     private final LinkedList<TrafficLights> lights;
+    public LightsGroup(LinkedList<TrafficLights> lights, int lastChange){
+        this.lights = lights;
+        this.lastChange = lastChange;
+    }
     public LightsGroup(LinkedList<TrafficLights> lights){
         this.lights = lights;
+        this.lastChange = 0;
     }
 
     public int getState(){return this.state;}
