@@ -696,7 +696,7 @@ public class Intersection{
         l19.add(new TrafficLights(16,47));
         LightsGroup lg19 = new LightsGroup(l19);
         this.vehicleLightsGroupsArrayList.add(lg19);
-        //this.lightsHashMap.put(new Vector(51,31), lg5);
+//        this.lightsHashMap.put(new Vector(51,31), lg5);
 
         LinkedList<TrafficLights> l20 = new LinkedList<>();
         l20.add(new TrafficLights(43,52));
@@ -728,12 +728,12 @@ public class Intersection{
         l24.add(new TrafficLights(20,13));
         LightsGroup lg24 = new LightsGroup(l24);
         this.vehicleLightsGroupsArrayList.add(lg24);
-        //this.lightsHashMap.put(new Vector(51,31), lg15);
+//        this.lightsHashMap.put(new Vector(51,31), lg15);
         LinkedList<TrafficLights> l25 = new LinkedList<>();
         l25.add(new TrafficLights(21,13));
         LightsGroup lg25 = new LightsGroup(l25);
         this.vehicleLightsGroupsArrayList.add(lg25);
-        //this.lightsHashMap.put(new Vector(51,31), lg16);
+//        this.lightsHashMap.put(new Vector(51,31), lg16);
 
         LinkedList<TrafficLights> l26 = new LinkedList<>();
         l26.add(new TrafficLights(44,33));

@@ -28,20 +28,21 @@ public class Vehicle {
         Road current = currentPosition;
         int i = 0;
         while (i < velocity && current != null) {
-            if (lightsGroupHashMap.get(current.getNext().getPosition()) != null){
-                if (lightsGroupHashMap.get(current.getNext().getPosition()).getState() == 0){
-                    currentPosition = current;
-                    currentPosition.setOccupied(true);
-                    return true;
-                }
-            }
             if (current.getNext(target) == null){
                 return false;
             }
-            if (current.getNext(target).isAvailable(velocity)){
+            if (lightsGroupHashMap.get(current.getNext(target).getPosition()) != null){
+                if (lightsGroupHashMap.get(current.getNext(target).getPosition()).getState() == 0){
+                    currentPosition = current;
+                    return true;
+                }
+            }
+            if (!current.getNext(target).isOccupied()){
                 current.setOccupied(false);
-                current = current.getNext(target);}
+                current = current.getNext(target);
+                current.setOccupied(true);}
             else {
+                currentPosition = current;
                 current.setOccupied(true);
                 return true;
             }
