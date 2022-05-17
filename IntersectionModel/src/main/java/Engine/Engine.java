@@ -19,8 +19,8 @@ public class Engine implements Runnable{
     Road[][] roadsMap;
     ArrayList<Vehicle> vehiclesArrayList = new ArrayList<>();
     ArrayList<Tram> tramsArrayList = new ArrayList<>();
-    final ArrayList<LightsGroup> lightsGroupArrayList;
-    final HashMap<Vector, LightsGroup> pedastrianLightsGroupHashMap;
+    final ArrayList<LightsGroup> pedestrianLightsGroupArrayList;
+    final HashMap<Vector, LightsGroup> pedestrianLightsGroupHashMap;
     final HashMap<Vector, LightsGroup> vehicleLightsGroupHashMap;
     final LinkedList<CarGenerator> carGenerators;
 
@@ -35,8 +35,8 @@ public class Engine implements Runnable{
             }
         }
         this.intersection = intersection;
-        this.lightsGroupArrayList = this.intersection.getPedastrianLightsGroupsArrayList();
-        this.pedastrianLightsGroupHashMap = this.intersection.getPedastrianLightsHashMap();
+        this.pedestrianLightsGroupArrayList = this.intersection.getPedestrianLightsGroupsArrayList();
+        this.pedestrianLightsGroupHashMap = this.intersection.getPedestrianLightsHashMap();
         this.vehicleLightsGroupHashMap = this.intersection.getVehicleLightsHashMap();
         this.carGenerators = carGenerators;
 
@@ -127,7 +127,7 @@ public class Engine implements Runnable{
     private void movePedestrians(){
         LinkedList<Pedestrian> toRemove = new LinkedList<>();
         for(Pedestrian pedestrian : pedestrians){
-            pedestrian.move(this.pedastrianLightsGroupHashMap);
+            pedestrian.move(this.pedestrianLightsGroupHashMap);
             if(pedestrian.getLocation().info == pedestrian.getTarget()){
                 toRemove.add(pedestrian);
             }

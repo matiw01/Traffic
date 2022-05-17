@@ -28,11 +28,17 @@ public class Vehicle {
         Road current = currentPosition;
         int i = 0;
         while (i < velocity && current != null) {
+
             if (current.getNext(target) == null){
                 return false;
             }
             if (lightsGroupHashMap.get(current.getNext(target).getPosition()) != null){
-                if (lightsGroupHashMap.get(current.getNext(target).getPosition()).getState() == 0){
+                if (lightsGroupHashMap.get(current.getNext(target).getPosition()).getState() == 0) {
+                    currentPosition = current;
+                    return true;
+                }}
+            if (lightsGroupHashMap.get(current.getNext().getPosition()) != null){
+                if (lightsGroupHashMap.get(current.getNext().getPosition()).getState() == 0){
                     currentPosition = current;
                     return true;
                 }
@@ -53,6 +59,7 @@ public class Vehicle {
         randomBreak();
         return true;
     }
+
     public Vector getPosition(){return currentPosition.getPosition();}
     protected void randomBreak(){if (Math.random() < breakParameter) velocity -= 1;}
     protected Road overTake(Road current){
