@@ -571,31 +571,33 @@ public class Intersection{
         LinkedList<TrafficLights> l1 = new LinkedList<>();
         l1.add(new TrafficLights(51,31));
         l1.add(new TrafficLights(51,32));
-        this.pedestrianLightsGroupsArrayList.add(new LightsGroup(l1));
+        //this.pedestrianLightsGroupsArrayList.add(new LightsGroup(l1));
 
         LinkedList<TrafficLights> l2 = new LinkedList<>();
         l2.add(new TrafficLights(16,31));
         l2.add(new TrafficLights(16,32));
-        this.pedestrianLightsGroupsArrayList.add(new LightsGroup(l2));
+        //this.pedestrianLightsGroupsArrayList.add(new LightsGroup(l2));
 
         LinkedList<TrafficLights> l3 = new LinkedList<>();
         l3.add(new TrafficLights(33,51));
         l3.add(new TrafficLights(34,51));
-        this.pedestrianLightsGroupsArrayList.add(new LightsGroup(l3));
+        //this.pedestrianLightsGroupsArrayList.add(new LightsGroup(l3));
 
         LinkedList<TrafficLights> l4 = new LinkedList<>();
         l4.add(new TrafficLights(17,44));
         l4.add(new TrafficLights(17,45));
         l4.add(new TrafficLights(17,46));
         l4.add(new TrafficLights(17,47));
-        this.pedestrianLightsGroupsArrayList.add(new LightsGroup(l4));
+        //this.pedestrianLightsGroupsArrayList.add(new LightsGroup(l4));
+
+        //wolne l5
 
         LinkedList<TrafficLights> l6 = new LinkedList<>();
         l6.add(new TrafficLights(15,20));
         l6.add(new TrafficLights(15,21));
         l6.add(new TrafficLights(15,22));
         l6.add(new TrafficLights(15,19));
-        this.pedestrianLightsGroupsArrayList.add(new LightsGroup(l6));
+        //this.pedestrianLightsGroupsArrayList.add(new LightsGroup(l6));
 
         //wolne l7
 
@@ -604,7 +606,7 @@ public class Intersection{
         l8.add(new TrafficLights(52,21));
         l8.add(new TrafficLights(52,22));
         l8.add(new TrafficLights(52,19));
-        this.pedestrianLightsGroupsArrayList.add(new LightsGroup(l8));
+        //this.pedestrianLightsGroupsArrayList.add(new LightsGroup(l8));
 
         //wolne l9
 
@@ -613,7 +615,7 @@ public class Intersection{
         l10.add(new TrafficLights(50,45));
         l10.add(new TrafficLights(50,46));
         l10.add(new TrafficLights(50,47));
-        this.pedestrianLightsGroupsArrayList.add(new LightsGroup(l10));
+        //this.pedestrianLightsGroupsArrayList.add(new LightsGroup(l10));
 
         //wolne l11
 
@@ -621,28 +623,28 @@ public class Intersection{
         l12.add(new TrafficLights(21,51));
         l12.add(new TrafficLights(22,51));
         l12.add(new TrafficLights(23,51));
-        this.pedestrianLightsGroupsArrayList.add(new LightsGroup(l12));
+        //this.pedestrianLightsGroupsArrayList.add(new LightsGroup(l12));
 
         LinkedList<TrafficLights> l13 = new LinkedList<>();
         l13.add(new TrafficLights(43,51));
         l13.add(new TrafficLights(44,51));
         l13.add(new TrafficLights(45,51));
         l13.add(new TrafficLights(46,51));
-        this.pedestrianLightsGroupsArrayList.add(new LightsGroup(l13));
+        //this.pedestrianLightsGroupsArrayList.add(new LightsGroup(l13));
 
         //wolne l14
 
         LinkedList<TrafficLights> l15 = new LinkedList<>();
         l15.add(new TrafficLights(20,14));
         l15.add(new TrafficLights(21,14));
-        this.pedestrianLightsGroupsArrayList.add(new LightsGroup(l15));
+        //this.pedestrianLightsGroupsArrayList.add(new LightsGroup(l15));
 
         //wolne l16
 
         LinkedList<TrafficLights> l17 = new LinkedList<>();
         l17.add(new TrafficLights(46,14));
         l17.add(new TrafficLights(47,14));
-        this.pedestrianLightsGroupsArrayList.add(new LightsGroup(l17));
+        //this.pedestrianLightsGroupsArrayList.add(new LightsGroup(l17));
 
         int flag = 0;
         for(int x = 0; x<68; x++){
@@ -661,8 +663,6 @@ public class Intersection{
                 flag = 0;
             }
         }
-
-
 
         //vechicle traffic lights
         LinkedList<TrafficLights> l18 = new LinkedList<>();
@@ -775,6 +775,13 @@ public class Intersection{
         l18.addAll(l23);
         l18.addAll(l28);
 
+        //
+        l18.addAll(l12);
+        l18.addAll(l13);
+        l18.addAll(l15);
+        l18.addAll(l17);
+        //
+
         LightsGroup bigGroup1 = new LightsGroup(l18, 5);
         vehicleLightsGroupsArrayList.add(bigGroup1);
 
@@ -785,10 +792,22 @@ public class Intersection{
         l30.addAll(l20);
 //        l30.addAll(l21);
         l30.addAll(l26);
+        //
+        l30.addAll(l4);
+        l30.addAll(l6);
+        l30.addAll(l8);
+        l30.addAll(l10);
+        //
 
 
         LightsGroup bigGroup2 = new LightsGroup(l30);
         vehicleLightsGroupsArrayList.add(bigGroup2);
+
+        //tram big groups
+        l1.addAll(l2);
+        l1.addAll(l3);
+        LightsGroup bigGroup3 = new LightsGroup(l1);
+        pedestrianLightsGroupsArrayList.add(bigGroup3);
 
         //vechicles
         flag = 0;

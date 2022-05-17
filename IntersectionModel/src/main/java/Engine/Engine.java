@@ -172,6 +172,13 @@ public class Engine implements Runnable{
                 lightsGroup.changeState();
             }
         }
+
+        for (LightsGroup lightsGroup : intersection.getPedestrianLightsGroupsArrayList()){
+            lightsGroup.incrementLastChange();
+            if (lightsGroup.getLastChange() >= 5){
+                lightsGroup.changeState();
+            }
+        }
     }
 
     public void setShouldRun(boolean shouldRun){
