@@ -713,7 +713,24 @@ public class Intersection{
         LightsGroup lg32 = new LightsGroup(l32);
         this.vehicleLightsGroupsArrayList.add(lg32);
         //
-
+        //vechicles
+        flag = 0;
+        for(int x = 0; x<68; x++) {
+            for (int y = 0; y < 67; y++) {
+                for (LightsGroup lightsGroup : this.vehicleLightsGroupsArrayList) {
+                    for (TrafficLights lights : lightsGroup.getLights()) {
+                        if (x == lights.getLocation().getPos_x() && y == lights.getLocation().getPos_y()) {
+                            flag = 1;
+                            this.vehicleLightsHashMap.put(lights.getLocation(), lightsGroup);
+                        }
+                    }
+                }
+                if (flag == 0) {
+                    this.vehicleLightsHashMap.put(new Vector(x, y), null);
+                }
+                flag = 0;
+            }
+        }
     }
     public ArrayList<Road> getRoadArrayList(){return this.roadArrayList;}
     public HashMap<VehicleTarget, Pair<Double, Road>> getProbVehDir(){return this.probVehDir;}

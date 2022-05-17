@@ -28,6 +28,9 @@ public class Vehicle {
         Road current = currentPosition;
         int i = 0;
         while (i < velocity && current != null) {
+            System.out.println("A");
+            System.out.println(current.getPosition());
+            System.out.println(current.getNext().getPosition());
             if (lightsGroupHashMap.get(current.getNext().getPosition()) != null){
                 if (lightsGroupHashMap.get(current.getNext().getPosition()).getState() == 0){
                     currentPosition = current;
