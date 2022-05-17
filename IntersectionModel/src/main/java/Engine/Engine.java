@@ -166,7 +166,12 @@ public class Engine implements Runnable{
     }
 
     public void handleLights(){
-        //TODO
+        for (LightsGroup lightsGroup : intersection.getVehicleLightsGroupsArrayList()){
+            lightsGroup.incrementLastChange();
+            if (lightsGroup.getLastChange() >= 5){
+                lightsGroup.changeState();
+            }
+        }
     }
 
     public void setShouldRun(boolean shouldRun){

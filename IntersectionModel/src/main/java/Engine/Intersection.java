@@ -660,7 +660,7 @@ public class Intersection{
                 flag = 0;
             }
         }
-        //
+
         //vechicle traffic lights
         LinkedList<TrafficLights> l18 = new LinkedList<>();
         l18.add(new TrafficLights(16,44));

@@ -19,4 +19,9 @@ public class LightsGroup{
         this.lastChange = 0;
     }
     public void incrementLastChange(){this.lastChange++;}
+    public void changeState(){
+        if (state == 0) state = 1;
+        else state = 0;
+        lastChange = 0;
+    }
 }
