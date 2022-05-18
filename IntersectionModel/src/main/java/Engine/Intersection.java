@@ -622,10 +622,11 @@ public class Intersection{
         l18.addAll(l28);
 
         //
-        l18.addAll(l12);
-        l18.addAll(l13);
-        l18.addAll(l15);
-        l18.addAll(l17);
+        l12.addAll(l13);
+        l12.addAll(l15);
+        l12.addAll(l17);
+        LightsGroup bigGroup5 = new LightsGroup(l12);
+
         //
 
         LightsGroup bigGroup1 = new LightsGroup(l18, 5);
@@ -639,10 +640,11 @@ public class Intersection{
 //        l30.addAll(l21);
         l30.addAll(l26);
         //
-        l30.addAll(l4);
-        l30.addAll(l6);
-        l30.addAll(l8);
-        l30.addAll(l10);
+        l4.addAll(l6);
+        l4.addAll(l8);
+        l4.addAll(l10);
+        LightsGroup bigGroup4 = new LightsGroup(l4);
+
         //
 
 
@@ -654,6 +656,8 @@ public class Intersection{
         l1.addAll(l3);
         LightsGroup bigGroup3 = new LightsGroup(l1);
         pedestrianLightsGroupsArrayList.add(bigGroup3);
+        pedestrianLightsGroupsArrayList.add(bigGroup4);
+        pedestrianLightsGroupsArrayList.add(bigGroup5);
 
         //vechicles
         flag = 0;
