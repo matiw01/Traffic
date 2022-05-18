@@ -36,7 +36,6 @@ public class PedestrianPath{
     public PedestrianPath getNext(Pedestrian person){return this.forward.get(person.getTarget());}
     public Vector getLocation(){return this.location;}
     public Color getColor(){return this.color;}
-
     public void setNext(PedestrianPath point){
         this.next.add(point);
     }
