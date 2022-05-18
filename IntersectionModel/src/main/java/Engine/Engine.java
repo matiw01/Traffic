@@ -11,7 +11,6 @@ public class Engine implements Runnable{
     boolean shouldRun = false;
     Map<VehicleTarget, Pair<Double, Road>> probVehDir;
     IEngineObserver engineObserver;
-    ArrayList<Road> roadArrayList;
     ArrayList<Pedestrian> pedestrians = new ArrayList<>();
     ArrayList<PedestrianPath> pedestrianTargets = new ArrayList<>();
     Intersection intersection;
@@ -106,9 +105,9 @@ public class Engine implements Runnable{
             TramTarget end = TramTarget.getRandom();
             while(start == end){end = TramTarget.getRandom();}
             switch(start){
-                case LEFT: tramsArrayList.add(new Tram(intersection.getAtLocation(0,32), end)); break;
-                case RIGHT: tramsArrayList.add(new Tram(intersection.getAtLocation(67,31), end)); break;
-                default: tramsArrayList.add(new Tram(intersection.getAtLocation(34,66), end)); break;
+                case LEFT -> tramsArrayList.add(new Tram(intersection.getAtLocation(0, 32), end));
+                case RIGHT -> tramsArrayList.add(new Tram(intersection.getAtLocation(67, 31), end));
+                default -> tramsArrayList.add(new Tram(intersection.getAtLocation(34, 66), end));
             }
             this.intersection.setTramsArrayList(tramsArrayList);
         }
