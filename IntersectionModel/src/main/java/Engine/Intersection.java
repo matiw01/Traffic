@@ -760,71 +760,71 @@ public class Intersection{
         }
     }
     private void generatePedestrianPath(){
-        pedestrianPathArrayList.add(new PedestrianPath(0, 16, 15, null));
-        pedestrianPathArrayList.add(new PedestrianPath(0, 51, 15, null));
-        pedestrianPathArrayList.add(new PedestrianPath(0, 18, 50, null));
-        pedestrianPathArrayList.add(new PedestrianPath(0, 49, 50, null));
+        pedestrianPathArrayList.add(new Sidewalk(16, 15));
+        pedestrianPathArrayList.add(new Sidewalk(51, 15));
+        pedestrianPathArrayList.add(new Sidewalk(18, 50));
+        pedestrianPathArrayList.add(new Sidewalk(49, 50));
 
-        pedestrianPathArrayList.add(new PedestrianPath(2, 19, 0, PedestrianTarget.TOP_LEFT));
-        pedestrianPathArrayList.add(new PedestrianPath(2, 34, 0, PedestrianTarget.TOP_CENTER));
-        pedestrianPathArrayList.add(new PedestrianPath(2, 48, 0, PedestrianTarget.TOP_RIGHT));
-        pedestrianPathArrayList.add(new PedestrianPath(2, 20, 66, PedestrianTarget.BOTTOM_LEFT));
-        pedestrianPathArrayList.add(new PedestrianPath(2, 32, 66, PedestrianTarget.BOTTOM_CENTER_LEFT));
-        pedestrianPathArrayList.add(new PedestrianPath(2, 35, 66, PedestrianTarget.BOTTOM_CENTER_RIGHT));
-        pedestrianPathArrayList.add(new PedestrianPath(2, 47, 66, PedestrianTarget.BOTTOM_RIGHT));
+        pedestrianPathArrayList.add(new PedestrianDestination(19, 0, PedestrianTarget.TOP_LEFT));
+        pedestrianPathArrayList.add(new PedestrianDestination(34, 0, PedestrianTarget.TOP_CENTER));
+        pedestrianPathArrayList.add(new PedestrianDestination(48, 0, PedestrianTarget.TOP_RIGHT));
+        pedestrianPathArrayList.add(new PedestrianDestination(20, 66, PedestrianTarget.BOTTOM_LEFT));
+        pedestrianPathArrayList.add(new PedestrianDestination(32, 66, PedestrianTarget.BOTTOM_CENTER_LEFT));
+        pedestrianPathArrayList.add(new PedestrianDestination(35, 66, PedestrianTarget.BOTTOM_CENTER_RIGHT));
+        pedestrianPathArrayList.add(new PedestrianDestination(47, 66, PedestrianTarget.BOTTOM_RIGHT));
 
-        pedestrianPathArrayList.add(new PedestrianPath(2, 0, 18, PedestrianTarget.LEFT_UP));
-        pedestrianPathArrayList.add(new PedestrianPath(2, 67, 18, PedestrianTarget.RIGHT_UP));
-        pedestrianPathArrayList.add(new PedestrianPath(2, 67, 30, PedestrianTarget.RIGHT_CENTER_UP));
-        pedestrianPathArrayList.add(new PedestrianPath(2, 67, 33, PedestrianTarget.RIGHT_CENTER_DOWN));
-        pedestrianPathArrayList.add(new PedestrianPath(2, 67, 48, PedestrianTarget.RIGHT_DOWN));
-        pedestrianPathArrayList.add(new PedestrianPath(2, 0, 48, PedestrianTarget.LEFT_DOWN));
+        pedestrianPathArrayList.add(new PedestrianDestination(0, 18, PedestrianTarget.LEFT_UP));
+        pedestrianPathArrayList.add(new PedestrianDestination(67, 18, PedestrianTarget.RIGHT_UP));
+        pedestrianPathArrayList.add(new PedestrianDestination(67, 30, PedestrianTarget.RIGHT_CENTER_UP));
+        pedestrianPathArrayList.add(new PedestrianDestination(67, 33, PedestrianTarget.RIGHT_CENTER_DOWN));
+        pedestrianPathArrayList.add(new PedestrianDestination(67, 48, PedestrianTarget.RIGHT_DOWN));
+        pedestrianPathArrayList.add(new PedestrianDestination(0, 48, PedestrianTarget.LEFT_DOWN));
 
         //horizontal
-        for(int x = 17; x<20; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 14, null));}
-        for(int x = 22; x<46; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 14, null));}
-        for(int x = 48; x<51; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 14, null));}
-        for(int x = 20; x<22; x++){pedestrianPathArrayList.add(new PedestrianPath(1, x, 14, null));}
-        for(int x = 46; x<48; x++){pedestrianPathArrayList.add(new PedestrianPath(1, x, 14, null));}
+        for(int x = 17; x<20; x++){pedestrianPathArrayList.add(new Sidewalk(x,14));}
+        for(int x = 22; x<46; x++){pedestrianPathArrayList.add(new Sidewalk(x, 14));}
+        for(int x = 48; x<51; x++){pedestrianPathArrayList.add(new Sidewalk(x, 14));}
+        for(int x = 20; x<22; x++){pedestrianPathArrayList.add(new Crossing(x, 14));}
+        for(int x = 46; x<48; x++){pedestrianPathArrayList.add(new Crossing(x, 14));}
 
-        for(int x = 19; x<21; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 51, null));}
-        for(int x = 24; x<43; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 51, null));}
-        for(int x = 47; x<49; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 51, null));}
-        for(int x = 21; x<24; x++){pedestrianPathArrayList.add(new PedestrianPath(1, x, 51, null));}
-        for(int x = 43; x<47; x++){pedestrianPathArrayList.add(new PedestrianPath(1, x, 51, null));}
+        for(int x = 19; x<21; x++){pedestrianPathArrayList.add(new Sidewalk(x, 51));}
+        for(int x = 24; x<43; x++){pedestrianPathArrayList.add(new Sidewalk(x, 51));}
+        for(int x = 47; x<49; x++){pedestrianPathArrayList.add(new Sidewalk(x, 51));}
+        for(int x = 21; x<24; x++){pedestrianPathArrayList.add(new Crossing(x, 51));}
+        for(int x = 43; x<47; x++){pedestrianPathArrayList.add(new Crossing(x, 51));}
         //vertical
-        for(int y = 16; y<19; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 15, y, null));}
-        for(int y = 23; y<31; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 15, y, null));}
-        for(int y = 33; y<39; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 16, y, null));}
-        for(int y = 39; y<44; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 17, y, null));}
-        for(int y = 48; y<50; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 17, y, null));}
-        for(int y = 19; y<23; y++){pedestrianPathArrayList.add(new PedestrianPath(1, 15, y, null));}
-        for(int y = 31; y<33; y++){pedestrianPathArrayList.add(new PedestrianPath(1, 16, y, null));}
-        for(int y = 44; y<48; y++){pedestrianPathArrayList.add(new PedestrianPath(1, 17, y, null));}
+        for(int y = 16; y<19; y++){pedestrianPathArrayList.add(new Sidewalk(15, y));}
+        for(int y = 23; y<31; y++){pedestrianPathArrayList.add(new Sidewalk(15, y));}
+        for(int y = 33; y<39; y++){pedestrianPathArrayList.add(new Sidewalk(16, y));}
+        for(int y = 39; y<44; y++){pedestrianPathArrayList.add(new Sidewalk(17, y));}
+        for(int y = 48; y<50; y++){pedestrianPathArrayList.add(new Sidewalk(17, y));}
+        for(int y = 19; y<23; y++){pedestrianPathArrayList.add(new Crossing(15, y));}
+        for(int y = 31; y<33; y++){pedestrianPathArrayList.add(new Crossing(16, y));}
+        for(int y = 44; y<48; y++){pedestrianPathArrayList.add(new Crossing(17, y));}
 
-        for(int y = 16; y<19; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 52, y, null));}
-        for(int y = 23; y<31; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 52, y, null));}
-        for(int y = 33; y<39; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 51, y, null));}
-        for(int y = 39; y<44; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 50, y, null));}
-        for(int y = 48; y<50; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 50, y, null));}
-        for(int y = 19; y<23; y++){pedestrianPathArrayList.add(new PedestrianPath(1, 52, y, null));}
-        for(int y = 31; y<33; y++){pedestrianPathArrayList.add(new PedestrianPath(1, 51, y, null));}
-        for(int y = 44; y<48; y++){pedestrianPathArrayList.add(new PedestrianPath(1, 50, y, null));}
+        for(int y = 16; y<19; y++){pedestrianPathArrayList.add(new Sidewalk(52, y));}
+        for(int y = 23; y<31; y++){pedestrianPathArrayList.add(new Sidewalk(52, y));}
+        for(int y = 33; y<39; y++){pedestrianPathArrayList.add(new Sidewalk(51, y));}
+        for(int y = 39; y<44; y++){pedestrianPathArrayList.add(new Sidewalk(50, y));}
+        for(int y = 48; y<50; y++){pedestrianPathArrayList.add(new Sidewalk(50, y));}
+        for(int y = 19; y<23; y++){pedestrianPathArrayList.add(new Crossing(52, y));}
+        for(int y = 31; y<33; y++){pedestrianPathArrayList.add(new Crossing(51, y));}
+        for(int y = 44; y<48; y++){pedestrianPathArrayList.add(new Crossing(50, y));}
 
-        for(int x = 1; x<15; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 18, null));}
-        for(int x = 53; x<67; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 18, null));}
-        for(int x = 1; x<17; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 48, null));}
-        for(int x = 51; x<67; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 48, null));}
-        for(int x = 53; x<67; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 30, null));}
-        for(int x = 52; x<67; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 33, null));}
+        for(int x = 1; x<15; x++){pedestrianPathArrayList.add(new Sidewalk(x, 18));}
+        for(int x = 53; x<67; x++){pedestrianPathArrayList.add(new Sidewalk(x, 18));}
+        for(int x = 1; x<17; x++){pedestrianPathArrayList.add(new Sidewalk(x, 48));}
+        for(int x = 51; x<67; x++){pedestrianPathArrayList.add(new Sidewalk(x, 48));}
+        for(int x = 53; x<67; x++){pedestrianPathArrayList.add(new Sidewalk(x, 30));}
+        for(int x = 52; x<67; x++){pedestrianPathArrayList.add(new Sidewalk(x, 33));}
 
-        for(int y = 1; y<14; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 19, y, null));}
-        for(int y = 52; y<66; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 20, y, null));}
-        for(int y = 1; y<14; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 48, y, null));}
-        for(int y = 52; y<66; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 47, y, null));}
-        for(int y = 1; y<14; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 34, y, null));}
-        for(int y = 52; y<66; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 32, y, null));}
-        for(int y = 52; y<66; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 35, y, null));}
+        for(int y = 1; y<14; y++){pedestrianPathArrayList.add(new Sidewalk(19, y));}
+        for(int y = 52; y<66; y++){pedestrianPathArrayList.add(new Sidewalk(20, y));}
+        for(int y = 1; y<14; y++){pedestrianPathArrayList.add(new Sidewalk(48, y));}
+        for(int y = 52; y<66; y++){pedestrianPathArrayList.add(new Sidewalk(47, y));}
+        for(int y = 1; y<14; y++){pedestrianPathArrayList.add(new Sidewalk(34, y));}
+        for(int y = 52; y<66; y++){pedestrianPathArrayList.add(new Sidewalk(32, y));}
+        for(int y = 52; y<66; y++){pedestrianPathArrayList.add(new Sidewalk(35, y));}
 
         for(PedestrianPath a : pedestrianPathArrayList){
             for(PedestrianPath b : pedestrianPathArrayList){
@@ -837,8 +837,8 @@ public class Intersection{
         }
 
         for(PedestrianPath a : pedestrianPathArrayList){
-            if(a.getType() == 2){
-                a.BFS(pedestrianPathArrayList);
+            if(a.isDestination()){
+                ((PedestrianDestination)a).BFS(pedestrianPathArrayList);
             }
         }
         for(PedestrianPath a : pedestrianPathArrayList){
@@ -878,6 +878,5 @@ public class Intersection{
                 (ax == 15 && ay == 17 && bx == 14 && by == 18);
     }
     private void generatePedestrianLights(){
-
     }
 }

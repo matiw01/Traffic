@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class PedestrianDestination implements PedestrianPathT{
+public class PedestrianDestination implements PedestrianPath {
     public static final ArrayList<PedestrianTarget> targets = new ArrayList<>(Arrays.asList(PedestrianTarget.BOTTOM_LEFT, PedestrianTarget.BOTTOM_CENTER_LEFT, PedestrianTarget.BOTTOM_CENTER_RIGHT, PedestrianTarget.BOTTOM_RIGHT, PedestrianTarget.TOP_LEFT, PedestrianTarget.TOP_CENTER, PedestrianTarget.TOP_RIGHT, PedestrianTarget.LEFT_DOWN, PedestrianTarget.LEFT_UP, PedestrianTarget.RIGHT_DOWN, PedestrianTarget.RIGHT_CENTER_DOWN, PedestrianTarget.RIGHT_CENTER_UP, PedestrianTarget.RIGHT_UP));
-    private final ArrayList<PedestrianPathT> next = new ArrayList<>();
+    private final ArrayList<PedestrianPath> next = new ArrayList<>();
     private final ArrayList<Integer> targetDistance = new ArrayList<>();
-    private final HashMap<PedestrianTarget, PedestrianPathT> forward = new HashMap<>();
+    private final HashMap<PedestrianTarget, PedestrianPath> forward = new HashMap<>();
     private final Vector location;
     private final Color color = Color.DARKCYAN;
     private final PedestrianTarget where;
@@ -26,10 +26,10 @@ public class PedestrianDestination implements PedestrianPathT{
     }
 
     @Override
-    public void setNext(PedestrianPathT point){this.next.add(point);}
+    public void setNext(PedestrianPath point){this.next.add(point);}
 
     @Override
-    public PedestrianPathT getNext(Pedestrian person){return null;}
+    public PedestrianPath getNext(Pedestrian person){return this.forward.get(person.getTarget());}
 
     @Override
     public Vector getLocation(){return this.location;}
@@ -53,26 +53,28 @@ public class PedestrianDestination implements PedestrianPathT{
     public ArrayList<Integer> getTargetDistance(){return this.targetDistance;}
 
     @Override
-    public ArrayList<PedestrianPathT> getNext(){return this.next;}
+    public ArrayList<PedestrianPath> getNext(){return this.next;}
+
+    public PedestrianTarget getWhere(){return this.where;}
 
     public void BFS(ArrayList<PedestrianPath> all){
         int index = 0;
         for(int i = 0; i<targets.size(); i++){if(targets.get(i) == this.where){index = i; break;}}
-        ArrayDeque<PedestrianPathT> queue = new ArrayDeque<>();
+        ArrayDeque<PedestrianPath> queue = new ArrayDeque<>();
         queue.add(this);
         this.targetDistance.set(index, -1);
         while(!queue.isEmpty()){
-            PedestrianPathT el = queue.pop();
+            PedestrianPath el = queue.pop();
             if(!el.isVisited()){
                 int dist = el.getTargetDistance().get(index);
-                for(PedestrianPathT a : el.getNext()){
+                for(PedestrianPath a : el.getNext()){
                     queue.add(a);
                     a.getTargetDistance().set(index, Math.min(dist+1, a.getTargetDistance().get(index)));
                 }
                 el.setVisited(true);
             }
         }
-        for(PedestrianPath a : all){a.setOccupied(false);}
+        for(PedestrianPath a : all){a.setVisited(false);}
     }
 
     @Override
@@ -81,8 +83,8 @@ public class PedestrianDestination implements PedestrianPathT{
             int index = 0;
             for(int i = 0; i<targets.size(); i++){if(targets.get(i) == target){index = i; break;}}
             int min = 1000;
-            PedestrianPathT rem = this;
-            for(PedestrianPathT a : this.next){
+            PedestrianPath rem = this;
+            for(PedestrianPath a : this.next){
                 if(a.getTargetDistance().get(index) < min){
                     rem = a;
                     min = a.getTargetDistance().get(index);

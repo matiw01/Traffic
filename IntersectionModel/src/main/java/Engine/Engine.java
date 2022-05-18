@@ -29,7 +29,7 @@ public class Engine implements Runnable{
         this.probVehDir = probVehDir;
         this.roadsMap = roadsMap;
         for(PedestrianPath a : pedestrianPaths){
-            if(a.getType() == 2){
+            if(a.isDestination()){
                 this.pedestrianTargets.add(a);
             }
         }
@@ -44,12 +44,12 @@ public class Engine implements Runnable{
         while(true){
             if(shouldRun){
                 handleLights();
-                generateNewVehicles();
-                moveCars();
+                //generateNewVehicles();
+                //moveCars();
                 generatePedestrians();
                 movePedestrians();
-                generateTrams();
-                moveTrams();
+                //generateTrams();
+                //moveTrams();
                 Platform.runLater(this::notifyObserver);
             }
             try{
@@ -91,7 +91,7 @@ public class Engine implements Runnable{
         LinkedList<Pedestrian> toRemove = new LinkedList<>();
         for(Pedestrian pedestrian : pedestrians){
             pedestrian.move(this.pedestrianLightsGroupHashMap);
-            if(pedestrian.getLocation().info == pedestrian.getTarget()){
+            if(pedestrian.getLocation().isDestination() && ((PedestrianDestination)pedestrian.getLocation()).getWhere() == pedestrian.getTarget()){
                 toRemove.add(pedestrian);
             }
         }
