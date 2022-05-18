@@ -5,6 +5,7 @@ import javafx.scene.paint.Color;
 public class Environment{
     private final Color color;
     private final Vector location;
+
     public Environment(int type, int x, int y){
         switch(type){
             case 0: this.color = Color.GREEN; break; //grass

@@ -1,6 +1,6 @@
 package Engine;
 
-public enum VehicleTarget {
+public enum VehicleTarget{
     McDonalds,
     PuszkinaIn,
     PuszkinaOut,

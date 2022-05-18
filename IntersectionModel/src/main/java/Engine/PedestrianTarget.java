@@ -17,10 +17,7 @@ public enum PedestrianTarget{
     RIGHT_CENTER_UP,
     RIGHT_UP;
 
-    public static PedestrianTarget getRandom(){
-        return PedestrianTarget.values()[new Random().nextInt(PedestrianTarget.values().length)];
-    }
-
+    public static PedestrianTarget getRandom(){return PedestrianTarget.values()[new Random().nextInt(PedestrianTarget.values().length)];}
     public static Vector getLocation(PedestrianTarget target){
         switch(target){
             case TOP_LEFT: return new Vector(19, 0);

@@ -11,7 +11,7 @@ public class Tram{
     private final TramTarget target;
 
     public Tram(TramPath location, TramTarget target){
-        this.maxVelocity = 1; //!!!!!!!!!!!
+        this.maxVelocity = 1;
         this.velocity = this.maxVelocity;
         this.location = location;
         this.target = target;

@@ -2,7 +2,6 @@ package Engine;
 
 import java.util.Objects;
 
-//TODO
 public class Vector {
     final int pos_x;
     final int pos_y;

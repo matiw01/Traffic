@@ -1,7 +1,6 @@
 package Engine;
 
 import javafx.util.Pair;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -411,161 +410,8 @@ public class Intersection{
 
         this.probVehDir = new HashMap<VehicleTarget, Pair<Double, Road>>();
 
-        //pedestrains
-        //points
-        pedestrianPathArrayList.add(new PedestrianPath(0, 16, 15, null));
-        pedestrianPathArrayList.add(new PedestrianPath(0, 51, 15, null));
-        pedestrianPathArrayList.add(new PedestrianPath(0, 18, 50, null));
-        pedestrianPathArrayList.add(new PedestrianPath(0, 49, 50, null));
-
-        pedestrianPathArrayList.add(new PedestrianPath(2, 19, 0, PedestrianTarget.TOP_LEFT));
-        pedestrianPathArrayList.add(new PedestrianPath(2, 34, 0, PedestrianTarget.TOP_CENTER));
-        pedestrianPathArrayList.add(new PedestrianPath(2, 48, 0, PedestrianTarget.TOP_RIGHT));
-        pedestrianPathArrayList.add(new PedestrianPath(2, 20, 66, PedestrianTarget.BOTTOM_LEFT));
-        pedestrianPathArrayList.add(new PedestrianPath(2, 32, 66, PedestrianTarget.BOTTOM_CENTER_LEFT));
-        pedestrianPathArrayList.add(new PedestrianPath(2, 35, 66, PedestrianTarget.BOTTOM_CENTER_RIGHT));
-        pedestrianPathArrayList.add(new PedestrianPath(2, 47, 66, PedestrianTarget.BOTTOM_RIGHT));
-
-        pedestrianPathArrayList.add(new PedestrianPath(2, 0, 18, PedestrianTarget.LEFT_UP));
-        pedestrianPathArrayList.add(new PedestrianPath(2, 67, 18, PedestrianTarget.RIGHT_UP));
-        pedestrianPathArrayList.add(new PedestrianPath(2, 67, 30, PedestrianTarget.RIGHT_CENTER_UP));
-        pedestrianPathArrayList.add(new PedestrianPath(2, 67, 33, PedestrianTarget.RIGHT_CENTER_DOWN));
-        pedestrianPathArrayList.add(new PedestrianPath(2, 67, 48, PedestrianTarget.RIGHT_DOWN));
-        pedestrianPathArrayList.add(new PedestrianPath(2, 0, 48, PedestrianTarget.LEFT_DOWN));
-
-        //horizontal
-        for(int x = 17; x<20; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 14, null));}
-        for(int x = 22; x<46; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 14, null));}
-        for(int x = 48; x<51; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 14, null));}
-        for(int x = 20; x<22; x++){pedestrianPathArrayList.add(new PedestrianPath(1, x, 14, null));}
-        for(int x = 46; x<48; x++){pedestrianPathArrayList.add(new PedestrianPath(1, x, 14, null));}
-
-        for(int x = 19; x<21; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 51, null));}
-        for(int x = 24; x<43; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 51, null));}
-        for(int x = 47; x<49; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 51, null));}
-        for(int x = 21; x<24; x++){pedestrianPathArrayList.add(new PedestrianPath(1, x, 51, null));}
-        for(int x = 43; x<47; x++){pedestrianPathArrayList.add(new PedestrianPath(1, x, 51, null));}
-        //vertical
-        for(int y = 16; y<19; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 15, y, null));}
-        for(int y = 23; y<31; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 15, y, null));}
-        for(int y = 33; y<39; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 16, y, null));}
-        for(int y = 39; y<44; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 17, y, null));}
-        for(int y = 48; y<50; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 17, y, null));}
-        for(int y = 19; y<23; y++){pedestrianPathArrayList.add(new PedestrianPath(1, 15, y, null));}
-        for(int y = 31; y<33; y++){pedestrianPathArrayList.add(new PedestrianPath(1, 16, y, null));}
-        for(int y = 44; y<48; y++){pedestrianPathArrayList.add(new PedestrianPath(1, 17, y, null));}
-
-        for(int y = 16; y<19; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 52, y, null));}
-        for(int y = 23; y<31; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 52, y, null));}
-        for(int y = 33; y<39; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 51, y, null));}
-        for(int y = 39; y<44; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 50, y, null));}
-        for(int y = 48; y<50; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 50, y, null));}
-        for(int y = 19; y<23; y++){pedestrianPathArrayList.add(new PedestrianPath(1, 52, y, null));}
-        for(int y = 31; y<33; y++){pedestrianPathArrayList.add(new PedestrianPath(1, 51, y, null));}
-        for(int y = 44; y<48; y++){pedestrianPathArrayList.add(new PedestrianPath(1, 50, y, null));}
-
-        for(int x = 1; x<15; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 18, null));}
-        for(int x = 53; x<67; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 18, null));}
-        for(int x = 1; x<17; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 48, null));}
-        for(int x = 51; x<67; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 48, null));}
-        for(int x = 53; x<67; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 30, null));}
-        for(int x = 52; x<67; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 33, null));}
-
-        for(int y = 1; y<14; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 19, y, null));}
-        for(int y = 52; y<66; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 20, y, null));}
-        for(int y = 1; y<14; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 48, y, null));}
-        for(int y = 52; y<66; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 47, y, null));}
-        for(int y = 1; y<14; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 34, y, null));}
-        for(int y = 52; y<66; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 32, y, null));}
-        for(int y = 52; y<66; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 35, y, null));}
-
-        for(PedestrianPath a : pedestrianPathArrayList){
-            for(PedestrianPath b : pedestrianPathArrayList){
-                if((Math.abs(a.getLocation().getPos_x() - b.getLocation().getPos_x()) <= 1 && Math.abs(a.getLocation().getPos_y() - b.getLocation().getPos_y()) <= 1) && (a!=b)){
-                    if(!edge_case(a, b) && !edge_case(b, a)){
-                        a.setNext(b);
-                    }
-                }
-            }
-        }
-
-        for(PedestrianPath a : pedestrianPathArrayList){
-            if(a.getType() == 2){
-                a.BFS(pedestrianPathArrayList);
-            }
-        }
-        for(PedestrianPath a : pedestrianPathArrayList){
-            a.redirect();
-        }
-
-        //TRAMS
-        for(int x = 0; x<41; x++){tramPathArrayList.add(new Rails(x, 31));}
-        tramPathArrayList.add(new TramChangingPoint(41, 31));
-        for(int x = 42; x<68; x++){tramPathArrayList.add(new Rails(x, 31));}
-        tramPathArrayList.add(new Rails(34, 38));
-        tramPathArrayList.add(new Rails(35, 38));
-        tramPathArrayList.add(new Rails(35, 37));
-        tramPathArrayList.add(new Rails(36, 37));
-        tramPathArrayList.add(new Rails(36, 36));
-        tramPathArrayList.add(new Rails(37, 36));
-        tramPathArrayList.add(new Rails(37, 35));
-        tramPathArrayList.add(new Rails(38, 35));
-        tramPathArrayList.add(new Rails(38, 34));
-        tramPathArrayList.add(new Rails(39, 34));
-        tramPathArrayList.add(new Rails(39, 33));
-        tramPathArrayList.add(new Rails(40, 33));
-
-        for(int x = 0; x<26; x++){tramPathArrayList.add(new Rails(x, 32));}
-        tramPathArrayList.add(new TramChangingPoint(26, 32));
-        tramPathArrayList.add(new TramChangingPoint(27, 32));
-        tramPathArrayList.add(new TramChangingPoint(40, 32));
-        for(int x = 28; x<40; x++){tramPathArrayList.add(new Rails(x, 32));}
-        for(int x = 41; x<68; x++){tramPathArrayList.add(new Rails(x, 32));}
-
-        for(int y = 39; y<67; y++){tramPathArrayList.add(new Rails(33, y));}
-        for(int y = 40; y<67; y++){tramPathArrayList.add(new Rails(34, y));}
-        tramPathArrayList.add(new TramChangingPoint(34, 39));
-        tramPathArrayList.add(new Rails(33, 38));
-        tramPathArrayList.add(new Rails(32, 38));
-        tramPathArrayList.add(new Rails(32, 37));
-        tramPathArrayList.add(new Rails(31, 37));
-        tramPathArrayList.add(new Rails(31, 36));
-        tramPathArrayList.add(new Rails(30, 36));
-        tramPathArrayList.add(new Rails(30, 35));
-        tramPathArrayList.add(new Rails(29, 35));
-        tramPathArrayList.add(new Rails(29, 34));
-        tramPathArrayList.add(new Rails(28, 34));
-        tramPathArrayList.add(new Rails(28, 33));
-        tramPathArrayList.add(new Rails(27, 33));
-
-        for(int x = 0; x<67; x++){
-            getAtLocation(x,32).setNext(getAtLocation(x+1,32));
-        }
-        for(int x = 67; x>0; x--){
-            getAtLocation(x,31).setNext(getAtLocation(x-1,31));
-        }
-        for(int y = 39; y<67; y++){
-            getAtLocation(33,y).setNext(getAtLocation(33,y+1)); //33,39
-        }
-        for(int y = 66; y>=40; y--){
-            getAtLocation(34,y).setNext(getAtLocation(34,y-1));
-        }
-        for(int x = 26; x<33; x++){
-            getAtLocation(x,x+6).setNext(getAtLocation(x+1,x+7));
-        }
-        for(int x = 34; x>26; x--){
-            getAtLocation(x,x+5).setNext(getAtLocation(x-1,x+4));
-        }
-        int k = 0;
-        for(int x = 34; x<41; x++){
-            getAtLocation(x,x+5-2*k).setNext(getAtLocation(x+1,x+4-2*k));
-            k++;
-        }
-        k = 0;
-        for(int x = 41; x>33; x--){
-            getAtLocation(x,x-10+2*k).setNext(getAtLocation(x-1,x-9+2*k));
-            k++;
-        }
+        generatePedestrianPath();
+        generateTramPath();
 
         //pedastrian traffic lights
         LinkedList<TrafficLights> l1 = new LinkedList<>();
@@ -844,6 +690,161 @@ public class Intersection{
     public HashMap<Vector, LightsGroup> getPedestrianLightsHashMap(){return this.pedestrianLightsHashMap;}
     public ArrayList<LightsGroup> getPedestrianLightsGroupsArrayList(){return this.pedestrianLightsGroupsArrayList;}
 
+    private void generateTramPath(){
+        for(int x = 0; x<41; x++){tramPathArrayList.add(new Rails(x, 31));}
+        tramPathArrayList.add(new TramChangingPoint(41, 31));
+        for(int x = 42; x<68; x++){tramPathArrayList.add(new Rails(x, 31));}
+        tramPathArrayList.add(new Rails(34, 38));
+        tramPathArrayList.add(new Rails(35, 38));
+        tramPathArrayList.add(new Rails(35, 37));
+        tramPathArrayList.add(new Rails(36, 37));
+        tramPathArrayList.add(new Rails(36, 36));
+        tramPathArrayList.add(new Rails(37, 36));
+        tramPathArrayList.add(new Rails(37, 35));
+        tramPathArrayList.add(new Rails(38, 35));
+        tramPathArrayList.add(new Rails(38, 34));
+        tramPathArrayList.add(new Rails(39, 34));
+        tramPathArrayList.add(new Rails(39, 33));
+        tramPathArrayList.add(new Rails(40, 33));
+
+        for(int x = 0; x<26; x++){tramPathArrayList.add(new Rails(x, 32));}
+        tramPathArrayList.add(new TramChangingPoint(26, 32));
+        tramPathArrayList.add(new TramChangingPoint(27, 32));
+        tramPathArrayList.add(new TramChangingPoint(40, 32));
+        for(int x = 28; x<40; x++){tramPathArrayList.add(new Rails(x, 32));}
+        for(int x = 41; x<68; x++){tramPathArrayList.add(new Rails(x, 32));}
+
+        for(int y = 39; y<67; y++){tramPathArrayList.add(new Rails(33, y));}
+        for(int y = 40; y<67; y++){tramPathArrayList.add(new Rails(34, y));}
+        tramPathArrayList.add(new TramChangingPoint(34, 39));
+        tramPathArrayList.add(new Rails(33, 38));
+        tramPathArrayList.add(new Rails(32, 38));
+        tramPathArrayList.add(new Rails(32, 37));
+        tramPathArrayList.add(new Rails(31, 37));
+        tramPathArrayList.add(new Rails(31, 36));
+        tramPathArrayList.add(new Rails(30, 36));
+        tramPathArrayList.add(new Rails(30, 35));
+        tramPathArrayList.add(new Rails(29, 35));
+        tramPathArrayList.add(new Rails(29, 34));
+        tramPathArrayList.add(new Rails(28, 34));
+        tramPathArrayList.add(new Rails(28, 33));
+        tramPathArrayList.add(new Rails(27, 33));
+
+        for(int x = 0; x<67; x++){
+            getAtLocation(x,32).setNext(getAtLocation(x+1,32));
+        }
+        for(int x = 67; x>0; x--){
+            getAtLocation(x,31).setNext(getAtLocation(x-1,31));
+        }
+        for(int y = 39; y<67; y++){
+            getAtLocation(33,y).setNext(getAtLocation(33,y+1)); //33,39
+        }
+        for(int y = 66; y>=40; y--){
+            getAtLocation(34,y).setNext(getAtLocation(34,y-1));
+        }
+        for(int x = 26; x<33; x++){
+            getAtLocation(x,x+6).setNext(getAtLocation(x+1,x+7));
+        }
+        for(int x = 34; x>26; x--){
+            getAtLocation(x,x+5).setNext(getAtLocation(x-1,x+4));
+        }
+        int k = 0;
+        for(int x = 34; x<41; x++){
+            getAtLocation(x,x+5-2*k).setNext(getAtLocation(x+1,x+4-2*k));
+            k++;
+        }
+        k = 0;
+        for(int x = 41; x>33; x--){
+            getAtLocation(x,x-10+2*k).setNext(getAtLocation(x-1,x-9+2*k));
+            k++;
+        }
+    }
+    private void generatePedestrianPath(){
+        pedestrianPathArrayList.add(new PedestrianPath(0, 16, 15, null));
+        pedestrianPathArrayList.add(new PedestrianPath(0, 51, 15, null));
+        pedestrianPathArrayList.add(new PedestrianPath(0, 18, 50, null));
+        pedestrianPathArrayList.add(new PedestrianPath(0, 49, 50, null));
+
+        pedestrianPathArrayList.add(new PedestrianPath(2, 19, 0, PedestrianTarget.TOP_LEFT));
+        pedestrianPathArrayList.add(new PedestrianPath(2, 34, 0, PedestrianTarget.TOP_CENTER));
+        pedestrianPathArrayList.add(new PedestrianPath(2, 48, 0, PedestrianTarget.TOP_RIGHT));
+        pedestrianPathArrayList.add(new PedestrianPath(2, 20, 66, PedestrianTarget.BOTTOM_LEFT));
+        pedestrianPathArrayList.add(new PedestrianPath(2, 32, 66, PedestrianTarget.BOTTOM_CENTER_LEFT));
+        pedestrianPathArrayList.add(new PedestrianPath(2, 35, 66, PedestrianTarget.BOTTOM_CENTER_RIGHT));
+        pedestrianPathArrayList.add(new PedestrianPath(2, 47, 66, PedestrianTarget.BOTTOM_RIGHT));
+
+        pedestrianPathArrayList.add(new PedestrianPath(2, 0, 18, PedestrianTarget.LEFT_UP));
+        pedestrianPathArrayList.add(new PedestrianPath(2, 67, 18, PedestrianTarget.RIGHT_UP));
+        pedestrianPathArrayList.add(new PedestrianPath(2, 67, 30, PedestrianTarget.RIGHT_CENTER_UP));
+        pedestrianPathArrayList.add(new PedestrianPath(2, 67, 33, PedestrianTarget.RIGHT_CENTER_DOWN));
+        pedestrianPathArrayList.add(new PedestrianPath(2, 67, 48, PedestrianTarget.RIGHT_DOWN));
+        pedestrianPathArrayList.add(new PedestrianPath(2, 0, 48, PedestrianTarget.LEFT_DOWN));
+
+        //horizontal
+        for(int x = 17; x<20; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 14, null));}
+        for(int x = 22; x<46; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 14, null));}
+        for(int x = 48; x<51; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 14, null));}
+        for(int x = 20; x<22; x++){pedestrianPathArrayList.add(new PedestrianPath(1, x, 14, null));}
+        for(int x = 46; x<48; x++){pedestrianPathArrayList.add(new PedestrianPath(1, x, 14, null));}
+
+        for(int x = 19; x<21; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 51, null));}
+        for(int x = 24; x<43; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 51, null));}
+        for(int x = 47; x<49; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 51, null));}
+        for(int x = 21; x<24; x++){pedestrianPathArrayList.add(new PedestrianPath(1, x, 51, null));}
+        for(int x = 43; x<47; x++){pedestrianPathArrayList.add(new PedestrianPath(1, x, 51, null));}
+        //vertical
+        for(int y = 16; y<19; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 15, y, null));}
+        for(int y = 23; y<31; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 15, y, null));}
+        for(int y = 33; y<39; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 16, y, null));}
+        for(int y = 39; y<44; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 17, y, null));}
+        for(int y = 48; y<50; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 17, y, null));}
+        for(int y = 19; y<23; y++){pedestrianPathArrayList.add(new PedestrianPath(1, 15, y, null));}
+        for(int y = 31; y<33; y++){pedestrianPathArrayList.add(new PedestrianPath(1, 16, y, null));}
+        for(int y = 44; y<48; y++){pedestrianPathArrayList.add(new PedestrianPath(1, 17, y, null));}
+
+        for(int y = 16; y<19; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 52, y, null));}
+        for(int y = 23; y<31; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 52, y, null));}
+        for(int y = 33; y<39; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 51, y, null));}
+        for(int y = 39; y<44; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 50, y, null));}
+        for(int y = 48; y<50; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 50, y, null));}
+        for(int y = 19; y<23; y++){pedestrianPathArrayList.add(new PedestrianPath(1, 52, y, null));}
+        for(int y = 31; y<33; y++){pedestrianPathArrayList.add(new PedestrianPath(1, 51, y, null));}
+        for(int y = 44; y<48; y++){pedestrianPathArrayList.add(new PedestrianPath(1, 50, y, null));}
+
+        for(int x = 1; x<15; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 18, null));}
+        for(int x = 53; x<67; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 18, null));}
+        for(int x = 1; x<17; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 48, null));}
+        for(int x = 51; x<67; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 48, null));}
+        for(int x = 53; x<67; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 30, null));}
+        for(int x = 52; x<67; x++){pedestrianPathArrayList.add(new PedestrianPath(0, x, 33, null));}
+
+        for(int y = 1; y<14; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 19, y, null));}
+        for(int y = 52; y<66; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 20, y, null));}
+        for(int y = 1; y<14; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 48, y, null));}
+        for(int y = 52; y<66; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 47, y, null));}
+        for(int y = 1; y<14; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 34, y, null));}
+        for(int y = 52; y<66; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 32, y, null));}
+        for(int y = 52; y<66; y++){pedestrianPathArrayList.add(new PedestrianPath(0, 35, y, null));}
+
+        for(PedestrianPath a : pedestrianPathArrayList){
+            for(PedestrianPath b : pedestrianPathArrayList){
+                if((Math.abs(a.getLocation().getPos_x() - b.getLocation().getPos_x()) <= 1 && Math.abs(a.getLocation().getPos_y() - b.getLocation().getPos_y()) <= 1) && (a!=b)){
+                    if(!edge_case(a, b) && !edge_case(b, a)){
+                        a.setNext(b);
+                    }
+                }
+            }
+        }
+
+        for(PedestrianPath a : pedestrianPathArrayList){
+            if(a.getType() == 2){
+                a.BFS(pedestrianPathArrayList);
+            }
+        }
+        for(PedestrianPath a : pedestrianPathArrayList){
+            a.redirect();
+        }
+    }
     private boolean edge_case(PedestrianPath a, PedestrianPath b){
         int ax = a.getLocation().getPos_x();
         int ay = a.getLocation().getPos_y();
@@ -875,5 +876,8 @@ public class Intersection{
                 (ax == 17 && ay == 47 && bx == 16 && by == 48) ||
                 (ax == 15 && ay == 19 && bx == 14 && by == 18) ||
                 (ax == 15 && ay == 17 && bx == 14 && by == 18);
+    }
+    private void generatePedestrianLights(){
+
     }
 }

@@ -1,7 +1,6 @@
 package Engine;
 
 import javafx.scene.paint.Color;
-
 import java.util.ArrayList;
 
 public class TramChangingPoint implements TramPath{
