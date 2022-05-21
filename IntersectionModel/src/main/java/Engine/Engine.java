@@ -100,10 +100,14 @@ public class Engine implements Runnable{
     }
 
     public void generateTrams(){
-        if(Math.random() < 0.08){
+        if(Math.random() < 0.1){
             TramTarget start = TramTarget.getRandom();
             TramTarget end = TramTarget.getRandom();
             while(start == end){end = TramTarget.getRandom();}
+            if(start == TramTarget.LEFT && intersection.getAtLocation(0, 32).isOccupied()){return;}
+            else if(start == TramTarget.RIGHT && intersection.getAtLocation(67, 31).isOccupied()){return;}
+            else if(start == TramTarget.BOTTOM && intersection.getAtLocation(34, 66).isOccupied()){return;}
+
             switch(start){
                 case LEFT -> tramsArrayList.add(new Tram(intersection.getAtLocation(0, 32), end));
                 case RIGHT -> tramsArrayList.add(new Tram(intersection.getAtLocation(67, 31), end));

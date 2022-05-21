@@ -24,7 +24,7 @@ public class Rails implements TramPath{
     public void setOccupied(boolean occupied){this.occupied = occupied;}
 
     @Override
-    public boolean isOccupied(){return occupied;}
+    public boolean isOccupied(){return this.occupied;}
 
     @Override
     public boolean isChangingPoint(){return false;}

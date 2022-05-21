@@ -27,7 +27,6 @@ public class Intersection{
         map = new Road[height][width];
 
         //Roads
-
         this.probVehDir = new HashMap<VehicleTarget, Pair<Double, Road>>();
 
         generatePedestrianPath();
@@ -35,8 +34,6 @@ public class Intersection{
         generateRoads();
         generatePedestrianLights();
         generateVehicleLights();
-
-
     }
     public ArrayList<Road> getRoadArrayList(){return this.roadArrayList;}
     public HashMap<VehicleTarget, Pair<Double, Road>> getProbVehDir(){return this.probVehDir;}
