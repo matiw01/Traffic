@@ -20,6 +20,7 @@ public class Engine implements Runnable{
     final ArrayList<LightsGroup> pedestrianLightsGroupArrayList;
     final HashMap<Vector, LightsGroup> pedestrianLightsGroupHashMap;
     final HashMap<Vector, LightsGroup> vehicleLightsGroupHashMap;
+    final HashMap<Vector, LightsGroup> tramLightsGroupHashMap;
     final LinkedList<CarGenerator> carGenerators;
 
     public Engine(IEngineObserver gridCreator , HashMap<VehicleTarget, Pair<Double, Road>> probVehDir, Road[][] roadsMap,
@@ -36,6 +37,7 @@ public class Engine implements Runnable{
         this.pedestrianLightsGroupArrayList = this.intersection.getPedestrianLightsGroupsArrayList();
         this.pedestrianLightsGroupHashMap = this.intersection.getPedestrianLightsHashMap();
         this.vehicleLightsGroupHashMap = this.intersection.getVehicleLightsHashMap();
+        this.tramLightsGroupHashMap = this.intersection.getTramLightsHashMap();
         this.carGenerators = carGenerators;
     }
 
@@ -120,7 +122,7 @@ public class Engine implements Runnable{
     public void moveTrams(){
         LinkedList<Tram> toRemove = new LinkedList<>();
         for(Tram tram : tramsArrayList){
-            tram.move();
+            tram.move(tramLightsGroupHashMap);
             if(tram.getLocation() == null){
                 toRemove.add(tram);
             }

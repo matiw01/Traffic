@@ -113,6 +113,17 @@ public class GridCreator implements IEngineObserver{
             }
         }
 
+        ArrayList<LightsGroup> tLightsGroups = intersection.getTramLightsGroupsArrayList();
+        for (LightsGroup lightsGroup : tLightsGroups){
+            LinkedList<TrafficLights> lights = lightsGroup.getLights();
+            for (TrafficLights trafficLight : lights){
+                Rectangle rect = new Rectangle(0,0,sqrSize,sqrSize);
+                if (lightsGroup.state == 1) rect.setFill(Color.GREEN);
+                else rect.setFill(Color.RED);
+                grid.add(rect, trafficLight.getLocation().getPos_x(), trafficLight.getLocation().getPos_y());
+            }
+        }
+
         for (Vehicle vehicle : vehiclesArrayList){
             Rectangle rect = new Rectangle(0,0,sqrSize,sqrSize);
             rect.setFill(Color.YELLOW);

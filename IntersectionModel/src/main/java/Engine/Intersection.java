@@ -18,8 +18,10 @@ public class Intersection{
     private ArrayList<Tram> tramsArrayList = new ArrayList<>();
     private final ArrayList<LightsGroup> pedestrianLightsGroupsArrayList = new ArrayList<>();
     private final ArrayList<LightsGroup> vehicleLightsGroupsArrayList = new ArrayList<>();
+    private final ArrayList<LightsGroup> tramLightsGroupsArrayList = new ArrayList<>();
     private final HashMap<Vector, LightsGroup> pedestrianLightsHashMap = new HashMap<>();
     private final HashMap<Vector, LightsGroup> vehicleLightsHashMap = new HashMap<>();
+    private final HashMap<Vector, LightsGroup> tramLightsHashMap = new HashMap<>();
 
     public Intersection(int width, int height){
         this.height = height;
@@ -34,6 +36,7 @@ public class Intersection{
         generateRoads();
         generatePedestrianLights();
         generateVehicleLights();
+        generateTramLights();
     }
     public ArrayList<Road> getRoadArrayList(){return this.roadArrayList;}
     public HashMap<VehicleTarget, Pair<Double, Road>> getProbVehDir(){return this.probVehDir;}
@@ -50,6 +53,8 @@ public class Intersection{
     public ArrayList<LightsGroup> getVehicleLightsGroupsArrayList(){return this.vehicleLightsGroupsArrayList;}
     public HashMap<Vector, LightsGroup> getPedestrianLightsHashMap(){return this.pedestrianLightsHashMap;}
     public ArrayList<LightsGroup> getPedestrianLightsGroupsArrayList(){return this.pedestrianLightsGroupsArrayList;}
+    public HashMap<Vector, LightsGroup> getTramLightsHashMap(){return this.tramLightsHashMap;}
+    public ArrayList<LightsGroup> getTramLightsGroupsArrayList(){return this.tramLightsGroupsArrayList;}
 
     private void generateTramPath(){
         for(int x = 0; x<41; x++){tramPathArrayList.add(new Rails(x, 31));}
@@ -726,7 +731,6 @@ public class Intersection{
         }
 
     }
-
     private void generateVehicleLights(){
         //vechicle traffic lights
         LinkedList<TrafficLights> l18 = new LinkedList<>();
@@ -876,6 +880,42 @@ public class Intersection{
                 }
                 if (flag == 0) {
                     this.vehicleLightsHashMap.put(new Vector(x, y), null);
+                }
+                flag = 0;
+            }
+        }
+    }
+    private void generateTramLights(){
+        LinkedList<TrafficLights> l1 = new LinkedList<>();
+        l1.add(new TrafficLights(15,31));
+        l1.add(new TrafficLights(15,32));
+
+        LinkedList<TrafficLights> l2 = new LinkedList<>();
+        l2.add(new TrafficLights(33,52));
+        l2.add(new TrafficLights(34,52));
+
+        LinkedList<TrafficLights> l3 = new LinkedList<>();
+        l3.add(new TrafficLights(52,31));
+        l3.add(new TrafficLights(52,32));
+
+        l1.addAll(l2);
+        l1.addAll(l3);
+        LightsGroup bigGroup1 = new LightsGroup(l1);
+        tramLightsGroupsArrayList.add(bigGroup1);
+
+        int flag = 0;
+        for(int x = 0; x<68; x++) {
+            for (int y = 0; y < 67; y++) {
+                for (LightsGroup lightsGroup : this.tramLightsGroupsArrayList) {
+                    for (TrafficLights lights : lightsGroup.getLights()) {
+                        if (x == lights.getLocation().getPos_x() && y == lights.getLocation().getPos_y()) {
+                            flag = 1;
+                            this.tramLightsHashMap.put(lights.getLocation(), lightsGroup);
+                        }
+                    }
+                }
+                if (flag == 0) {
+                    this.tramLightsHashMap.put(new Vector(x, y), null);
                 }
                 flag = 0;
             }

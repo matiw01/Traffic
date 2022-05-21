@@ -3,10 +3,7 @@ package Engine;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-
-import static java.util.Collections.*;
+import java.util.HashMap;
 
 public class Tram{
     private final int numberOfPeople;
@@ -37,17 +34,32 @@ public class Tram{
         this.parts.add(this.location);
     }
 
-    public void move(){
+    public void move(HashMap<Vector, LightsGroup> lights){
         ArrayList<TramPath> locations = new ArrayList<>();
         for(TramPath tp : this.parts){locations.add(tp);}
         for(int v = 0; v<this.velocity; v++){
             this.location = this.location.getNext(this.target);
-            if(this.location != null){locations.add(this.location);}
+            if(this.location != null){
+                if(lights.get(this.location.getLocation()) == null || lights.get(this.location.getLocation()).getState()>0){
+                    locations.add(this.location);
+                }
+                else{
+                    break;
+                }
+            }
             else{
                 this.location = locations.get(locations.size()-1);
                 break;
             }
         }
+
+        /*
+        for(int i = 0; i<this.velocity; i++) {
+            if(this.parts.size()+i < this.length){
+                this.parts.add(locations.get(this.velocity-1-i));
+                this.parts.get(this.parts.size()-1).setOccupied(true);
+            }
+        }*/
         if(this.parts.size() < this.length){
             this.parts.add(locations.get(this.velocity-1));
             this.parts.get(this.parts.size()-1).setOccupied(true);
