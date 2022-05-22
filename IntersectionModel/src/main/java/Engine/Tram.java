@@ -17,7 +17,7 @@ public class Tram{
 
     public Tram(TramPath location, TramTarget target){
         this.maxVelocity = 3;
-        this.velocity = 1;
+        this.velocity = 2;
         this.location = location;
         this.target = target;
         this.start = location;
@@ -36,7 +36,7 @@ public class Tram{
 
     public void move(HashMap<Vector, LightsGroup> lights){
         ArrayList<TramPath> locations = new ArrayList<>();
-        for(TramPath tp : this.parts){locations.add(tp);}
+        for(int i = this.parts.size()-1; i>=0; i--){locations.add(this.parts.get(i));}
         for(int v = 0; v<this.velocity; v++){
             this.location = this.location.getNext(this.target);
             if(this.location != null){
@@ -52,28 +52,22 @@ public class Tram{
                 break;
             }
         }
+        for(int i = 0; i<this.parts.size(); i++){
+            if(i+this.velocity < locations.size()){
+                this.parts.get(this.parts.size()-1-i).setOccupied(false);
+                this.parts.set(this.parts.size()-1-i, locations.get(i+this.velocity));
+                this.parts.get(this.parts.size()-1-i).setOccupied(true);
+            }
+            else{
 
-        /*
+                this.parts.get(this.parts.size()-1-i).setOccupied(false);
+                this.parts.set(this.parts.size()-1-i, new Rails(-1,-1)); //nie istnieje to pole - substytut nulla tutaj
+            }
+        }
         for(int i = 0; i<this.velocity; i++) {
             if(this.parts.size()+i < this.length){
                 this.parts.add(locations.get(this.velocity-1-i));
                 this.parts.get(this.parts.size()-1).setOccupied(true);
-            }
-        }*/
-        if(this.parts.size() < this.length){
-            this.parts.add(locations.get(this.velocity-1));
-            this.parts.get(this.parts.size()-1).setOccupied(true);
-        }
-        for(int i = 0; i<this.parts.size(); i++){
-            if(i+this.velocity < locations.size()){
-                this.parts.get(i).setOccupied(false);
-                this.parts.set(i, locations.get(i+this.velocity));
-                this.parts.get(i).setOccupied(true);
-            }
-            else{
-
-                this.parts.get(i).setOccupied(false);
-                this.parts.set(i, new Rails(-1,-1)); //nie istnieje to pole - substytut nulla tutaj
             }
         }
     }
