@@ -125,9 +125,12 @@ public class GridCreator implements IEngineObserver{
         }
 
         for (Vehicle vehicle : vehiclesArrayList){
-            Rectangle rect = new Rectangle(0,0,sqrSize,sqrSize);
-            rect.setFill(Color.YELLOW);
-            grid.add(rect, vehicle.getPosition().getPos_x(), vehicle.getPosition().getPos_y());
+            Rectangle rect1 = new Rectangle(0,0,sqrSize,sqrSize);
+            Rectangle rect2 = new Rectangle(0,0,sqrSize,sqrSize);
+            rect1.setFill(Color.YELLOW);
+            rect2.setFill(Color.YELLOW);
+            grid.add(rect1, vehicle.getPosition().getPos_x(), vehicle.getPosition().getPos_y());
+            if (vehicle.getTailPosition() != null) grid.add(rect2, vehicle.getTailPosition().getPos_x(), vehicle.getTailPosition().getPos_y());
         }
 
         /*

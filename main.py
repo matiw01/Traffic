@@ -1,5 +1,6 @@
 import cv2
 from tracker import *
+from avg_time_cnt import count_time
 import os
 
 def rescale_frame(frame, percent=75):
@@ -18,10 +19,10 @@ def main():
         ret, frame = cap.read()
         if not ret:
             print("error or finished")
-            exit(1)
+            break
         frame = rescale_frame(frame, percent=50)
         height, width, _ = frame.shape
-        x0, x1, y0, y1 = 100, 1000, 100, 900 # z jakiegoś powodu x1 i y1 nie działa
+        x0, x1, y0, y1 = 200, 500, 300, 500 # z jakiegoś powodu x1 i y1 nie działa
         region_of_interest = frame[y0:y1, x0:x1, :].copy() #cały frame [0:height, 0:width]
 
         mask = object_detector.apply(region_of_interest)
@@ -56,6 +57,7 @@ def main():
 
     cap.release()
     cv2.destroyAllWindows()
+    count_time("objects.csv")
 
 if __name__ == "__main__":
     main()
