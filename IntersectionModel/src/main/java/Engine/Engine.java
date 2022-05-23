@@ -102,7 +102,7 @@ public class Engine implements Runnable{
     }
 
     public void generateTrams(){
-        if(Math.random() < 0.1){
+        if(Math.random() < 0.05){
             TramTarget start = TramTarget.getRandom();
             TramTarget end = TramTarget.getRandom();
             while(start == end){end = TramTarget.getRandom();}
@@ -134,14 +134,21 @@ public class Engine implements Runnable{
     }
 
     public void handleLights(){
-        for (LightsGroup lightsGroup : intersection.getVehicleLightsGroupsArrayList()){
+        for(LightsGroup lightsGroup : intersection.getVehicleLightsGroupsArrayList()){
             lightsGroup.incrementLastChange();
             if (lightsGroup.getLastChange() >= 5){
                 lightsGroup.changeState();
             }
         }
 
-        for (LightsGroup lightsGroup : intersection.getPedestrianLightsGroupsArrayList()){
+        for(LightsGroup lightsGroup : intersection.getPedestrianLightsGroupsArrayList()){
+            lightsGroup.incrementLastChange();
+            if (lightsGroup.getLastChange() >= 5){
+                lightsGroup.changeState();
+            }
+        }
+
+        for(LightsGroup lightsGroup : intersection.getTramLightsGroupsArrayList()){
             lightsGroup.incrementLastChange();
             if (lightsGroup.getLastChange() >= 5){
                 lightsGroup.changeState();

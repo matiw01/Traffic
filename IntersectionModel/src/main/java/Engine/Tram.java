@@ -35,20 +35,25 @@ public class Tram{
     }
 
     public void move(HashMap<Vector, LightsGroup> lights){
+        this.velocity = Math.min(this.maxVelocity, this.velocity+1);
         ArrayList<TramPath> locations = new ArrayList<>();
         for(int i = this.parts.size()-1; i>=0; i--){locations.add(this.parts.get(i));}
-        for(int v = 0; v<this.velocity; v++){
-            this.location = this.location.getNext(this.target);
-            if(this.location != null){
-                if(lights.get(this.location.getLocation()) == null || lights.get(this.location.getLocation()).getState()>0){
-                    locations.add(this.location);
+        for(int v = 0; v<this.velocity+this.maxVelocity; v++){
+            TramPath check = this.location.getNext(this.target);
+            if(check != null){
+                if(lights.get(check.getLocation()) == null || lights.get(check.getLocation()).getState()>0){
+                    if(v<this.velocity){
+                        this.location = check;
+                        locations.add(this.location);
+                    }
                 }
                 else{
-                    break;
+                    this.velocity = Math.max(0, this.velocity-1);
+                    this.location = locations.get(this.parts.size()-1);
+                    return;
                 }
             }
             else{
-                this.location = locations.get(locations.size()-1);
                 break;
             }
         }
@@ -59,7 +64,6 @@ public class Tram{
                 this.parts.get(this.parts.size()-1-i).setOccupied(true);
             }
             else{
-
                 this.parts.get(this.parts.size()-1-i).setOccupied(false);
                 this.parts.set(this.parts.size()-1-i, new Rails(-1,-1)); //nie istnieje to pole - substytut nulla tutaj
             }
