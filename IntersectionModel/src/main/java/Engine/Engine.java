@@ -53,7 +53,7 @@ public class Engine implements Runnable{
                 movePedestrians();
                 generateTrams();
                 moveTrams();
-                calulateDisappointment();
+                calculateDisappointment();
                 Platform.runLater(this::notifyObserver);
                 for(Zone zone : zoneLinkedList){zone.reset();}
             }
@@ -160,7 +160,7 @@ public class Engine implements Runnable{
         }
     }
 
-    public void calulateDisappointment(){
+    public void calculateDisappointment(){
         for (Zone zone : zoneLinkedList){
             for (Vehicle vehicle : vehiclesArrayList){zone.isInZone(vehicle);}
         }

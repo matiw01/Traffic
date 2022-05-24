@@ -935,10 +935,10 @@ public class Intersection{
     }
 
     private void generateZones(){
-        Zone zone1 = new Zone(new Vector(0,44), new Vector(16,46));
-        Zone zone2 = new Zone(new Vector(20,0), new Vector(211,13));
-        Zone zone3 = new Zone(new Vector(43,52), new Vector(45,66));
-        Zone zone4 = new Zone(new Vector(53,20), new Vector(67,22));
+        Zone zone1 = new Zone(new Vector(0,44), new Vector(16,46), vehicleLightsHashMap.get(new Vector(16, 44)));
+        Zone zone2 = new Zone(new Vector(20,0), new Vector(21,13), vehicleLightsHashMap.get(new Vector(20, 13)));//ok
+        Zone zone3 = new Zone(new Vector(43,53), new Vector(45,66), vehicleLightsHashMap.get(new Vector(43, 52)));
+        Zone zone4 = new Zone(new Vector(54,20), new Vector(67,22), vehicleLightsHashMap.get(new Vector(53, 20)));//ok
         this.zoneLinkedList.add(zone1);
         this.zoneLinkedList.add(zone2);
         this.zoneLinkedList.add(zone3);
