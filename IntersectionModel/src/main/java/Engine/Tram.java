@@ -34,7 +34,7 @@ public class Tram{
         this.parts.add(this.location);
     }
 
-    public void move(HashMap<Vector, LightsGroup> lights){
+    public void move(HashMap<Vector, LightsGroup> lights){ //dalej sa kolizje
         this.velocity = Math.min(this.maxVelocity, this.velocity+1);
         ArrayList<TramPath> locations = new ArrayList<>();
         for(int i = this.parts.size()-1; i>=0; i--){locations.add(this.parts.get(i));}

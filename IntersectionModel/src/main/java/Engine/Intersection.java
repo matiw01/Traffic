@@ -23,6 +23,7 @@ public class Intersection{
     private final HashMap<Vector, LightsGroup> vehicleLightsHashMap = new HashMap<>();
     private final HashMap<Vector, LightsGroup> tramLightsHashMap = new HashMap<>();
     private final LinkedList<Zone> zoneLinkedList = new LinkedList<>();
+    private final LinkedList<TramZone> tramZoneLinkedList = new LinkedList<>();
 
     public Intersection(int width, int height){
         this.height = height;
@@ -39,6 +40,7 @@ public class Intersection{
         generateVehicleLights();
         generateTramLights();
         generateZones();
+        generateTramZones();
     }
     public ArrayList<Road> getRoadArrayList(){return this.roadArrayList;}
     public HashMap<VehicleTarget, Pair<Double, Road>> getProbVehDir(){return this.probVehDir;}
@@ -901,10 +903,17 @@ public class Intersection{
         l3.add(new TrafficLights(52,31));
         l3.add(new TrafficLights(52,32));
 
-        l1.addAll(l2);
+        LinkedList<TrafficLights> l4 = new LinkedList<>();
+        l4.add(new TrafficLights(33,42));
+        l4.add(new TrafficLights(34,42));
+
         l1.addAll(l3);
         LightsGroup bigGroup1 = new LightsGroup(l1);
         tramLightsGroupsArrayList.add(bigGroup1);
+
+        l2.addAll(l4);
+        LightsGroup bigGroup2 = new LightsGroup(l2, 5);
+        tramLightsGroupsArrayList.add(bigGroup2);
 
         int flag = 0;
         for(int x = 0; x<68; x++) {
@@ -935,4 +944,17 @@ public class Intersection{
         this.zoneLinkedList.add(zone3);
         this.zoneLinkedList.add(zone4);
     }
+
+    private void generateTramZones(){
+        TramZone zone1 = new TramZone(new Vector(0,32), new Vector(15,32)); //left
+        TramZone zone2 = new TramZone(new Vector(52,31), new Vector(67,31)); //right
+        TramZone zone3 = new TramZone(new Vector(33,42), new Vector(33,39)); //bottom upper //polepszyc/czy potrzebne itd
+        TramZone zone4 = new TramZone(new Vector(34,52), new Vector(34,66)); //bottom lower
+        this.tramZoneLinkedList.add(zone1);
+        this.tramZoneLinkedList.add(zone2);
+        this.tramZoneLinkedList.add(zone3);
+        this.tramZoneLinkedList.add(zone4);
+    }
+
+    public LinkedList<TramZone> getTramZoneLinkedList(){return this.tramZoneLinkedList;}
 }
