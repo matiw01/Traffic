@@ -22,6 +22,7 @@ public class Intersection{
     private final HashMap<Vector, LightsGroup> pedestrianLightsHashMap = new HashMap<>();
     private final HashMap<Vector, LightsGroup> vehicleLightsHashMap = new HashMap<>();
     private final HashMap<Vector, LightsGroup> tramLightsHashMap = new HashMap<>();
+    private final LinkedList<Zone> zoneLinkedList = new LinkedList<>();
 
     public Intersection(int width, int height){
         this.height = height;
@@ -37,6 +38,7 @@ public class Intersection{
         generatePedestrianLights();
         generateVehicleLights();
         generateTramLights();
+        generateZones();
     }
     public ArrayList<Road> getRoadArrayList(){return this.roadArrayList;}
     public HashMap<VehicleTarget, Pair<Double, Road>> getProbVehDir(){return this.probVehDir;}
@@ -55,6 +57,7 @@ public class Intersection{
     public ArrayList<LightsGroup> getPedestrianLightsGroupsArrayList(){return this.pedestrianLightsGroupsArrayList;}
     public HashMap<Vector, LightsGroup> getTramLightsHashMap(){return this.tramLightsHashMap;}
     public ArrayList<LightsGroup> getTramLightsGroupsArrayList(){return this.tramLightsGroupsArrayList;}
+    public LinkedList<Zone> getZoneLinkedList(){return this.zoneLinkedList;}
 
     private void generateTramPath(){
         for(int x = 0; x<41; x++){tramPathArrayList.add(new Rails(x, 31));}
@@ -920,5 +923,16 @@ public class Intersection{
                 flag = 0;
             }
         }
+    }
+
+    private void generateZones(){
+        Zone zone1 = new Zone(new Vector(0,44), new Vector(16,46));
+        Zone zone2 = new Zone(new Vector(20,0), new Vector(211,13));
+        Zone zone3 = new Zone(new Vector(43,52), new Vector(45,66));
+        Zone zone4 = new Zone(new Vector(53,20), new Vector(67,22));
+        this.zoneLinkedList.add(zone1);
+        this.zoneLinkedList.add(zone2);
+        this.zoneLinkedList.add(zone3);
+        this.zoneLinkedList.add(zone4);
     }
 }

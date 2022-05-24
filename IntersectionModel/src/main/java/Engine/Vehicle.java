@@ -40,27 +40,29 @@ public class Vehicle {
                 if (lightsGroupHashMap.get(current.getNext(target).getPosition()).getState() == 0) {
                     currentTail = tail;
                     currentPosition = current;
+                    waitingTime ++;
                     return true;
                 }}
-            if (lightsGroupHashMap.get(current.getNext(target).getPosition()) != null){
-                if (lightsGroupHashMap.get(current.getNext(target).getPosition()).getState() == 0){
-                    currentTail = tail;
-                    currentPosition = current;
-                    return true;
-                }
-            }
+//            if (lightsGroupHashMap.get(current.getNext(target).getPosition()) != null){
+//                if (lightsGroupHashMap.get(current.getNext(target).getPosition()).getState() == 0){
+//                    currentTail = tail;
+//                    currentPosition = current;
+//                    return true;
+//                }
+//            }
             if (!current.getNext(target).isOccupied()){
                 if (currentTail != null) tail.setOccupied(false);
                 current.setOccupied(false);
                 tail = current;
                 current = current.getNext(target);
-
                 current.setOccupied(true);
+                waitingTime = 0;
                 if (currentTail != null) tail.setOccupied(true);}
             else {
                 currentTail = tail;
                 currentPosition = current;
                 currentPosition.setOccupied(true);
+                waitingTime++;
                 if (currentTail != null) currentTail.setOccupied(true);
                 return true;
             }

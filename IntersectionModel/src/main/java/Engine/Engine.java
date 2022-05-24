@@ -22,6 +22,7 @@ public class Engine implements Runnable{
     final HashMap<Vector, LightsGroup> vehicleLightsGroupHashMap;
     final HashMap<Vector, LightsGroup> tramLightsGroupHashMap;
     final LinkedList<CarGenerator> carGenerators;
+    final LinkedList<Zone> zoneLinkedList;
 
     public Engine(IEngineObserver gridCreator , HashMap<VehicleTarget, Pair<Double, Road>> probVehDir, Road[][] roadsMap,
                   ArrayList<PedestrianPath> pedestrianPaths, Intersection intersection, LinkedList<CarGenerator> carGenerators){
@@ -39,6 +40,7 @@ public class Engine implements Runnable{
         this.vehicleLightsGroupHashMap = this.intersection.getVehicleLightsHashMap();
         this.tramLightsGroupHashMap = this.intersection.getTramLightsHashMap();
         this.carGenerators = carGenerators;
+        this.zoneLinkedList = intersection.getZoneLinkedList();
     }
 
     public void run(){
@@ -51,7 +53,9 @@ public class Engine implements Runnable{
                 movePedestrians();
                 generateTrams();
                 moveTrams();
+                calulateDisappointment();
                 Platform.runLater(this::notifyObserver);
+                for(Zone zone : zoneLinkedList){zone.reset();}
             }
             try{
                 Thread.sleep(500);
@@ -153,6 +157,12 @@ public class Engine implements Runnable{
             if (lightsGroup.getLastChange() >= 5){
                 lightsGroup.changeState();
             }
+        }
+    }
+
+    public void calulateDisappointment(){
+        for (Zone zone : zoneLinkedList){
+            for (Vehicle vehicle : vehiclesArrayList){zone.isInZone(vehicle);}
         }
     }
 
