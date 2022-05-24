@@ -46,7 +46,6 @@ public class Engine implements Runnable{
     public void run(){
         while(true){
             if(shouldRun){
-                handleLights();
                 generateNewVehicles();
                 moveCars();
                 generatePedestrians();
@@ -54,6 +53,7 @@ public class Engine implements Runnable{
                 generateTrams();
                 moveTrams();
                 calculateDisappointment();
+                handleLights();
                 Platform.runLater(this::notifyObserver);
                 for(Zone zone : zoneLinkedList){zone.reset();}
             }
