@@ -9,12 +9,10 @@ import static Engine.PedestrianTarget.getLocation;
 
 public class Engine implements Runnable{
     int time = 0;
-    int lightsCycle = 36;
-    int horizontalGreen = 20;
-    int verticalGreen = 10;
-    int horizontalRed = 10;
-    int verticalRed = 20;
+    int horizontalGreen = 40;
+    int verticalGreen = 20;
     int redGap = 3;
+    int lightsCycle = horizontalGreen + verticalGreen + 2*redGap;
     boolean shouldRun = false;
     Map<VehicleTarget, Pair<Double, Road>> probVehDir;
     IEngineObserver engineObserver;
@@ -30,8 +28,8 @@ public class Engine implements Runnable{
     final HashMap<Vector, LightsGroup> tramLightsGroupHashMap;
     final LinkedList<CarGenerator> carGenerators;
     final LinkedList<Zone> zoneLinkedList;
-    private LinkedList<LightsGroup> vertical;
-    private LinkedList<LightsGroup> horizontal;
+    private final LinkedList<LightsGroup> vertical;
+    private final LinkedList<LightsGroup> horizontal;
 
     public Engine(IEngineObserver gridCreator , HashMap<VehicleTarget, Pair<Double, Road>> probVehDir, Road[][] roadsMap,
                   ArrayList<PedestrianPath> pedestrianPaths, Intersection intersection, LinkedList<CarGenerator> carGenerators){
@@ -164,7 +162,6 @@ public class Engine implements Runnable{
             }
             for (LightsGroup lightsGroup : vertical) {
                 lightsGroup.setState(0);
-
             }
         } else if (tmp < horizontalGreen + redGap + verticalGreen) {
             for (LightsGroup lightsGroup : horizontal) {
@@ -172,7 +169,6 @@ public class Engine implements Runnable{
             }
             for (LightsGroup lightsGroup : vertical) {
                 lightsGroup.setState(1);
-
             }
         } else if (tmp < horizontalGreen + redGap + verticalGreen + redGap) {
             for (LightsGroup lightsGroup : horizontal) {

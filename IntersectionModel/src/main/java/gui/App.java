@@ -27,60 +27,60 @@ public class App extends javafx.application.Application {
         LinkedList<CarGenerator> carGenerators = new LinkedList<>();
 
         LinkedList<Pair<Double, VehicleTarget>> probabilities1 = new LinkedList<>();
-        probabilities1.add(new Pair<>(0.2, VehicleTarget.Rokicinska));
-        probabilities1.add(new Pair<>(0.4, VehicleTarget.McDonalds));
-        probabilities1.add(new Pair<>(0.6, VehicleTarget.Prawo));
+        probabilities1.add(new Pair<>(0.06, VehicleTarget.Rokicinska));
+        probabilities1.add(new Pair<>(0.1, VehicleTarget.McDonalds));
+        probabilities1.add(new Pair<>(0.12, VehicleTarget.Prawo));
         CarGenerator carGenerator1 = new CarGenerator(probabilities1, new Vector(67, 22));
         carGenerators.add(carGenerator1);
 
         LinkedList<Pair<Double, VehicleTarget>> probabilities2 = new LinkedList<>();
-        probabilities2.add(new Pair<>(0.2, VehicleTarget.Rokicinska));
+        probabilities2.add(new Pair<>(0.15, VehicleTarget.Rokicinska));
         CarGenerator carGenerator2 = new CarGenerator(probabilities2, new Vector(67, 21));
         carGenerators.add(carGenerator2);
 
         LinkedList<Pair<Double, VehicleTarget>> probabilities3 = new LinkedList<>();
-        probabilities3.add(new Pair<>(0.2, VehicleTarget.Rokicinska));
+        probabilities3.add(new Pair<>(0.15, VehicleTarget.Rokicinska));
         CarGenerator carGenerator3 = new CarGenerator(probabilities3, new Vector(67, 20));
         carGenerators.add(carGenerator3);
 
         LinkedList<Pair<Double, VehicleTarget>> probabilities4 = new LinkedList<>();
-        probabilities4.add(new Pair<>(0.2, VehicleTarget.PuszkinaOut));
+        probabilities4.add(new Pair<>(0.15, VehicleTarget.PuszkinaOut));
         CarGenerator carGenerator4 = new CarGenerator(probabilities4, new Vector(67, 19));
         carGenerators.add(carGenerator4);
 
         LinkedList<Pair<Double, VehicleTarget>> probabilities5 = new LinkedList<>();
-        probabilities5.add(new Pair<>(0.2, VehicleTarget.Rokicinska));
-        probabilities5.add(new Pair<>(0.4, VehicleTarget.McDonalds));
+        probabilities5.add(new Pair<>(0.02, VehicleTarget.Rokicinska));
+        probabilities5.add(new Pair<>(0.05, VehicleTarget.McDonalds));
         CarGenerator carGenerator5 = new CarGenerator(probabilities5, new Vector(43, 66));
         carGenerators.add(carGenerator5);
 
         LinkedList<Pair<Double, VehicleTarget>> probabilities6 = new LinkedList<>();
-        probabilities6.add(new Pair<>(0.2, VehicleTarget.PuszkinaOut));
-        probabilities6.add(new Pair<>(0.4, VehicleTarget.Rokicinska));
+        probabilities6.add(new Pair<>(0.02, VehicleTarget.PuszkinaOut));
+        probabilities6.add(new Pair<>(0.05, VehicleTarget.Rokicinska));
         CarGenerator carGenerator6 = new CarGenerator(probabilities6, new Vector(44, 66));
         carGenerators.add(carGenerator6);
 
         LinkedList<Pair<Double, VehicleTarget>> probabilities7 = new LinkedList<>();
-        probabilities7.add(new Pair<>(0.2, VehicleTarget.PuszkinaOut));
+        probabilities7.add(new Pair<>(0.05, VehicleTarget.PuszkinaOut));
         CarGenerator carGenerator7 = new CarGenerator(probabilities7, new Vector(45, 66));
         carGenerators.add(carGenerator7);
 
         LinkedList<Pair<Double, VehicleTarget>> probabilities8 = new LinkedList<>();
-        probabilities8.add(new Pair<>(0.2, VehicleTarget.Prawo));
+        probabilities8.add(new Pair<>(0.05, VehicleTarget.Prawo));
         CarGenerator carGenerator8 = new CarGenerator(probabilities8, new Vector(46, 66));
         carGenerators.add(carGenerator8);
 
-        LinkedList<Pair<Double, VehicleTarget>> probabilities9 = new LinkedList<>();
-        probabilities9.add(new Pair<>(0.2, VehicleTarget.Prawo));
-        probabilities9.add(new Pair<>(0.4, VehicleTarget.PuszkinaOut));
-        probabilities9.add(new Pair<>(0.6, VehicleTarget.Rokicinska));
-        CarGenerator carGenerator9 = new CarGenerator(probabilities9, new Vector(46, 66));
-        carGenerators.add(carGenerator9);
+//        LinkedList<Pair<Double, VehicleTarget>> probabilities9 = new LinkedList<>();
+//        probabilities9.add(new Pair<>(0.05, VehicleTarget.Prawo));
+//        probabilities9.add(new Pair<>(0.1, VehicleTarget.PuszkinaOut));
+//        probabilities9.add(new Pair<>(0.15, VehicleTarget.Rokicinska));
+//        CarGenerator carGenerator9 = new CarGenerator(probabilities9, new Vector(46, 66));
+//        carGenerators.add(carGenerator9);
 
         LinkedList<Pair<Double, VehicleTarget>> probabilities10 = new LinkedList<>();
-        probabilities10.add(new Pair<>(0.2, VehicleTarget.Prawo));
-        probabilities10.add(new Pair<>(0.4, VehicleTarget.PuszkinaOut));
-        probabilities10.add(new Pair<>(0.6, VehicleTarget.Rokicinska));
+        probabilities10.add(new Pair<>(0.22, VehicleTarget.Prawo));
+        probabilities10.add(new Pair<>(0.24, VehicleTarget.PuszkinaOut));
+        probabilities10.add(new Pair<>(0.25, VehicleTarget.Rokicinska));
         CarGenerator carGenerator10 = new CarGenerator(probabilities10, new Vector(0, 44));
         carGenerators.add(carGenerator10);
 
@@ -100,15 +100,15 @@ public class App extends javafx.application.Application {
         carGenerators.add(carGenerator13);
 
         LinkedList<Pair<Double, VehicleTarget>> probabilities14 = new LinkedList<>();
-        probabilities14.add(new Pair<>(0.2, VehicleTarget.Rokicinska));
-        probabilities14.add(new Pair<>(0.4, VehicleTarget.McDonalds));
+        probabilities14.add(new Pair<>(0.02, VehicleTarget.Rokicinska));
+        probabilities14.add(new Pair<>(0.05, VehicleTarget.McDonalds));
         CarGenerator carGenerator14 = new CarGenerator(probabilities14, new Vector(20, 0));
         carGenerators.add(carGenerator14);
 
         LinkedList<Pair<Double, VehicleTarget>> probabilities15 = new LinkedList<>();
-        probabilities15.add(new Pair<>(0.2, VehicleTarget.McDonalds));
-        probabilities15.add(new Pair<>(0.4, VehicleTarget.Prawo));
-        probabilities15.add(new Pair<>(0.6, VehicleTarget.PuszkinaOut));
+        probabilities15.add(new Pair<>(0.03, VehicleTarget.McDonalds));
+        probabilities15.add(new Pair<>(0.04, VehicleTarget.Prawo));
+        probabilities15.add(new Pair<>(0.05, VehicleTarget.PuszkinaOut));
         CarGenerator carGenerator15 = new CarGenerator(probabilities15, new Vector(21, 0));
         carGenerators.add(carGenerator15);
 

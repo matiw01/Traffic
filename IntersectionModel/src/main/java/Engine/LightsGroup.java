@@ -4,8 +4,6 @@ import java.util.LinkedList;
 
 public class LightsGroup{
     private int type;
-    private int greenTime;
-    private int redTime;
     public int state = 0; // 0,1,2 - r y g
     public int lastChange = 0; //s od ost zm
     private final LinkedList<TrafficLights> lights;
@@ -15,8 +13,6 @@ public class LightsGroup{
 //        this.lastChange = lastChange;
 //    }
     public LightsGroup(LinkedList<TrafficLights> lights, int type){
-        this.greenTime = greenTime;
-        this.redTime = redTime;
         this.type = type;
         this.lights = lights;
         this.lastChange = 0;

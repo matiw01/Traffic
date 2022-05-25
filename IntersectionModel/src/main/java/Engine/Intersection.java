@@ -945,13 +945,13 @@ public class Intersection{
         }
 
         LinkedList<LightsGroup> vertical = new LinkedList();
-        vertical.add(bigGroup7);
+        vertical.add(bigGroup6);
         vertical.add(bigGroup2);
         vertical.add(bigGroup4);
         this.vertical = vertical;
 
         LinkedList<LightsGroup> horizontal = new LinkedList();
-        horizontal.add(bigGroup6);
+        horizontal.add(bigGroup7);
         horizontal.add(bigGroup1);
         horizontal.add(bigGroup5);
         this.horizontal = horizontal;
