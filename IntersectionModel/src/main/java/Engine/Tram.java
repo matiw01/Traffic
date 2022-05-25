@@ -19,7 +19,7 @@ public class Tram{
     public Tram(TramPath location, TramTarget target){
         if(target != TramTarget.BOTTOM && !(location.getLocation().getPos_y()>50)){this.maxVelocity = 3;}
         else{this.maxVelocity = 2;}
-        this.accelerationTime = 3;
+        this.accelerationTime = 2;
         this.lastChange = 0;
         this.velocity = 2;
         this.location = location;
@@ -38,7 +38,11 @@ public class Tram{
     }
 
     public void move(HashMap<Vector, LightsGroup> lights){
-        if(this.lastChange == this.accelerationTime){
+        if(this.velocity == 0 && this.lastChange == 1){
+            this.velocity++;
+            this.lastChange = 0;
+        }
+        else if(this.lastChange == this.accelerationTime){
             this.velocity = Math.min(this.maxVelocity, this.velocity+1);
             this.lastChange = 0;
         }
