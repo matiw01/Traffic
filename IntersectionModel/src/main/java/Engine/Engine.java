@@ -8,6 +8,9 @@ import java.util.*;
 import static Engine.PedestrianTarget.getLocation;
 
 public class Engine implements Runnable{
+    int minLightsLength = 10;
+    boolean nextChange = true;
+    boolean allRed = false;
     int lastChange = 0;
     int time = 0;
     int horizontalGreen = 40;
@@ -66,7 +69,7 @@ public class Engine implements Runnable{
                 movePedestrians();
                 generateTrams();
                 moveTrams();
-                if (calculateDisappointment()) handleLightsOptimally();
+                if (calculateDisappointment() || allRed) handleLightsOptimally();
                 lastChange ++;
                 Platform.runLater(this::notifyObserver);
                 for(Zone zone : zoneLinkedList){zone.reset();}
@@ -187,11 +190,32 @@ public class Engine implements Runnable{
     }
 
     private void handleLightsOptimally(){
-        if (lastChange > 10){
-            for( LightsGroup lightsGroup : vertical){lightsGroup.changeState();}
-            for( LightsGroup lightsGroup : horizontal){lightsGroup.changeState();}
+        if (lastChange > minLightsLength || allRed){
+            if (allRed && lastChange >= redGap){
+                allRed = false;
+                lastChange = 0;
+                if (nextChange){
+                    for( LightsGroup lightsGroup : vertical){lightsGroup.setState(1);}
+                    for( LightsGroup lightsGroup : horizontal){lightsGroup.setState(0);}
+                } else{
+                    for( LightsGroup lightsGroup : vertical){lightsGroup.setState(0);}
+                    for( LightsGroup lightsGroup : horizontal){lightsGroup.setState(1);}
+                }
+            nextChange = !nextChange;
+                return;
+            }
+            if (lastChange > minLightsLength) {
+                lastChange = 0;
+                allRed = true;
+                for (LightsGroup lightsGroup : vertical) {
+                    lightsGroup.setState(0);
+                }
+                for (LightsGroup lightsGroup : horizontal) {
+                    lightsGroup.setState(0);
+                }
+            }
         }
-    }
+        }
 
     public boolean calculateDisappointment(){
         int verticalDisappointment = 0;
