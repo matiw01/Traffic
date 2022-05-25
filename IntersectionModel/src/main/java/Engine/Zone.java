@@ -8,11 +8,13 @@ public class Zone {
 //    boolean orientation;
     Vector lowerLeft;
     Vector upperRight;
+    boolean vertical;
     int carNumber = 0;
     LightsGroup connectedLightsGroup;
     ArrayList<Vehicle> vehicleList = new ArrayList();
 //    TODO add lights groups
-    public Zone( Vector lowerLeft, Vector upperRight, LightsGroup connectedLightsGroup){
+    public Zone( Vector lowerLeft, Vector upperRight, LightsGroup connectedLightsGroup, boolean vertical){
+        this.vertical = vertical;
         this.lowerLeft = lowerLeft;
         this.upperRight = upperRight;
         this.connectedLightsGroup = connectedLightsGroup;
