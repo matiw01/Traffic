@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class LightsGroup{
     private int type;
-    public int state = 0; // 0,1,2 - r y g
+    public int state = 0; // 0/1 - red/green
     public int lastChange = 0; //s od ost zm
     private final LinkedList<TrafficLights> lights;
 

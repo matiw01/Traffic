@@ -61,12 +61,14 @@ public class Engine implements Runnable{
     }
 
     public void run(){
+        int i = 0;
         while(true){
             if(shouldRun){
+                i++;
                 generateNewVehicles();
                 moveCars();
                 generatePedestrians();
-                movePedestrians();
+                movePedestrians(i);
                 generateTrams();
                 moveTrams();
                 if (calculateDisappointment() || allRed) handleLightsOptimally();
@@ -95,7 +97,7 @@ public class Engine implements Runnable{
     }
 
     private void generatePedestrians(){
-        if(Math.random() < 0.2){
+        if(Math.random() < 0.08){
             PedestrianTarget start = PedestrianTarget.getRandom();
             PedestrianTarget end = PedestrianTarget.getRandom();
             while(start == end){end = PedestrianTarget.getRandom();}
@@ -109,12 +111,14 @@ public class Engine implements Runnable{
         }
     }
 
-    private void movePedestrians(){
+    private void movePedestrians(int i){
         LinkedList<Pedestrian> toRemove = new LinkedList<>();
         for(Pedestrian pedestrian : pedestrians){
-            pedestrian.move(this.pedestrianLightsGroupHashMap);
-            if(pedestrian.getLocation().isDestination() && ((PedestrianDestination)pedestrian.getLocation()).getWhere() == pedestrian.getTarget()){
-                toRemove.add(pedestrian);
+            if(i%2 == 0 || this.pedestrianLightsGroupHashMap.get(pedestrian.getLocation().getLocation()) != null){
+                pedestrian.move(this.pedestrianLightsGroupHashMap);
+                if(pedestrian.getLocation().isDestination() && ((PedestrianDestination)pedestrian.getLocation()).getWhere() == pedestrian.getTarget()){
+                    toRemove.add(pedestrian);
+                }
             }
         }
         for(Pedestrian pedestrian : toRemove){
@@ -184,7 +188,6 @@ public class Engine implements Runnable{
             }
             for (LightsGroup lightsGroup : vertical) {
                 lightsGroup.setState(0);
-
             }
         }
     }

@@ -9,18 +9,21 @@ public class Tram{
     private final int numberOfPeople;
     private int velocity;
     private final int maxVelocity;
+    private final int accelerationTime;
+    private int lastChange;
     private TramPath location;
     private final TramTarget target;
     private final int length;
     private final ArrayList<TramPath> parts = new ArrayList<>();
-    private final TramPath start;
 
     public Tram(TramPath location, TramTarget target){
-        this.maxVelocity = 3;
+        if(target != TramTarget.BOTTOM && !(location.getLocation().getPos_y()>50)){this.maxVelocity = 3;}
+        else{this.maxVelocity = 2;}
+        this.accelerationTime = 3;
+        this.lastChange = 0;
         this.velocity = 2;
         this.location = location;
         this.target = target;
-        this.start = location;
         if(Math.random()<0.33){
             this.length = 6;
         }
@@ -34,23 +37,27 @@ public class Tram{
         this.parts.add(this.location);
     }
 
-    public void move(HashMap<Vector, LightsGroup> lights){ //dalej sa kolizje
-        this.velocity = Math.min(this.maxVelocity, this.velocity+1);
+    public void move(HashMap<Vector, LightsGroup> lights){
+        if(this.lastChange == this.accelerationTime){
+            this.velocity = Math.min(this.maxVelocity, this.velocity+1);
+            this.lastChange = 0;
+        }
+        this.lastChange++;
         ArrayList<TramPath> locations = new ArrayList<>();
         for(int i = this.parts.size()-1; i>=0; i--){locations.add(this.parts.get(i));}
         for(int v = 0; v<this.velocity+this.maxVelocity; v++){
             TramPath check = this.location.getNext(this.target);
             if(check != null){
-                if(lights.get(check.getLocation()) == null || lights.get(check.getLocation()).getState()>0){
-                    if(v<this.velocity){
-                        this.location = check;
-                        locations.add(this.location);
+                if(v>=this.velocity){
+                    if(!(lights.get(check.getLocation()) == null || lights.get(check.getLocation()).getState()>0) || check.isOccupied()){
+                        this.lastChange = 0;
+                        this.velocity = Math.max(0, this.velocity-1);
+                        this.location = locations.get(this.parts.size()-1+this.velocity);
                     }
                 }
                 else{
-                    this.velocity = Math.max(0, this.velocity-1);
-                    this.location = locations.get(this.parts.size()-1);
-                    return;
+                    this.location = check;
+                    locations.add(this.location);
                 }
             }
             else{

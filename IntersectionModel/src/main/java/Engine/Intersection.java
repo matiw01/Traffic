@@ -63,7 +63,6 @@ public class Intersection{
     public LinkedList<LightsGroup> getVerticalLights(){return this.vertical;}
     public LinkedList<LightsGroup> getHorizontalLights(){return this.horizontal;}
 
-
     private void generateTramPath(){
         for(int x = 0; x<41; x++){tramPathArrayList.add(new Rails(x, 31));}
         tramPathArrayList.add(new TramChangingPoint(41, 31));
@@ -958,7 +957,6 @@ public class Intersection{
 
 
     }
-
     private void generateZones(){
         Zone zone1 = new Zone(new Vector(0,44), new Vector(16,46), vehicleLightsHashMap.get(new Vector(16, 44)), false);
         Zone zone2 = new Zone(new Vector(20,0), new Vector(21,13), vehicleLightsHashMap.get(new Vector(20, 13)), true);
@@ -969,7 +967,6 @@ public class Intersection{
         this.zoneLinkedList.add(zone3);
         this.zoneLinkedList.add(zone4);
     }
-
     private void generateTramZones(){
         TramZone zone1 = new TramZone(new Vector(0,32), new Vector(15,32), false); //left
         TramZone zone2 = new TramZone(new Vector(52,31), new Vector(67,31), false); //right
@@ -980,6 +977,5 @@ public class Intersection{
         this.tramZoneLinkedList.add(zone3);
         this.tramZoneLinkedList.add(zone4);
     }
-
     public LinkedList<TramZone> getTramZoneLinkedList(){return this.tramZoneLinkedList;}
 }
