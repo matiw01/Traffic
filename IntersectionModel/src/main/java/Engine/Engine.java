@@ -8,6 +8,7 @@ import java.util.*;
 import static Engine.PedestrianTarget.getLocation;
 
 public class Engine implements Runnable{
+    int lastChange = 0;
     int time = 0;
     int horizontalGreen = 40;
     int verticalGreen = 20;
@@ -28,6 +29,7 @@ public class Engine implements Runnable{
     final HashMap<Vector, LightsGroup> tramLightsGroupHashMap;
     final LinkedList<CarGenerator> carGenerators;
     final LinkedList<Zone> zoneLinkedList;
+    final LinkedList<TramZone> tramZoneLinkedList;
     private final LinkedList<LightsGroup> vertical;
     private final LinkedList<LightsGroup> horizontal;
 
@@ -48,8 +50,11 @@ public class Engine implements Runnable{
         this.tramLightsGroupHashMap = this.intersection.getTramLightsHashMap();
         this.carGenerators = carGenerators;
         this.zoneLinkedList = intersection.getZoneLinkedList();
+        this.tramZoneLinkedList = intersection.getTramZoneLinkedList();
         this.vertical = intersection.getVerticalLights();
         this.horizontal = intersection.getHorizontalLights();
+        for (LightsGroup lightsGroup : horizontal){lightsGroup.changeState();}
+
     }
 
     public void run(){
@@ -61,8 +66,8 @@ public class Engine implements Runnable{
                 movePedestrians();
                 generateTrams();
                 moveTrams();
-                calculateDisappointment();
-                handleLights();
+                if (calculateDisappointment()) handleLightsOptimally();
+                lastChange ++;
                 Platform.runLater(this::notifyObserver);
                 for(Zone zone : zoneLinkedList){zone.reset();}
             }
@@ -181,10 +186,33 @@ public class Engine implements Runnable{
         }
     }
 
-    public void calculateDisappointment(){
+    private void handleLightsOptimally(){
+        if (lastChange > 10){
+            for( LightsGroup lightsGroup : vertical){lightsGroup.changeState();}
+            for( LightsGroup lightsGroup : horizontal){lightsGroup.changeState();}
+        }
+    }
+
+    public boolean calculateDisappointment(){
+        int verticalDisappointment = 0;
+        int horizontalDisappointment = 0;
+
         for (Zone zone : zoneLinkedList){
             for (Vehicle vehicle : vehiclesArrayList){zone.isInZone(vehicle);}
         }
+        for (TramZone zone : tramZoneLinkedList){
+            zone.calculateDisappointment(tramsArrayList);
+        }
+
+        for (Zone zone : zoneLinkedList){
+            if (zone.vertical) verticalDisappointment += zone.waitingDisappointment;
+            else horizontalDisappointment += zone.waitingDisappointment;}
+
+        for ( TramZone zone : tramZoneLinkedList){
+            if (zone.isVertical()) verticalDisappointment += zone.getWaitingDisappointment();
+            else horizontalDisappointment += zone.getWaitingDisappointment();
+        }
+        return Math.abs(verticalDisappointment - horizontalDisappointment) > 1000;
     }
 
     public void setShouldRun(boolean shouldRun){

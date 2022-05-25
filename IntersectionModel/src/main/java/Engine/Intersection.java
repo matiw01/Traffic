@@ -971,10 +971,10 @@ public class Intersection{
     }
 
     private void generateTramZones(){
-        TramZone zone1 = new TramZone(new Vector(0,32), new Vector(15,32)); //left
-        TramZone zone2 = new TramZone(new Vector(52,31), new Vector(67,31)); //right
-        TramZone zone3 = new TramZone(new Vector(33,42), new Vector(33,39)); //bottom upper //polepszyc/czy potrzebne itd
-        TramZone zone4 = new TramZone(new Vector(34,52), new Vector(34,66)); //bottom lower
+        TramZone zone1 = new TramZone(new Vector(0,32), new Vector(15,32), false); //left
+        TramZone zone2 = new TramZone(new Vector(52,31), new Vector(67,31), false); //right
+        TramZone zone3 = new TramZone(new Vector(33,42), new Vector(33,39), true); //bottom upper //polepszyc/czy potrzebne itd
+        TramZone zone4 = new TramZone(new Vector(34,52), new Vector(34,66), true); //bottom lower
         this.tramZoneLinkedList.add(zone1);
         this.tramZoneLinkedList.add(zone2);
         this.tramZoneLinkedList.add(zone3);

@@ -27,9 +27,9 @@ public class App extends javafx.application.Application {
         LinkedList<CarGenerator> carGenerators = new LinkedList<>();
 
         LinkedList<Pair<Double, VehicleTarget>> probabilities1 = new LinkedList<>();
-        probabilities1.add(new Pair<>(0.06, VehicleTarget.Rokicinska));
-        probabilities1.add(new Pair<>(0.1, VehicleTarget.McDonalds));
-        probabilities1.add(new Pair<>(0.12, VehicleTarget.Prawo));
+        probabilities1.add(new Pair<>(0.04, VehicleTarget.Rokicinska));
+        probabilities1.add(new Pair<>(0.07, VehicleTarget.McDonalds));
+        probabilities1.add(new Pair<>(0.09, VehicleTarget.Prawo));
         CarGenerator carGenerator1 = new CarGenerator(probabilities1, new Vector(67, 22));
         carGenerators.add(carGenerator1);
 
@@ -49,7 +49,7 @@ public class App extends javafx.application.Application {
         carGenerators.add(carGenerator4);
 
         LinkedList<Pair<Double, VehicleTarget>> probabilities5 = new LinkedList<>();
-        probabilities5.add(new Pair<>(0.02, VehicleTarget.Rokicinska));
+        probabilities5.add(new Pair<>(0.008, VehicleTarget.Rokicinska));
         probabilities5.add(new Pair<>(0.05, VehicleTarget.McDonalds));
         CarGenerator carGenerator5 = new CarGenerator(probabilities5, new Vector(43, 66));
         carGenerators.add(carGenerator5);
