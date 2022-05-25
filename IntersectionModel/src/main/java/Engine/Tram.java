@@ -43,22 +43,23 @@ public class Tram{
             this.lastChange = 0;
         }
         this.lastChange++;
+        TramPath rem = this.location;
         ArrayList<TramPath> locations = new ArrayList<>();
         for(int i = this.parts.size()-1; i>=0; i--){locations.add(this.parts.get(i));}
-        for(int v = 0; v<this.velocity+this.maxVelocity; v++){
+        for(int v = 0; v<this.velocity; v++){
             TramPath check = this.location.getNext(this.target);
             if(check != null){
-                if(v>=this.velocity){
-                    if(!(lights.get(check.getLocation()) == null || lights.get(check.getLocation()).getState()>0) || check.isOccupied()){
-                        this.lastChange = 0;
-                        this.velocity = Math.max(0, this.velocity-1);
-                        this.location = locations.get(this.parts.size()-1+this.velocity);
-                    }
+                if(check.isOccupied() || !(lights.get(check.getLocation()) == null || lights.get(check.getLocation()).getState()>0)) {
+                    this.velocity = 0;
+                    this.lastChange = 0;
+                    this.location = rem;
+                    break;
                 }
                 else{
+                    locations.add(check);
                     this.location = check;
-                    locations.add(this.location);
                 }
+
             }
             else{
                 break;
@@ -90,4 +91,13 @@ public class Tram{
     public TramTarget getTarget(){return this.target;}
     public Color getColor(){return Color.GREEN;}
     public ArrayList<TramPath> getTramParts(){return this.parts;}
+    private int getRange(){
+        int sum = 0;
+        int vel = this.velocity;
+        while(vel > 0){
+            sum += vel;
+            vel--;
+        }
+        return sum;
+    }
 }
