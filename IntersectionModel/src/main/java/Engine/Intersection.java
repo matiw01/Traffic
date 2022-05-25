@@ -9,6 +9,8 @@ public class Intersection{
     Road[][] map;
     int width;
     int height;
+    private LinkedList<LightsGroup> vertical;
+    private LinkedList<LightsGroup> horizontal;
     private final ArrayList<Road> roadArrayList = new ArrayList<>();
     private final HashMap<VehicleTarget, Pair<Double, Road>> probVehDir;
     private final ArrayList<Environment> environmentElements = new ArrayList<>();
@@ -36,9 +38,7 @@ public class Intersection{
         generatePedestrianPath();
         generateTramPath();
         generateRoads();
-        generatePedestrianLights();
-        generateVehicleLights();
-        generateTramLights();
+        generateLights();
         generateZones();
         generateTramZones();
     }
@@ -60,6 +60,9 @@ public class Intersection{
     public HashMap<Vector, LightsGroup> getTramLightsHashMap(){return this.tramLightsHashMap;}
     public ArrayList<LightsGroup> getTramLightsGroupsArrayList(){return this.tramLightsGroupsArrayList;}
     public LinkedList<Zone> getZoneLinkedList(){return this.zoneLinkedList;}
+    public LinkedList<LightsGroup> getVerticalLights(){return this.vertical;}
+    public LinkedList<LightsGroup> getHorizontalLights(){return this.horizontal;}
+
 
     private void generateTramPath(){
         for(int x = 0; x<41; x++){tramPathArrayList.add(new Rails(x, 31));}
@@ -619,8 +622,8 @@ public class Intersection{
         map[20][14].setNext(VehicleTarget.McDonalds, map[20][15]);
 
     }
-    private void generatePedestrianLights(){
-//pedastrian traffic lights
+    private void generateLights(){
+    //pedastrian traffic lights
         LinkedList<TrafficLights> l1 = new LinkedList<>();
         l1.add(new TrafficLights(51,31));
         l1.add(new TrafficLights(51,32));
@@ -702,20 +705,24 @@ public class Intersection{
         l12.addAll(l13);
         l12.addAll(l15);
         l12.addAll(l17);
-        LightsGroup bigGroup5 = new LightsGroup(l12, 5);
+        l12.addAll(l3);
+        LightsGroup bigGroup5 = new LightsGroup(l12, 1);
         //
         l4.addAll(l6);
         l4.addAll(l8);
         l4.addAll(l10);
-        LightsGroup bigGroup4 = new LightsGroup(l4);
+        l4.addAll(l1);
+        l4.addAll(l2);
+        LightsGroup bigGroup4 = new LightsGroup(l4, 1);
         //tram big group
         l1.addAll(l2);
         l1.addAll(l3);
-        LightsGroup bigGroup3 = new LightsGroup(l1);
-        pedestrianLightsGroupsArrayList.add(bigGroup3);
+        LightsGroup bigGroup3 = new LightsGroup(l1, 1);
+//        pedestrianLightsGroupsArrayList.add(bigGroup3);
+        //vertical
         pedestrianLightsGroupsArrayList.add(bigGroup4);
+        //horizontal
         pedestrianLightsGroupsArrayList.add(bigGroup5);
-
 
         int flag = 0;
         for(int x = 0; x<68; x++){
@@ -735,19 +742,18 @@ public class Intersection{
             }
         }
 
-    }
-    private void generateVehicleLights(){
+
         //vechicle traffic lights
         LinkedList<TrafficLights> l18 = new LinkedList<>();
         l18.add(new TrafficLights(16,44));
         l18.add(new TrafficLights(16,45));
         l18.add(new TrafficLights(16,46));
-        LightsGroup lg18 = new LightsGroup(l18);
+//        LightsGroup lg18 = new LightsGroup(l18);
 //        this.vehicleLightsGroupsArrayList.add(lg18);
         //this.lightsHashMap.put(new Vector(51,31), lg4);
         LinkedList<TrafficLights> l19 = new LinkedList<>();
         l19.add(new TrafficLights(16,47));
-        LightsGroup lg19 = new LightsGroup(l19);
+//        LightsGroup lg19 = new LightsGroup(l19);
 //        this.vehicleLightsGroupsArrayList.add(lg19);
 //        this.lightsHashMap.put(new Vector(51,31), lg5);
 
@@ -755,12 +761,12 @@ public class Intersection{
         l20.add(new TrafficLights(43,52));
         l20.add(new TrafficLights(44,52));
         l20.add(new TrafficLights(45,52));
-        LightsGroup lg20 = new LightsGroup(l20);
+//        LightsGroup lg20 = new LightsGroup(l20);
 //        this.vehicleLightsGroupsArrayList.add(lg20);
         //this.lightsHashMap.put(new Vector(51,31), lg13);
         LinkedList<TrafficLights> l21 = new LinkedList<>();
         l21.add(new TrafficLights(46,52));
-        LightsGroup lg21 = new LightsGroup(l21);
+//        LightsGroup lg21 = new LightsGroup(l21);
 //        this.vehicleLightsGroupsArrayList.add(lg21);
         //this.lightsHashMap.put(new Vector(51,31), lg14);
 
@@ -768,23 +774,23 @@ public class Intersection{
         l22.add(new TrafficLights(53,20));
         l22.add(new TrafficLights(53,21));
         l22.add(new TrafficLights(53,22));
-        LightsGroup lg22 = new LightsGroup(l22);
+//        LightsGroup lg22 = new LightsGroup(l22);
 //        this.vehicleLightsGroupsArrayList.add(lg22);
         //this.lightsHashMap.put(new Vector(51,31), lg8);
         LinkedList<TrafficLights> l23 = new LinkedList<>();
         l23.add(new TrafficLights(53,19));
-        LightsGroup lg23 = new LightsGroup(l23);
+//        LightsGroup lg23 = new LightsGroup(l23);
 //        this.vehicleLightsGroupsArrayList.add(lg23);
         //this.lightsHashMap.put(new Vector(51,31), lg9);
 
         LinkedList<TrafficLights> l24 = new LinkedList<>();
         l24.add(new TrafficLights(20,13));
-        LightsGroup lg24 = new LightsGroup(l24);
+//        LightsGroup lg24 = new LightsGroup(l24);
 //        this.vehicleLightsGroupsArrayList.add(lg24);
 //        this.lightsHashMap.put(new Vector(51,31), lg15);
         LinkedList<TrafficLights> l25 = new LinkedList<>();
         l25.add(new TrafficLights(21,13));
-        LightsGroup lg25 = new LightsGroup(l25);
+//        LightsGroup lg25 = new LightsGroup(l25);
 //        this.vehicleLightsGroupsArrayList.add(lg25);
 //        this.lightsHashMap.put(new Vector(51,31), lg16);
 
@@ -793,14 +799,14 @@ public class Intersection{
         l26.add(new TrafficLights(44,33));
         l26.add(new TrafficLights(45,33));
         l26.add(new TrafficLights(46,33));
-        LightsGroup lg26 = new LightsGroup(l26);
+//        LightsGroup lg26 = new LightsGroup(l26);
 //        this.vehicleLightsGroupsArrayList.add(lg26);
 
         LinkedList<TrafficLights> l27 = new LinkedList<>();
         l27.add(new TrafficLights(42,24));
         l27.add(new TrafficLights(46,23));
         l27.add(new TrafficLights(47,23));
-        LightsGroup lg27 = new LightsGroup(l27);
+//        LightsGroup lg27 = new LightsGroup(l27);
 //        this.vehicleLightsGroupsArrayList.add(lg27);
 
         LinkedList<TrafficLights> l28 = new LinkedList<>();
@@ -808,21 +814,21 @@ public class Intersection{
         l28.add(new TrafficLights(22,21));
         l28.add(new TrafficLights(22,22));
         l28.add(new TrafficLights(23,26));
-        LightsGroup lg28 = new LightsGroup(l28);
+//        LightsGroup lg28 = new LightsGroup(l28);
 //        this.vehicleLightsGroupsArrayList.add(lg28);
 
         LinkedList<TrafficLights> l29 = new LinkedList<>();
         l29.add(new TrafficLights(20,30));
         l29.add(new TrafficLights(21,30));
         l29.add(new TrafficLights(22,30));
-        LightsGroup lg29 = new LightsGroup(l29);
+//        LightsGroup lg29 = new LightsGroup(l29);
 //        this.vehicleLightsGroupsArrayList.add(lg29);
 
         LinkedList<TrafficLights> l30 = new LinkedList<>();
         l30.add(new TrafficLights(22,43));
         l30.add(new TrafficLights(23,43));
         l30.add(new TrafficLights(27,42));
-        LightsGroup lg30 = new LightsGroup(l30);
+//        LightsGroup lg30 = new LightsGroup(l30);
 //        this.vehicleLightsGroupsArrayList.add(lg30);
 
         LinkedList<TrafficLights> l31 = new LinkedList<>();
@@ -830,7 +836,7 @@ public class Intersection{
         l31.add(new TrafficLights(32,44));
         l31.add(new TrafficLights(32,45));
         l31.add(new TrafficLights(32,46));
-        LightsGroup lg31 = new LightsGroup(l31);
+//        LightsGroup lg31 = new LightsGroup(l31);
 //        this.vehicleLightsGroupsArrayList.add(lg31);
 
         LinkedList<TrafficLights> l32 = new LinkedList<>();
@@ -838,7 +844,7 @@ public class Intersection{
         l32.add(new TrafficLights(42,45));
         l32.add(new TrafficLights(42,46));
         l32.add(new TrafficLights(42,40));
-        LightsGroup lg32 = new LightsGroup(l32);
+//        LightsGroup lg32 = new LightsGroup(l32);
 //        this.vehicleLightsGroupsArrayList.add(lg32);
 
         //big groups
@@ -851,7 +857,8 @@ public class Intersection{
         //
 
 
-        LightsGroup bigGroup1 = new LightsGroup(l18, 5);
+        LightsGroup bigGroup1 = new LightsGroup(l18, 0);
+        //horizontal
         vehicleLightsGroupsArrayList.add(bigGroup1);
 
         l30.addAll(l29);
@@ -866,13 +873,14 @@ public class Intersection{
         //
 
 
-        LightsGroup bigGroup2 = new LightsGroup(l30);
+        LightsGroup bigGroup2 = new LightsGroup(l30, 0);
+        //vertical
         vehicleLightsGroupsArrayList.add(bigGroup2);
 
         //tram big groups
 
         //vechicles
-        int flag = 0;
+        flag = 0;
         for(int x = 0; x<68; x++) {
             for (int y = 0; y < 67; y++) {
                 for (LightsGroup lightsGroup : this.vehicleLightsGroupsArrayList) {
@@ -889,33 +897,36 @@ public class Intersection{
                 flag = 0;
             }
         }
-    }
-    private void generateTramLights(){
-        LinkedList<TrafficLights> l1 = new LinkedList<>();
-        l1.add(new TrafficLights(15,31));
-        l1.add(new TrafficLights(15,32));
 
-        LinkedList<TrafficLights> l2 = new LinkedList<>();
-        l2.add(new TrafficLights(33,52));
-        l2.add(new TrafficLights(34,52));
+        LinkedList<TrafficLights> l33 = new LinkedList<>();
+        l33.add(new TrafficLights(15,31));
+        l33.add(new TrafficLights(15,32));
 
-        LinkedList<TrafficLights> l3 = new LinkedList<>();
-        l3.add(new TrafficLights(52,31));
-        l3.add(new TrafficLights(52,32));
+        LinkedList<TrafficLights> l34 = new LinkedList<>();
+        l34.add(new TrafficLights(33,52));
+        l34.add(new TrafficLights(34,52));
 
-        LinkedList<TrafficLights> l4 = new LinkedList<>();
-        l4.add(new TrafficLights(33,42));
-        l4.add(new TrafficLights(34,42));
+        LinkedList<TrafficLights> l35 = new LinkedList<>();
+        l35.add(new TrafficLights(52,31));
+        l35.add(new TrafficLights(52,32));
+        l35.add(new TrafficLights(24, 31));
+        l35.add(new TrafficLights(43, 32));
 
-        l1.addAll(l3);
-        LightsGroup bigGroup1 = new LightsGroup(l1);
-        tramLightsGroupsArrayList.add(bigGroup1);
+        LinkedList<TrafficLights> l36 = new LinkedList<>();
+        l36.add(new TrafficLights(33,42));
+        l36.add(new TrafficLights(34,42));
 
-        l2.addAll(l4);
-        LightsGroup bigGroup2 = new LightsGroup(l2, 5);
-        tramLightsGroupsArrayList.add(bigGroup2);
+        l34.addAll(l36);
+        LightsGroup bigGroup6 = new LightsGroup(l34, 2);
+        //horizontal
+        tramLightsGroupsArrayList.add(bigGroup6);
 
-        int flag = 0;
+        l33.addAll(l35);
+        LightsGroup bigGroup7 = new LightsGroup(l33, 2);
+        //vertical
+        tramLightsGroupsArrayList.add(bigGroup7);
+
+        flag = 0;
         for(int x = 0; x<68; x++) {
             for (int y = 0; y < 67; y++) {
                 for (LightsGroup lightsGroup : this.tramLightsGroupsArrayList) {
@@ -932,13 +943,27 @@ public class Intersection{
                 flag = 0;
             }
         }
+
+        LinkedList<LightsGroup> vertical = new LinkedList();
+        vertical.add(bigGroup7);
+        vertical.add(bigGroup2);
+        vertical.add(bigGroup4);
+        this.vertical = vertical;
+
+        LinkedList<LightsGroup> horizontal = new LinkedList();
+        horizontal.add(bigGroup6);
+        horizontal.add(bigGroup1);
+        horizontal.add(bigGroup5);
+        this.horizontal = horizontal;
+
+
     }
 
     private void generateZones(){
-        Zone zone1 = new Zone(new Vector(0,44), new Vector(16,46));
-        Zone zone2 = new Zone(new Vector(20,0), new Vector(211,13));
-        Zone zone3 = new Zone(new Vector(43,52), new Vector(45,66));
-        Zone zone4 = new Zone(new Vector(53,20), new Vector(67,22));
+        Zone zone1 = new Zone(new Vector(0,44), new Vector(16,46), vehicleLightsHashMap.get(new Vector(16, 44)), false);
+        Zone zone2 = new Zone(new Vector(20,0), new Vector(21,13), vehicleLightsHashMap.get(new Vector(20, 13)), true);
+        Zone zone3 = new Zone(new Vector(43,53), new Vector(45,66), vehicleLightsHashMap.get(new Vector(43, 52)), true);
+        Zone zone4 = new Zone(new Vector(54,20), new Vector(67,22), vehicleLightsHashMap.get(new Vector(53, 20)), false);
         this.zoneLinkedList.add(zone1);
         this.zoneLinkedList.add(zone2);
         this.zoneLinkedList.add(zone3);

@@ -8,12 +8,16 @@ public class Zone {
 //    boolean orientation;
     Vector lowerLeft;
     Vector upperRight;
+    boolean vertical;
     int carNumber = 0;
+    LightsGroup connectedLightsGroup;
     ArrayList<Vehicle> vehicleList = new ArrayList();
 //    TODO add lights groups
-    public Zone( Vector lowerLeft, Vector upperRight){
+    public Zone( Vector lowerLeft, Vector upperRight, LightsGroup connectedLightsGroup, boolean vertical){
+        this.vertical = vertical;
         this.lowerLeft = lowerLeft;
         this.upperRight = upperRight;
+        this.connectedLightsGroup = connectedLightsGroup;
     }
 
     public Vector getLowerLeft(){return this.lowerLeft;}
@@ -22,7 +26,7 @@ public class Zone {
 
     public boolean isInZone(Vehicle vehicle){
         boolean inZone = vehicle.getPosition().getPos_x() >= lowerLeft.getPos_x() && vehicle.getPosition().getPos_x() <= upperRight.getPos_x()
-                && vehicle.getPosition().getPos_y() >= lowerLeft.getPos_y() && vehicle.getPosition().getPos_y() <= upperRight.getPos_x();
+                && vehicle.getPosition().getPos_y() >= lowerLeft.getPos_y() && vehicle.getPosition().getPos_y() <= upperRight.getPos_y();
         if (inZone){
             this.waitingDisappointment += Math.pow(vehicle.waitingTime, 2) * vehicle.numberOfPeople;
         }
@@ -33,7 +37,6 @@ public class Zone {
         this.waitingDisappointment = 0;
     }
 
-
-
+    public LightsGroup getConnectedLightsGroup() {return this.connectedLightsGroup;}
 
 }

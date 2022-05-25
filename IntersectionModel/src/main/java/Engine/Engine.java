@@ -8,6 +8,13 @@ import java.util.*;
 import static Engine.PedestrianTarget.getLocation;
 
 public class Engine implements Runnable{
+    int time = 0;
+    int lightsCycle = 36;
+    int horizontalGreen = 20;
+    int verticalGreen = 10;
+    int horizontalRed = 10;
+    int verticalRed = 20;
+    int redGap = 3;
     boolean shouldRun = false;
     Map<VehicleTarget, Pair<Double, Road>> probVehDir;
     IEngineObserver engineObserver;
@@ -23,6 +30,8 @@ public class Engine implements Runnable{
     final HashMap<Vector, LightsGroup> tramLightsGroupHashMap;
     final LinkedList<CarGenerator> carGenerators;
     final LinkedList<Zone> zoneLinkedList;
+    private LinkedList<LightsGroup> vertical;
+    private LinkedList<LightsGroup> horizontal;
 
     public Engine(IEngineObserver gridCreator , HashMap<VehicleTarget, Pair<Double, Road>> probVehDir, Road[][] roadsMap,
                   ArrayList<PedestrianPath> pedestrianPaths, Intersection intersection, LinkedList<CarGenerator> carGenerators){
@@ -41,19 +50,21 @@ public class Engine implements Runnable{
         this.tramLightsGroupHashMap = this.intersection.getTramLightsHashMap();
         this.carGenerators = carGenerators;
         this.zoneLinkedList = intersection.getZoneLinkedList();
+        this.vertical = intersection.getVerticalLights();
+        this.horizontal = intersection.getHorizontalLights();
     }
 
     public void run(){
         while(true){
             if(shouldRun){
-                handleLights();
                 generateNewVehicles();
                 moveCars();
                 generatePedestrians();
                 movePedestrians();
                 generateTrams();
                 moveTrams();
-                calulateDisappointment();
+                calculateDisappointment();
+                handleLights();
                 Platform.runLater(this::notifyObserver);
                 for(Zone zone : zoneLinkedList){zone.reset();}
             }
@@ -137,30 +148,44 @@ public class Engine implements Runnable{
         intersection.setTramsArrayList(tramsArrayList);
     }
 
-    public void handleLights(){
-        for(LightsGroup lightsGroup : intersection.getVehicleLightsGroupsArrayList()){
-            lightsGroup.incrementLastChange();
-            if (lightsGroup.getLastChange() >= 5){
-                lightsGroup.changeState();
+    public void handleLights() {
+        time++;
+        int tmp = time % lightsCycle;
+        if (tmp < horizontalGreen) {
+            for (LightsGroup lightsGroup : horizontal) {
+                lightsGroup.setState(1);
             }
-        }
-
-        for(LightsGroup lightsGroup : intersection.getPedestrianLightsGroupsArrayList()){
-            lightsGroup.incrementLastChange();
-            if (lightsGroup.getLastChange() >= 5){
-                lightsGroup.changeState();
+            for (LightsGroup lightsGroup : vertical) {
+                lightsGroup.setState(0);
             }
-        }
+        } else if (tmp < horizontalGreen + redGap) {
+            for (LightsGroup lightsGroup : horizontal) {
+                lightsGroup.setState(0);
+            }
+            for (LightsGroup lightsGroup : vertical) {
+                lightsGroup.setState(0);
 
-        for(LightsGroup lightsGroup : intersection.getTramLightsGroupsArrayList()){
-            lightsGroup.incrementLastChange();
-            if (lightsGroup.getLastChange() >= 5){
-                lightsGroup.changeState();
+            }
+        } else if (tmp < horizontalGreen + redGap + verticalGreen) {
+            for (LightsGroup lightsGroup : horizontal) {
+                lightsGroup.setState(0);
+            }
+            for (LightsGroup lightsGroup : vertical) {
+                lightsGroup.setState(1);
+
+            }
+        } else if (tmp < horizontalGreen + redGap + verticalGreen + redGap) {
+            for (LightsGroup lightsGroup : horizontal) {
+                lightsGroup.setState(0);
+            }
+            for (LightsGroup lightsGroup : vertical) {
+                lightsGroup.setState(0);
+
             }
         }
     }
 
-    public void calulateDisappointment(){
+    public void calculateDisappointment(){
         for (Zone zone : zoneLinkedList){
             for (Vehicle vehicle : vehiclesArrayList){zone.isInZone(vehicle);}
         }

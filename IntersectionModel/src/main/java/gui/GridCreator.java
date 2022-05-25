@@ -134,9 +134,12 @@ public class GridCreator implements IEngineObserver{
         }
 
         for ( Zone zone : intersection.getZoneLinkedList()){
-            Rectangle rect = new Rectangle((zone.getUpperRight().getPos_x() - zone.getLowerLeft().getPos_x() + 1)*sqrSize,(zone.getLowerLeft().getPos_y() - zone.getUpperRight().getPos_y() + 1)*sqrSize);
-            rect.setFill(Color.YELLOW);
-//            grid.add(rect, zone.getLowerLeft().getPos_x(), zone.getLowerLeft().getPos_y());
+            Rectangle rect1 = new Rectangle(sqrSize,sqrSize);
+            rect1.setFill(Color.BLUE);
+            Rectangle rect2 = new Rectangle(sqrSize,sqrSize);
+            rect2.setFill(Color.BLUE);
+            grid.add(rect1, zone.getLowerLeft().getPos_x(), zone.getLowerLeft().getPos_y());
+            grid.add(rect2, zone.getUpperRight().getPos_x(), zone.getUpperRight().getPos_y());
         }
         /*
         ArrayList<Environment> environmentElements = intersection.getEnvironmentElements();
