@@ -70,7 +70,7 @@ public class App extends javafx.application.Application {
         CarGenerator carGenerator8 = new CarGenerator(probabilities8, new Vector(46, 66));
         carGenerators.add(carGenerator8);
 
-//        LinkedList<Pair<Double, VehicleTarget>> probabilities9 = new LinkedList<>();
+//       LinkedList<Pair<Double, VehicleTarget>> probabilities9 = new LinkedList<>();
 //        probabilities9.add(new Pair<>(0.05, VehicleTarget.Prawo));
 //        probabilities9.add(new Pair<>(0.1, VehicleTarget.PuszkinaOut));
 //        probabilities9.add(new Pair<>(0.15, VehicleTarget.Rokicinska));

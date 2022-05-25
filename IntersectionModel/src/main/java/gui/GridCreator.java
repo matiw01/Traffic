@@ -133,14 +133,14 @@ public class GridCreator implements IEngineObserver{
             if (vehicle.getTailPosition() != null) grid.add(rect2, vehicle.getTailPosition().getPos_x(), vehicle.getTailPosition().getPos_y());
         }
 
-        for ( Zone zone : intersection.getZoneLinkedList()){
-            Rectangle rect1 = new Rectangle(sqrSize,sqrSize);
-            rect1.setFill(Color.BLUE);
-            Rectangle rect2 = new Rectangle(sqrSize,sqrSize);
-            rect2.setFill(Color.BLUE);
-            grid.add(rect1, zone.getLowerLeft().getPos_x(), zone.getLowerLeft().getPos_y());
-            grid.add(rect2, zone.getUpperRight().getPos_x(), zone.getUpperRight().getPos_y());
-        }
+//        for ( Zone zone : intersection.getZoneLinkedList()){
+//            Rectangle rect1 = new Rectangle(sqrSize,sqrSize);
+//            rect1.setFill(Color.BLUE);
+//            Rectangle rect2 = new Rectangle(sqrSize,sqrSize);
+//            rect2.setFill(Color.BLUE);
+//            grid.add(rect1, zone.getLowerLeft().getPos_x(), zone.getLowerLeft().getPos_y());
+//            grid.add(rect2, zone.getUpperRight().getPos_x(), zone.getUpperRight().getPos_y());
+//        }
         /*
         ArrayList<Environment> environmentElements = intersection.getEnvironmentElements();
         for(Environment element : environmentElements){

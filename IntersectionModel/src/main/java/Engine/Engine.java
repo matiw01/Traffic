@@ -11,7 +11,7 @@ public class Engine implements Runnable{
     int time = 0;
     int horizontalGreen = 40;
     int verticalGreen = 20;
-    int redGap = 3;
+    int redGap = 4;
     int lightsCycle = horizontalGreen + verticalGreen + 2*redGap;
     boolean shouldRun = false;
     Map<VehicleTarget, Pair<Double, Road>> probVehDir;
