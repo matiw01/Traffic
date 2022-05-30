@@ -90,7 +90,6 @@ public class Engine implements Runnable{
                 lastChange ++;
                 Platform.runLater(this::notifyObserver);
                 for(Zone zone : zoneLinkedList){zone.reset();}
-//                System.out.println(flow);
             }
             try{
                 Thread.sleep(500);
@@ -274,7 +273,7 @@ public class Engine implements Runnable{
 //        System.out.println(disappointment);
 //        System.out.println("Diff");
 //        System.out.println(Math.abs(verticalDisappointment - horizontalDisappointment));
-        return Math.abs(verticalDisappointment - horizontalDisappointment) > 5000;
+        return Math.abs(verticalDisappointment - horizontalDisappointment) > 2000;
     }
 
     public void setShouldRun(boolean shouldRun){

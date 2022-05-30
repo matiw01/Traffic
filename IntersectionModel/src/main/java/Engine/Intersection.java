@@ -812,7 +812,7 @@ public class Intersection{
         l28.add(new TrafficLights(22,20));
         l28.add(new TrafficLights(22,21));
         l28.add(new TrafficLights(22,22));
-        l28.add(new TrafficLights(23,26));
+        l28.add(new TrafficLights(26,23));
 //        LightsGroup lg28 = new LightsGroup(l28);
 //        this.vehicleLightsGroupsArrayList.add(lg28);
 
