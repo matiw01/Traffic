@@ -66,7 +66,8 @@ public class GridCreator implements IEngineObserver{
         ArrayList<TramPath> tramPathArrayList = intersection.getTramPathArrayList();
         for(TramPath tramPath : tramPathArrayList){
             Rectangle rect = new Rectangle(0,0,sqrSize,sqrSize);
-            rect.setFill(tramPath.getColor());
+            //rect.setFill(tramPath.getColor());
+            rect.setFill(Color.CYAN);
             grid.add(rect, tramPath.getLocation().getPos_x(), tramPath.getLocation().getPos_y());
         }
 

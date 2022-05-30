@@ -898,22 +898,18 @@ public class Intersection{
         }
 
         LinkedList<TrafficLights> l33 = new LinkedList<>();
-        l33.add(new TrafficLights(15,31));
         l33.add(new TrafficLights(15,32));
 
         LinkedList<TrafficLights> l34 = new LinkedList<>();
-        l34.add(new TrafficLights(33,52));
         l34.add(new TrafficLights(34,52));
 
         LinkedList<TrafficLights> l35 = new LinkedList<>();
         l35.add(new TrafficLights(52,31));
-        l35.add(new TrafficLights(52,32));
         l35.add(new TrafficLights(24, 31));
         l35.add(new TrafficLights(43, 32));
 
         LinkedList<TrafficLights> l36 = new LinkedList<>();
         l36.add(new TrafficLights(33,42));
-        l36.add(new TrafficLights(34,42));
 
         l34.addAll(l36);
         LightsGroup bigGroup6 = new LightsGroup(l34, 2);
