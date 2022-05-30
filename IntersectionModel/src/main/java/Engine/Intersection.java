@@ -964,14 +964,18 @@ public class Intersection{
         this.zoneLinkedList.add(zone4);
     }
     private void generateTramZones(){
-        TramZone zone1 = new TramZone(new Vector(0,32), new Vector(15,32), false); //left
-        TramZone zone2 = new TramZone(new Vector(52,31), new Vector(67,31), false); //right
-        TramZone zone3 = new TramZone(new Vector(33,42), new Vector(33,39), true); //bottom upper //polepszyc/czy potrzebne itd
-        TramZone zone4 = new TramZone(new Vector(34,52), new Vector(34,66), true); //bottom lower
+        TramZone zone1 = new TramZone(new Vector(0,32), new Vector(15,32), TramTarget.LEFT, false, false); //rb
+        TramZone zone2 = new TramZone(new Vector(52,31), new Vector(67,31), TramTarget.RIGHT, false, false); //lb
+        TramZone zone3 = new TramZone(new Vector(34,67), new Vector(34,52), TramTarget.BOTTOM, false, true); //lr
+        TramZone zone4 = new TramZone(new Vector(27,42), new Vector(33,33), TramTarget.BOTTOM, true, true);
+        TramZone zone5 = new TramZone(new Vector(34,39), new Vector(43,32), TramTarget.RIGHT, true, false);
+        TramZone zone6 = new TramZone(new Vector(24,39), new Vector(34,31), TramTarget.LEFT, true, false);
         this.tramZoneLinkedList.add(zone1);
         this.tramZoneLinkedList.add(zone2);
         this.tramZoneLinkedList.add(zone3);
         this.tramZoneLinkedList.add(zone4);
+        this.tramZoneLinkedList.add(zone5);
+        this.tramZoneLinkedList.add(zone6);
     }
     public LinkedList<TramZone> getTramZoneLinkedList(){return this.tramZoneLinkedList;}
 }

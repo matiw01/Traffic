@@ -127,7 +127,7 @@ public class Engine implements Runnable{
     }
 
     public void generateTrams(){
-        if(Math.random() < 0.05){
+        if(Math.random() < 0.03 && this.tramsArrayList.size() < 3){
             TramTarget start = TramTarget.getRandom();
             TramTarget end = TramTarget.getRandom();
             while(start == end){end = TramTarget.getRandom();}

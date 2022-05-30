@@ -15,6 +15,7 @@ public class Tram{
     private final TramTarget target;
     private final int length;
     private final ArrayList<TramPath> parts = new ArrayList<>();
+    private int waitingTime = 0;
 
     public Tram(TramPath location, TramTarget target){
         if(target != TramTarget.BOTTOM && !(location.getLocation().getPos_y()>50)){this.maxVelocity = 3;}
@@ -33,7 +34,7 @@ public class Tram{
         else{
             this.length = 8;
         }
-        this.numberOfPeople = 10 + (int)(Math.random()*40*this.length/8);
+        this.numberOfPeople = 10 + (int)(Math.random()*25*this.length/8);
         this.parts.add(this.location);
     }
 
@@ -50,13 +51,16 @@ public class Tram{
         TramPath rem = this.location;
         ArrayList<TramPath> locations = new ArrayList<>();
         for(int i = this.parts.size()-1; i>=0; i--){locations.add(this.parts.get(i));}
+        int flag = 1;
         for(int v = 0; v<this.velocity; v++){
             TramPath check = this.location.getNext(this.target);
             if(check != null){
-                if(check.isOccupied() || !(lights.get(check.getLocation()) == null || lights.get(check.getLocation()).getState()>0)) {
+                if(check.isOccupied() || !(lights.get(check.getLocation()) == null || lights.get(check.getLocation()).getState()>0)){
+                    this.waitingTime++;
                     this.velocity = 0;
                     this.lastChange = 0;
                     this.location = rem;
+                    flag = 0;
                     break;
                 }
                 else{
@@ -66,9 +70,11 @@ public class Tram{
 
             }
             else{
+                flag = 0;
                 break;
             }
         }
+        if(flag == 1){this.waitingTime = 0;}
         for(int i = 0; i<this.parts.size(); i++){
             if(i+this.velocity < locations.size()){
                 this.parts.get(this.parts.size()-1-i).setOccupied(false);
@@ -88,6 +94,7 @@ public class Tram{
         }
     }
 
+    public int getWaitingTime(){return this.waitingTime;}
     public int getNumberOfPeople(){return this.numberOfPeople;}
     public int getVelocity(){return this.velocity;}
     public int getMaxVelocity(){return this.maxVelocity;}
