@@ -8,6 +8,7 @@ import java.util.*;
 import static Engine.PedestrianTarget.getLocation;
 
 public class Engine implements Runnable{
+    int flow = 0;
     int minLightsLength = 10;
     boolean nextChange = true;
     boolean allRed = false;
@@ -75,6 +76,7 @@ public class Engine implements Runnable{
                 lastChange ++;
                 Platform.runLater(this::notifyObserver);
                 for(Zone zone : zoneLinkedList){zone.reset();}
+                System.out.println(flow);
             }
             try{
                 Thread.sleep(500);
@@ -93,7 +95,9 @@ public class Engine implements Runnable{
     }
 
     private void moveCars(){
-        vehiclesArrayList.removeIf(vehicle -> !vehicle.move(this.vehicleLightsGroupHashMap));
+        vehiclesArrayList.removeIf(vehicle -> {
+                if (!vehicle.move(this.vehicleLightsGroupHashMap)) flow += vehicle.numberOfPeople;
+                return !vehicle.move(this.vehicleLightsGroupHashMap);});
     }
 
     private void generatePedestrians(){
