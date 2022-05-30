@@ -71,27 +71,16 @@ public class GridCreator implements IEngineObserver{
             grid.add(rect, tramPath.getLocation().getPos_x(), tramPath.getLocation().getPos_y());
         }
 
-        int flag;
-        ArrayList<Tram> toRemove = new ArrayList<>();
         ArrayList<Tram> tramsArrayList = intersection.getTramsArrayList();
         for(Tram tram : tramsArrayList){
-            flag = 0;
             for(TramPath tp : tram.getTramParts()){
                 Rectangle rect = new Rectangle(0,0,sqrSize,sqrSize);
                 rect.setFill(tram.getColor());
                 if(tp.getLocation().getPos_x()>=0){
                     grid.add(rect, tp.getLocation().getPos_x(), tp.getLocation().getPos_y());
-                    flag = 1;
                 }
             }
-            if(flag == 0){
-                toRemove.add(tram);
-            }
         }
-        for(Tram tram : toRemove){
-            tramsArrayList.remove(tram);
-        }
-        intersection.setTramsArrayList(tramsArrayList);
 
         ArrayList<LightsGroup> lightsGroups = intersection.getPedestrianLightsGroupsArrayList();
         for (LightsGroup lightsGroup : lightsGroups){

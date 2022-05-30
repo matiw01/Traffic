@@ -1,14 +1,20 @@
 package Engine;
 
+import gui.ChartMaintainer;
 import gui.IEngineObserver;
 import javafx.application.Platform;
 import javafx.util.Pair;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 
 import static Engine.PedestrianTarget.getLocation;
 
 public class Engine implements Runnable{
     int flow = 0;
+    int disappointment = 0;
     int minLightsLength = 10;
     boolean nextChange = true;
     boolean allRed = false;
@@ -21,6 +27,8 @@ public class Engine implements Runnable{
     boolean shouldRun = false;
     Map<VehicleTarget, Pair<Double, Road>> probVehDir;
     IEngineObserver engineObserver;
+    ChartMaintainer flowChart;
+    ChartMaintainer disappointmentChart;
     ArrayList<Pedestrian> pedestrians = new ArrayList<>();
     ArrayList<PedestrianPath> pedestrianTargets = new ArrayList<>();
     Intersection intersection;
@@ -37,8 +45,8 @@ public class Engine implements Runnable{
     private final LinkedList<LightsGroup> vertical;
     private final LinkedList<LightsGroup> horizontal;
 
-    public Engine(IEngineObserver gridCreator , HashMap<VehicleTarget, Pair<Double, Road>> probVehDir, Road[][] roadsMap,
-                  ArrayList<PedestrianPath> pedestrianPaths, Intersection intersection, LinkedList<CarGenerator> carGenerators){
+    public Engine(IEngineObserver gridCreator , HashMap<VehicleTarget, Pair<Double, Road>> probVehDir, Road[][] roadsMap, ChartMaintainer flowChart,
+                  ChartMaintainer disappointmentChart ,ArrayList<PedestrianPath> pedestrianPaths, Intersection intersection, LinkedList<CarGenerator> carGenerators){
         engineObserver = gridCreator;
         this.probVehDir = probVehDir;
         this.roadsMap = roadsMap;
@@ -58,6 +66,8 @@ public class Engine implements Runnable{
         this.vertical = intersection.getVerticalLights();
         this.horizontal = intersection.getHorizontalLights();
         for (LightsGroup lightsGroup : horizontal){lightsGroup.changeState();}
+        this.flowChart = flowChart;
+        this.disappointmentChart = disappointmentChart;
 
     }
 
@@ -66,17 +76,21 @@ public class Engine implements Runnable{
         while(true){
             if(shouldRun){
                 i++;
+                time++;
                 generateNewVehicles();
                 moveCars();
                 generatePedestrians();
                 movePedestrians(i);
                 generateTrams();
                 moveTrams();
+//                handleLights changing lights on fixed times
+//                handleLights();
+//                handleLightsOptimally changing lights based on number of cars waiting
                 if (calculateDisappointment() || allRed) handleLightsOptimally();
                 lastChange ++;
                 Platform.runLater(this::notifyObserver);
                 for(Zone zone : zoneLinkedList){zone.reset();}
-                System.out.println(flow);
+//                System.out.println(flow);
             }
             try{
                 Thread.sleep(500);
@@ -149,21 +163,33 @@ public class Engine implements Runnable{
     }
 
     public void moveTrams(){
-        LinkedList<Tram> toRemove = new LinkedList<>();
         for(Tram tram : tramsArrayList){
             tram.move(tramLightsGroupHashMap);
-            if(tram.getLocation() == null){
+        }
+        int flag;
+        ArrayList<Tram> toRemove = new ArrayList<>();
+        ArrayList<Tram> tramsArrayList = intersection.getTramsArrayList();
+        for(Tram tram : tramsArrayList){
+            flag = 0;
+            for(TramPath tp : tram.getTramParts()){
+                if(tp.getLocation().getPos_x()>=0){
+                    flag = 1;
+                }
+            }
+            if(flag == 0){
                 toRemove.add(tram);
             }
         }
+
         for(Tram tram : toRemove){
+            flow += tram.getNumberOfPeople();
             tramsArrayList.remove(tram);
         }
         intersection.setTramsArrayList(tramsArrayList);
     }
 
     public void handleLights() {
-        time++;
+        calculateDisappointment();
         int tmp = time % lightsCycle;
         if (tmp < horizontalGreen) {
             for (LightsGroup lightsGroup : horizontal) {
@@ -243,7 +269,12 @@ public class Engine implements Runnable{
             if (zone.isVertical()) verticalDisappointment += zone.getWaitingDisappointment();
             else horizontalDisappointment += zone.getWaitingDisappointment();
         }
-        return Math.abs(verticalDisappointment - horizontalDisappointment) > 1000;
+        this.disappointment = verticalDisappointment + horizontalDisappointment;
+//        System.out.println("Dissappointment");
+//        System.out.println(disappointment);
+//        System.out.println("Diff");
+//        System.out.println(Math.abs(verticalDisappointment - horizontalDisappointment));
+        return Math.abs(verticalDisappointment - horizontalDisappointment) > 5000;
     }
 
     public void setShouldRun(boolean shouldRun){
@@ -251,5 +282,7 @@ public class Engine implements Runnable{
     }
     private void notifyObserver(){
         engineObserver.stepMade(vehiclesArrayList);
+        flowChart.stepMade((double) flow / time);
+        disappointmentChart.stepMade(disappointment);
     }
 }
