@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RoadChangingPoint extends AbstractRoad implements Road{
-    //    private final Road straight;
-//    private final Road previous;
     private final Map<VehicleTarget, Road> turn;
     RoadChangingPoint(Road straight, Road previous, HashMap<VehicleTarget, Road> turn, Vector position){
         this.straight = straight;

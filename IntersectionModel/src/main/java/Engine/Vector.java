@@ -5,7 +5,8 @@ import java.util.Objects;
 public class Vector {
     final int pos_x;
     final int pos_y;
-    private int hashCode;
+    private final int hashCode;
+
     public Vector(int x, int y){
         this.pos_x = x;
         this.pos_y = y;
@@ -18,7 +19,7 @@ public class Vector {
     public String toString(){return "("+pos_x+","+pos_y+")";}
 
     @Override
-    public boolean equals(Object object) {
+    public boolean equals(Object object){
         if(object == null){return false;}
         if(object.getClass() != this.getClass()){return false;}
         final Vector other = (Vector)object;
@@ -26,5 +27,5 @@ public class Vector {
     }
 
     @Override
-    public int hashCode() {return this.hashCode;}
+    public int hashCode(){return this.hashCode;}
 }

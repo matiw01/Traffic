@@ -22,7 +22,7 @@ public abstract class AbstractRoad{
     public void setPrevious(Road previous){this.previous = previous;}
     public void setLeft(Road left){this.left = left;}
     public void setRight(Road right){this.right = right;}
-    public void setOccupied(boolean occupied){this.occupied = occupied;};
+    public void setOccupied(boolean occupied){this.occupied = occupied;}
 
     public boolean isAvailable(int velocity) {
         int i = 0;

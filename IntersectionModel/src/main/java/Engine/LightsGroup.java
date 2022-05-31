@@ -3,9 +3,9 @@ package Engine;
 import java.util.LinkedList;
 
 public class LightsGroup{
-    private int type;
-    public int state = 0; // 0/1 - red/green
-    public int lastChange = 0; //s od ost zm
+    private final int type;
+    public int state = 0; // 0 - red, 1 - green
+    public int lastChange = 0;
     private final LinkedList<TrafficLights> lights;
 
 //    public LightsGroup(LinkedList<TrafficLights> lights, int lastChange){

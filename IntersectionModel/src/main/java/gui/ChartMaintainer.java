@@ -7,7 +7,6 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 
 public class ChartMaintainer {
-
     int epoch = 0;
 
     LineChart<Integer, Double> lineChart;

@@ -13,7 +13,6 @@ public class Intersection{
     private LinkedList<LightsGroup> horizontal;
     private final ArrayList<Road> roadArrayList = new ArrayList<>();
     private final HashMap<VehicleTarget, Pair<Double, Road>> probVehDir;
-    private final ArrayList<Environment> environmentElements = new ArrayList<>();
     private final ArrayList<PedestrianPath> pedestrianPathArrayList = new ArrayList<>();
     private ArrayList<Pedestrian> pedestrianArrayList = new ArrayList<>(); //final??
     private final ArrayList<TramPath> tramPathArrayList = new ArrayList<>();
@@ -33,7 +32,7 @@ public class Intersection{
         map = new Road[height][width];
 
         //Roads
-        this.probVehDir = new HashMap<VehicleTarget, Pair<Double, Road>>();
+        this.probVehDir = new HashMap<>();
 
         generatePedestrianPath();
         generateTramPath();
@@ -44,8 +43,7 @@ public class Intersection{
     }
     public ArrayList<Road> getRoadArrayList(){return this.roadArrayList;}
     public HashMap<VehicleTarget, Pair<Double, Road>> getProbVehDir(){return this.probVehDir;}
-    public ArrayList<Environment> getEnvironmentElements(){return this.environmentElements;}
-    public ArrayList<Pedestrian> getPedestrianArrayList(){return this.pedestrianArrayList;} //czy potrzeben
+    public ArrayList<Pedestrian> getPedestrianArrayList(){return this.pedestrianArrayList;}
     public ArrayList<PedestrianPath> getPedestrianPathArrayList(){return this.pedestrianPathArrayList;}
     public ArrayList<TramPath> getTramPathArrayList(){return this.tramPathArrayList;}
     public void setPedestrianArrayList(ArrayList<Pedestrian> pedestrians){this.pedestrianArrayList = pedestrians;}
@@ -223,7 +221,7 @@ public class Intersection{
         int ay = a.getLocation().getPos_y();
         int bx = b.getLocation().getPos_x();
         int by = b.getLocation().getPos_y();
-        return  (ax == 18 && ay == 14 && bx == 19 && by == 13) ||
+        return (ax == 18 && ay == 14 && bx == 19 && by == 13) ||
                 (ax == 20 && ay == 14 && bx == 19 && by == 13) ||
                 (ax == 33 && ay == 14 && bx == 34 && by == 13) ||
                 (ax == 35 && ay == 14 && bx == 34 && by == 13) ||
@@ -287,7 +285,7 @@ public class Intersection{
         }
 
         for (int x = 41; x > 25; x--){
-            Road road = new RoadChangingPoint(null, null, new HashMap<VehicleTarget, Road>(), new Vector(x, 22));
+            Road road = new RoadChangingPoint(null, null, new HashMap<>(), new Vector(x, 22));
             roadArrayList.add(road);
             map[x][22] = road;}
         for (int x = 25; x > -1; x--){
@@ -301,7 +299,7 @@ public class Intersection{
         for (int x = 41; x > 25; x--){map[x][22].setNext(VehicleTarget.Prawo, map[x][23]);}
 
         for (int x = 41; x > 25; x--){
-            Road road = new RoadChangingPoint(null, null , new HashMap<VehicleTarget, Road>(),  new Vector(x, 23));
+            Road road = new RoadChangingPoint(null, null , new HashMap<>(),  new Vector(x, 23));
             roadArrayList.add(road);
             map[x][23] = road;
         }
@@ -321,7 +319,7 @@ public class Intersection{
             map[20][y] = road;
             if (y != 0) map[20][y].setPrevious(map[y-1][20]);}
 
-        map[20][14] = new RoadChangingPoint(null, null, new HashMap<VehicleTarget, Road>(), new Vector(20, 14));
+        map[20][14] = new RoadChangingPoint(null, null, new HashMap<>(), new Vector(20, 14));
         for (int y = 0; y < 14; y++){map[20][y].setNext(map[20][y + 1]);}
         roadArrayList.add(map[20][14]);
         for (int y = 0; y < 14; y++){map[20][y].setNext(map[20][y + 1]);}
@@ -344,7 +342,7 @@ public class Intersection{
 
 
         for (int y = 27; y < 31; y++){
-            Road road = new RoadChangingPoint(null, null, new HashMap<VehicleTarget, Road>(), new Vector(22, y));
+            Road road = new RoadChangingPoint(null, null, new HashMap<>(), new Vector(22, y));
             roadArrayList.add(road);
             map[22][y] = road;}
 
@@ -366,7 +364,7 @@ public class Intersection{
         for (int y = 51; y < 66; y++){map[21][y].setNext(map[21][y+1]);}
 
         for (int y = 31; y < 39; y++){
-            Road road = new RoadChangingPoint(null, null, new HashMap<VehicleTarget,Road>(), new Vector(22, y));
+            Road road = new RoadChangingPoint(null, null, new HashMap<>(), new Vector(22, y));
             roadArrayList.add(road);
             map[22][y] = road;}
 
@@ -407,7 +405,7 @@ public class Intersection{
         for (int y = 31; y < 39; y++){map[22][y].setNext(VehicleTarget.PuszkinaOut, map[23][y]);}
 
         for (int x = 28; x < 40; x++){
-            Road road = new RoadChangingPoint(null, null, new HashMap<VehicleTarget,Road>(), new Vector(x, 43));
+            Road road = new RoadChangingPoint(null, null, new HashMap<>(), new Vector(x, 43));
             roadArrayList.add(road);
             map[x][43] = road;
             if (x != 28) road.setPrevious(map[x-1][43]);}
@@ -422,7 +420,7 @@ public class Intersection{
             map[x][44] = road;}
 
         for (int x = 28; x < 40; x++){
-            Road road = new RoadChangingPoint(null, null, new HashMap<VehicleTarget, Road>(), new Vector(x, 44));
+            Road road = new RoadChangingPoint(null, null, new HashMap<>(), new Vector(x, 44));
             roadArrayList.add(road);
             map[x][44] = road;}
         for (int x = 40; x < 68; x++){
@@ -520,7 +518,7 @@ public class Intersection{
             roadArrayList.add(road);
             map[45][y] = road;
             road.setPrevious(map[45][y + 1]);}
-        Road road3 = new RoadChangingPoint(null, null, new HashMap<VehicleTarget, Road>(), new Vector(45, 27));
+        Road road3 = new RoadChangingPoint(null, null, new HashMap<>(), new Vector(45, 27));
         map[45][27] = road3;
 
         roadArrayList.add(road3);
@@ -741,7 +739,6 @@ public class Intersection{
             }
         }
 
-
         //vechicle traffic lights
         LinkedList<TrafficLights> l18 = new LinkedList<>();
         l18.add(new TrafficLights(16,44));
@@ -939,19 +936,17 @@ public class Intersection{
             }
         }
 
-        LinkedList<LightsGroup> vertical = new LinkedList();
+        LinkedList<LightsGroup> vertical = new LinkedList<>();
         vertical.add(bigGroup6);
         vertical.add(bigGroup2);
         vertical.add(bigGroup4);
         this.vertical = vertical;
 
-        LinkedList<LightsGroup> horizontal = new LinkedList();
+        LinkedList<LightsGroup> horizontal = new LinkedList<>();
         horizontal.add(bigGroup7);
         horizontal.add(bigGroup1);
         horizontal.add(bigGroup5);
         this.horizontal = horizontal;
-
-
     }
     private void generateZones(){
         Zone zone1 = new Zone(new Vector(0,44), new Vector(16,46), vehicleLightsHashMap.get(new Vector(16, 44)), false);

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class TramChangingPoint implements TramPath{
     private final Vector location;
     private boolean occupied = false;
-    private ArrayList<TramPath> next = new ArrayList<>();
+    private final ArrayList<TramPath> next = new ArrayList<>();
 
     public TramChangingPoint(int x, int y){this.location = new Vector(x, y);}
 
@@ -17,43 +17,36 @@ public class TramChangingPoint implements TramPath{
     }
     public TramPath getNext(TramTarget target){
         switch(target){
-            case LEFT:{
+            case LEFT->{
                 if(this.next.get(0).getLocation().getPos_x() < this.next.get(1).getLocation().getPos_x()){
                     return this.next.get(0);
-                }
-                else if(this.next.get(0).getLocation().getPos_x() > this.next.get(1).getLocation().getPos_x()){
+                } else if(this.next.get(0).getLocation().getPos_x() > this.next.get(1).getLocation().getPos_x()){
                     return this.next.get(1);
-                }
-                else{
+                } else{
                     if(this.next.get(0).getLocation().getPos_y() > this.next.get(1).getLocation().getPos_y()){
                         return this.next.get(0);
-                    }
-                    else{
+                    } else{
                         return this.next.get(1);
                     }
                 }
             }
-            case RIGHT:{
+            case RIGHT->{
                 if(this.next.get(0).getLocation().getPos_x() > this.next.get(1).getLocation().getPos_x()){
                     return this.next.get(0);
-                }
-                else if(this.next.get(0).getLocation().getPos_x() < this.next.get(1).getLocation().getPos_x()){
+                } else if(this.next.get(0).getLocation().getPos_x() < this.next.get(1).getLocation().getPos_x()){
                     return this.next.get(1);
-                }
-                else{
+                } else{
                     if(this.next.get(0).getLocation().getPos_y() < this.next.get(1).getLocation().getPos_y()){
                         return this.next.get(0);
-                    }
-                    else{
+                    } else{
                         return this.next.get(1);
                     }
                 }
             }
-            default:{
-                if(this.next.get(0).getLocation().getPos_x() == this.getLocation().getPos_x()-1){
+            default->{
+                if(this.next.get(0).getLocation().getPos_x() == this.getLocation().getPos_x() - 1){
                     return this.next.get(0);
-                }
-                else{
+                } else{
                     return this.next.get(1);
                 }
             }

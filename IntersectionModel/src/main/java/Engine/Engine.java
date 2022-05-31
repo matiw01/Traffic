@@ -190,65 +190,64 @@ public class Engine implements Runnable{
     public void handleLights() {
         calculateDisappointment();
         int tmp = time % lightsCycle;
-        if (tmp < horizontalGreen) {
-            for (LightsGroup lightsGroup : horizontal) {
+        if (tmp < horizontalGreen){
+            for(LightsGroup lightsGroup : horizontal){
                 lightsGroup.setState(1);
             }
-            for (LightsGroup lightsGroup : vertical) {
+            for(LightsGroup lightsGroup : vertical){
                 lightsGroup.setState(0);
             }
-        } else if (tmp < horizontalGreen + redGap) {
-            for (LightsGroup lightsGroup : horizontal) {
+        } else if(tmp < horizontalGreen + redGap){
+            for(LightsGroup lightsGroup : horizontal){
                 lightsGroup.setState(0);
             }
-            for (LightsGroup lightsGroup : vertical) {
+            for(LightsGroup lightsGroup : vertical){
                 lightsGroup.setState(0);
             }
-        } else if (tmp < horizontalGreen + redGap + verticalGreen) {
-            for (LightsGroup lightsGroup : horizontal) {
+        } else if(tmp < horizontalGreen + redGap + verticalGreen){
+            for(LightsGroup lightsGroup : horizontal){
                 lightsGroup.setState(0);
             }
-            for (LightsGroup lightsGroup : vertical) {
+            for(LightsGroup lightsGroup : vertical){
                 lightsGroup.setState(1);
             }
-        } else if (tmp < horizontalGreen + redGap + verticalGreen + redGap) {
-            for (LightsGroup lightsGroup : horizontal) {
+        } else if(tmp < horizontalGreen + redGap + verticalGreen + redGap){
+            for(LightsGroup lightsGroup : horizontal){
                 lightsGroup.setState(0);
             }
-            for (LightsGroup lightsGroup : vertical) {
+            for(LightsGroup lightsGroup : vertical){
                 lightsGroup.setState(0);
             }
         }
     }
 
     private void handleLightsOptimally(){
-        if (lastChange > minLightsLength || allRed){
-            if (allRed && lastChange >= redGap){
+        if(lastChange > minLightsLength || allRed){
+            if(allRed && lastChange >= redGap){
                 allRed = false;
                 lastChange = 0;
-                if (nextChange){
+                if(nextChange){
                     for( LightsGroup lightsGroup : vertical){lightsGroup.setState(1);}
                     for( LightsGroup lightsGroup : horizontal){lightsGroup.setState(0);}
                 } else{
                     for( LightsGroup lightsGroup : vertical){lightsGroup.setState(0);}
                     for( LightsGroup lightsGroup : horizontal){lightsGroup.setState(1);}
                 }
-            nextChange = !nextChange;
+                nextChange = !nextChange;
                 return;
             }
-            if (lastChange > minLightsLength) {
+            if(lastChange > minLightsLength){
                 lastChange = 0;
                 allRed = true;
-                for (LightsGroup lightsGroup : vertical) {
+                for(LightsGroup lightsGroup : vertical){
                     lightsGroup.setState(0);
                 }
-                for (LightsGroup lightsGroup : horizontal) {
+                for(LightsGroup lightsGroup : horizontal){
                     lightsGroup.setState(0);
                 }
             }
         }
-        }
-
+    }
     public boolean calculateDisappointment(){
         int verticalDisappointment = 0;
         int horizontalDisappointment = 0;
@@ -275,7 +274,6 @@ public class Engine implements Runnable{
 //        System.out.println(Math.abs(verticalDisappointment - horizontalDisappointment));
         return Math.abs(verticalDisappointment - horizontalDisappointment) > 2000;
     }
-
     public void setShouldRun(boolean shouldRun){
         this.shouldRun = shouldRun;
     }

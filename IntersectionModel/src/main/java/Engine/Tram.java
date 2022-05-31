@@ -25,15 +25,9 @@ public class Tram{
         this.velocity = 2;
         this.location = location;
         this.target = target;
-        if(Math.random()<0.33){
-            this.length = 6;
-        }
-        else if(Math.random()<0.66){
-            this.length = 7;
-        }
-        else{
-            this.length = 8;
-        }
+        if(Math.random()<0.33){this.length = 6;}
+        else if(Math.random()<0.66){this.length = 7;}
+        else{this.length = 8;}
         this.numberOfPeople = 10 + (int)(Math.random()*25*this.length/8);
         this.parts.add(this.location);
     }
@@ -67,7 +61,6 @@ public class Tram{
                     locations.add(check);
                     this.location = check;
                 }
-
             }
             else{
                 flag = 0;
@@ -83,7 +76,7 @@ public class Tram{
             }
             else{
                 this.parts.get(this.parts.size()-1-i).setOccupied(false);
-                this.parts.set(this.parts.size()-1-i, new Rails(-1,-1)); //nie istnieje to pole - substytut nulla tutaj
+                this.parts.set(this.parts.size()-1-i, new Rails(-1,-1)); //(-1, -1) field doesn't exist - it's null substitute
             }
         }
         for(int i = 0; i<this.velocity; i++) {
@@ -96,19 +89,8 @@ public class Tram{
 
     public int getWaitingTime(){return this.waitingTime;}
     public int getNumberOfPeople(){return this.numberOfPeople;}
-    public int getVelocity(){return this.velocity;}
-    public int getMaxVelocity(){return this.maxVelocity;}
     public TramPath getLocation(){return this.location;}
     public TramTarget getTarget(){return this.target;}
     public Color getColor(){return Color.GREEN;}
     public ArrayList<TramPath> getTramParts(){return this.parts;}
-    private int getRange(){
-        int sum = 0;
-        int vel = this.velocity;
-        while(vel > 0){
-            sum += vel;
-            vel--;
-        }
-        return sum;
-    }
 }

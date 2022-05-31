@@ -113,7 +113,6 @@ public class App extends javafx.application.Application {
         ChartMaintainer disappointmentChartMaintainer = new ChartMaintainer("Time", "Disappointment");
         LineChart disappointmentChart = disappointmentChartMaintainer.createChart();
 
-
         Engine engine = new Engine(gridCreator,intersection.getProbVehDir(), intersection.getMap(), flowChartMaintainer, disappointmentChartMaintainer, intersection.getPedestrianPathArrayList(), intersection, carGenerators);
         Thread simulationThread = new Thread(engine);
         simulationThread.start();

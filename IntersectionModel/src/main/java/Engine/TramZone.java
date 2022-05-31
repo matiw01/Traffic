@@ -8,7 +8,7 @@ public class TramZone{
     private final Vector upperRight;
     private final TramTarget target;
     private final boolean to;
-    private boolean vertical;
+    private final boolean vertical;
     public TramZone(Vector lowerLeft, Vector upperRight, TramTarget target, boolean to, boolean vertical){
         this.lowerLeft = lowerLeft;
         this.upperRight = upperRight;
@@ -20,7 +20,7 @@ public class TramZone{
     public int calculateDisappointment(ArrayList<Tram> trams){
         for(Tram tram : trams){
             if(isInZone(tram)){
-                this.waitingDisappointment += tram.getWaitingTime()*tram.getWaitingTime()*tram.getNumberOfPeople(); //time of waiting not included rn - only nr of passengers matters
+                this.waitingDisappointment += tram.getWaitingTime()*tram.getWaitingTime()*tram.getNumberOfPeople();
             }
         }
         return this.waitingDisappointment;
@@ -38,9 +38,7 @@ public class TramZone{
                 tram.getLocation().getLocation().getPos_y()<=this.upperRight.getPos_y();
     }
     public int getWaitingDisappointment(){return waitingDisappointment;}
-    public void reset(){this.waitingDisappointment = 0;}
     public TramTarget getTarget(){return this.target;}
-    public boolean isTo(){return this.to;}
     public boolean isVertical(){return this.vertical;}
 
 }

@@ -10,15 +10,12 @@ import java.util.LinkedList;
 
 public class GridCreator implements IEngineObserver{
     GridPane grid;
-    int columnWidth = 50;
-    int rowWidth = 50;
     int sqrSize = 10;
     int width;
     int height;
     Intersection intersection;
     ArrayList<Road> arrayRoadList;
     ArrayList<PedestrianPath> pedestrianPathArrayList;
-    ArrayList<Vehicle> vehicleArrayList;
     public GridCreator(int width, int height, GridPane grid, Intersection intersection){
         this.width = width;
         this.height = height;
@@ -92,6 +89,7 @@ public class GridCreator implements IEngineObserver{
                 grid.add(rect, trafficLight.getLocation().getPos_x(), trafficLight.getLocation().getPos_y());
             }
         }
+
         ArrayList<LightsGroup> vLightsGroups = intersection.getVehicleLightsGroupsArrayList();
         for (LightsGroup lightsGroup : vLightsGroups){
             LinkedList<TrafficLights> lights = lightsGroup.getLights();
@@ -131,12 +129,5 @@ public class GridCreator implements IEngineObserver{
 //            grid.add(rect1, zone.getLowerLeft().getPos_x(), zone.getLowerLeft().getPos_y());
 //            grid.add(rect2, zone.getUpperRight().getPos_x(), zone.getUpperRight().getPos_y());
 //        }
-        /*
-        ArrayList<Environment> environmentElements = intersection.getEnvironmentElements();
-        for(Environment element : environmentElements){
-            Rectangle rect = new Rectangle(0,0,20,20);
-            rect.setStroke(element.getColor());
-            grid.add(rect, element.getLocation().getPos_x(), element.getLocation().getPos_y());
-        }*/
     }
 }
