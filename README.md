@@ -3,6 +3,8 @@
 ![](https://img.shields.io/github/repo-size/nathen418/Vehicle-Tracking-Using-OpenCV-and-VOLOv5?color=Green&style=flat-square)
 ![](https://img.shields.io/tokei/lines/github/nathen418/Vehicle-Tracking-Using-OpenCV-and-VOLOv5?style=flat-square)  
 ![](https://cdn.discordapp.com/icons/649703068799336454/1a7ef8f706cd60d62547d2c7dc08d6f0.png) 
+# Traffic Model
+Information about our work reulsts are in file sprawozdanie.pdf
 
 # Vehicle Tracking Using OpenCV and VOLOv5 (VTUOV)
 - Description: This project is a vehicle tracking system using OpenCV and VOLOv5 designed to work with video streams or pre saved videos.
